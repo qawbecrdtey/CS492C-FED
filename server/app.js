@@ -19,9 +19,8 @@ data1 = JSON.parse(
 );
 
 app.set('view engine', 'ejs') // 뷰 엔진을 ejs로 세팅한다
-// app.set('port', 4000)
 
-// 3000 포트로 서버 오픈
+// 4000 포트로 서버 오픈
 app.listen(4000, function() {
     console.log("start! express server on port 4000")
 })
@@ -51,6 +50,10 @@ app.get('/form', function(req, res){
 app.post('/email_post', function(req, res){
     res.render('email.ejs', {'email' : req.body.email})
 })
+
+app.get('/api/hello', (req, res)=> {
+    res.send("안녕");
+});
 
 
 // public 디렉토리를 static으로 기억한다.
