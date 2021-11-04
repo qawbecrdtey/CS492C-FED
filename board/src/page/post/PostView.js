@@ -9,7 +9,7 @@ const PostView = ({ history, location, match }) => {
  
   useEffect(() => {
     setData(getPostByNo(no));
-  }, []);
+  }, [no]);
  
   return (
     <>
