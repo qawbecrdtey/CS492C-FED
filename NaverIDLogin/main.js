@@ -15,6 +15,9 @@ var app = http.createServer(function(request, response) {
     if(request.url == "naver_callback.html") {
         url = "/naver_callback.html";
     }
+    if(request.url == "login_successful.html") {
+        url = "/login_successful.html";
+    }
     response.writeHead(200);
     response.end(fs.readFileSync(__dirname + url));
     
