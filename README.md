@@ -2,9 +2,9 @@
 커뮤니케이션 도구 게시판/협업 도구 개발
 
 ## Git pull 받은 후 해야 할 것
-'''
-npm install
-'''
+
+  npm install
+
 위 명령어는 패키지 다운받는 코드이므로, git pull 받은 후 한번씩 꼭 해줘야 함
 
 ## directory 구조
