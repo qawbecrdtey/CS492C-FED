@@ -22,8 +22,8 @@ npm install
     + 등등
 중요한 구조만 써놓았습니다.
 
-###frontend 실행
+### frontend 실행
 board % npm start
 
-###backend(서버)실행
+### backend(서버)실행
 board/server % npm start
