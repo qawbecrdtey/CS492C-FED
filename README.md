@@ -12,6 +12,7 @@ npm install
   + node_modules
   + public
   + server
+    + App.js
   + src
     + component
     + images
