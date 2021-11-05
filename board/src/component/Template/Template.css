@@ -1,0 +1,28 @@
+.Template{
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.Template .app-title{
+    background: gray;
+    color: white;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+}
+
+.Template .content{
+    background: white;
+}
+
+.Template .app-title .post-no{
+    margin-right: 4px;
+    font-size: 2rem;
+}

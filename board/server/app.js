@@ -7,6 +7,8 @@ var client_id = '_xriyns1iwvtRUz9k3eE';
 var client_secret = 'Z6ce5YPyai';
 var state = "RANDOM_STATE";
 var redirectURI = encodeURI("http://localhost:4000/api/callback");
+// var redirectURI = encodeURI("http://localhost:3000/Logined");
+// var redirectURI = encodeURI("http://localhost:4000/Logined");
 var api_url = "";
 
 // 브라우저에서 오는 응답이 json 일수도 있고, 아닐 수도 있으므로 urlencoded() 도 추가한다.
@@ -37,7 +39,8 @@ app.get('/api/hello', (req, res)=> {
 app.get('/api/naverlogin', function (req, res) {
     api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI + '&state=' + state;
     res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
-    res.end("<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>");
+    // res.end("<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>");
+    res.end(api_url);
 });
 
 app.get('/api/callback', function (req, res) {
