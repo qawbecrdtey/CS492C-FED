@@ -27,3 +27,7 @@ board % npm start
 
 ### backend(서버)실행
 board/server % npm start
+
+
+### 패키지 설치 시 --save 옵션
+npm install (something) --save
