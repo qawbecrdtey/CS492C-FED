@@ -9,6 +9,7 @@ import CommentInput from '../../../component/CommentInput/CommentInput'
 import Comment from '../../../component/Comment/Comment'
 import Article from '../../../component/Article/Article'
 import { BiLike } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 
 function Post() {
@@ -58,6 +59,13 @@ function Post() {
             />
           )
         })}
+      </div>
+      <div>
+        <Link to="/markdown">
+          <button>
+              작성하기
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import PostMain from './page/post/PostMain';
 import PostView from './page/post/PostView';
 import Landing from './page/post/Landing';
