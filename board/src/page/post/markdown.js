@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import ReactMde from "react-mde";
 import ReactDOM from "react-dom";

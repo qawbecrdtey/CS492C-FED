@@ -5,7 +5,7 @@ import CommonTableColumn from '../../component/table/CommonTableColumn';
 import CommonTableRow from '../../component/table/CommonTableRow';
 import {postList} from '../../Data';
  
-const PostList = props => {
+const PostList = () => {
   const [ dataList, setDataList ] = useState([]);
  
   useEffect(() => {
