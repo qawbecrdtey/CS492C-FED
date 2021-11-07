@@ -4,19 +4,18 @@ import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../actions/actions';
 
-const Login = () => {
+const Join = () => {
+
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
     const [ID, setID] = useState('')
     const writeID = e => {
         setID(e.target.value);
-        console.log(ID);
     }
     const [PW, setPW] = useState('')
     const writePW = e => {
         setPW(e.target.value);
-        console.log(PW);
     };
     const register = () => {
         let body = {
@@ -45,4 +44,4 @@ const Login = () => {
      )
  }
 
- export default Login;
+ export default Join;

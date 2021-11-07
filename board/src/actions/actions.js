@@ -17,8 +17,8 @@ const USER_URL = '/api/user';
 // }
 
 export function registerUser(dataToSubmit) {
-  console.log(dataToSubmit);
   if (dataToSubmit['userID'] == '') {
+    console.log("userID is none");
     return {
       type: types.REGISTER_USER,
       payload: '',
