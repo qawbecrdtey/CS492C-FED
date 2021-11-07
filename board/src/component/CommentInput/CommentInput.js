@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useCallback, useState } from 'react';
 import { MdDone } from 'react-icons/md';
 import './CommentInput.css';

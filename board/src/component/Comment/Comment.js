@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { BiTrash } from 'react-icons/bi';
 // import logo from './CS492C-FED/board/src/images/logo.svg';

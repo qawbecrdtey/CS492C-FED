@@ -1,9 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
 import './Post.css';
-// import Template from './Template';
-// import CommentInput from './commentInput';
-// import Comment from './Comment';
-// import Article from './Article';
 import Template from '../../../component/Template/Template'
 import CommentInput from '../../../component/CommentInput/CommentInput'
 import Comment from '../../../component/Comment/Comment'
@@ -42,7 +38,7 @@ function Post() {
     <div>
       <Template>
         <Article />
-          <span class="like_btn" onClick={() => { setLike(like + 1) }}>
+          <span className="like_btn" onClick={() => { setLike(like + 1) }}>
             <BiLike/>
           </span>{like}
         <CommentInput onInsert={onInsert} />
