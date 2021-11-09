@@ -12,7 +12,11 @@ const cors = require('cors');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
+app.listen(port, () => {
+    console.log('서버가 가동중입니다');
+});
 
 mongoose
     .connect(dbAddress, {
@@ -26,23 +30,12 @@ app.get('/api/hello', (req, res) => {
     res.send("하하하하하하");
 });
 
-// app.post('/api/register', (req,res) => {
-//     const user = new User(req.body);
-
-//     user.save((err,userInfo) => {
-//         if(err) return res.json({success:false, err})
-//         return res.status(200).json({
-//             success:true
-//         });
-//     });
-// });
-
 app.post("/api/user/register", async(req, res) => {
     res.set('Access-Control-Allow-Credentials', 'true');
     res.header("Access-Control-Allow-Origin", req.headers.origin);
-  
+
     const user = new User(req.body);
-    var userList = mongoose.model('User');
+    var userList = mongoose.model("User");
     if(user.userName == ""){
       return res.status(200).json({ success: true });
     }
@@ -51,7 +44,6 @@ app.post("/api/user/register", async(req, res) => {
           return res.json({ success: false, err });
         }else {
           if(sameUser != null){ //이미 같은 유저가 디비에 있을떄
-            console.log("same user");
             return res.json(
             {
               userID: user.userID,
@@ -61,7 +53,11 @@ app.post("/api/user/register", async(req, res) => {
         }
       })
     user.save((err, userInfo) => {
-      if (err) return res.json({ success: false, err });
+      if (err) { 
+        console.log(err);
+        return res.json({ success: false, err });
+      }
+      console.log("save");
       return res.status(200).json(
       {
         userID: user.userID,
@@ -70,6 +66,11 @@ app.post("/api/user/register", async(req, res) => {
     });
   });
 
-app.listen(port, () => {
-    console.log('서버가 가동중입니다');
+app.get("/api/user/users", async(req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+
+  const users = await User.find({});
+  // console.log(users);
+  res.json(users);
 });

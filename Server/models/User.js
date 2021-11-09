@@ -7,11 +7,11 @@ const moment = require("moment");
 const userSchema = mongoose.Schema({
   userID: {
     type: String,
-    maxlength: 50,
+    maxlength: 20,
   },
   password: {
     type: String,
-    minlength: 5,
+    maxlength: 30,
   }
   // tokenExp: {
   //   type: Number, //유효기간관리
