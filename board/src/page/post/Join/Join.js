@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../actions/actions';
 
 const Join = () => {
-
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
+
     const [ID, setID] = useState('')
     const writeID = e => {
         setID(e.target.value);
@@ -23,7 +23,7 @@ const Join = () => {
             password: PW
           };
         dispatch(registerUser(body));
-        history.push('./postMain');
+        history.push('./');
     }
 
     return(
