@@ -53,6 +53,7 @@ const Login = () => {
           />
           <Input
             placeholder="password"
+            type="password"
             onChange={writePW}
           />
           <button onClick={login}>Sign in</button>
