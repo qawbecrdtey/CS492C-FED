@@ -19,17 +19,6 @@ const PostList = () => {
         {
           dataList ? dataList.map((item, index) => {
             return (
-              // <CommonTableRow key={index}>
-              //   <CommonTableColumn>
-              //     <Checkbox />
-              //   </CommonTableColumn>
-              //   <CommonTableColumn>{ item.no }</CommonTableColumn>
-              //   <CommonTableColumn>
-              //     <Link to={`/postView/${item.no}`}>{ item.title }</Link>
-              //   </CommonTableColumn>
-              //   <CommonTableColumn>{ item.createDate }</CommonTableColumn>
-              //   <CommonTableColumn>{ item.readCount }</CommonTableColumn>
-              // </CommonTableRow>
               <Row key={index} no={1} title={'haha'} no_comments={4} likes={2} writer={'dain'} create_time={1111} views={3} />
             )
           }) : ''
