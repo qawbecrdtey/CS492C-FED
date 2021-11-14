@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { BrowserRouter, Route } from 'react-router-dom';
-import PostMain from './page/post/PostMain';
-import PostView from './page/post/PostView';
-import Landing from './page/post/Landing/Landing';
-import Post from './page/post/Post/Post'
-import Markdown from './page/post/markdown'
-import Join from './page/post/Join'
+import PostMain from './page/PostMain';
+import PostView from './page/PostView';
+import Landing from './page/Landing/Landing';
+import Post from './page/Post/Post'
+import Markdown from './page/markdown'
+import Join from './page/Join'
  
 function App() {
   return (
