@@ -1,26 +1,41 @@
-.post-view-wrapper {
-    width: 60%;
-    margin: 0 auto;
+.Post {
+    text-align: center;
   }
   
-  .post-view-go-list-btn {
-    border: 0;
-    padding: 10px;
-    background-color: #ffd9d9;
+  .Post-logo {
+    pointer-events: none;
   }
   
-  .post-view-row {
-    margin: 10px 0;
+  @media (prefers-reduced-motion: no-preference) {
+    .Post-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .Post-header {
+    background-color: #282c34;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
   
-  .post-view-row > label:first-child {
-    margin: 10px 0;
-    width: 30%;
-    font-weight: bold;
+  .Post-link {
+    color: #61dafb;
   }
   
-  .post-view-row > *:nth-child(2) {
-    margin: 10px 0;
-    width: 70%;
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .like_btn {
+   cursor: pointer; 
   }

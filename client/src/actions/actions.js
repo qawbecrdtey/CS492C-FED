@@ -2,6 +2,7 @@ import types from './types';
 import { request } from '../utils/axios';
 
 const USER_URL = '/api/user';
+const POST_URL = '/api/post';
 
 export async function getAllUser() {
   const data = await request('get', USER_URL + '/users', null);
@@ -26,6 +27,21 @@ export function registerUser(dataToSubmit) {
   }
   // const data = request('post', USER_URL + '/register', dataToSubmit);
   request('post', USER_URL + '/register', dataToSubmit);
+  return {
+    type: types.REGISTER_USER,
+    payload: '',
+  };
+}
+
+export function registerPost(dataToSubmit) {
+  if (dataToSubmit['userID'] == '') {
+    console.log("userID is none");
+    return {
+      type: types.REGISTER_USER,
+      payload: '',
+    };
+  }
+  request('post', POST_URL + '/register', dataToSubmit);
   return {
     type: types.REGISTER_USER,
     payload: '',

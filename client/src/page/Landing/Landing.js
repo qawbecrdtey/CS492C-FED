@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container} from './styled';
-import Login from '../../../component/Login'
+import Login from '../../component/Login'
 
 const Landing = () => {//Functional Component 만들기
 

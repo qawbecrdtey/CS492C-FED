@@ -2,6 +2,9 @@ const types = {
     REGISTER_USER: 'REGISTER_USER',
     GET_ALL_USERS: 'GET_ALL_USERS',
     USER_LOGINED: 'USER_LOGINED',
+    GET_CURR_POST_NUM: 'GET_CURR_POST_NUM',
+    REGISTER_POST: 'REGISTER_POST',
+    GET_ALL_POSTS: 'GET_ALL_POSTS',
   };
   
   export default types;

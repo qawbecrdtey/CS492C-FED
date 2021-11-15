@@ -1,13 +1,13 @@
 import React, { useState, useRef, useCallback } from 'react';
 import './Post.css';
-import Template from '../../../component/Template/Template'
-import CommentInput from '../../../component/CommentInput/CommentInput'
-import Comment from '../../../component/Comment/Comment'
-import Article from '../../../component/Article/Article'
+import Template from '../../component/Template'
+import CommentInput from '../../component/CommentInput'
+import Comment from '../../component/Comment'
+import Article from '../../component/Article'
 import { BiLike } from 'react-icons/bi';
 
 
-function Post() {
+const Post = () => {
 
   const [comments, setComments] = useState([
     { id: 1, name: 'Name', content: 'Content', }

@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { getPostByNo } from '../../Data';
-import './Post.css';
+import './PostView.css';
  
 const PostView = ({ history, location, match }) => {
   const [ data, setData ] = useState({});

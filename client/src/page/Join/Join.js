@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../../actions/actions';
+import { registerUser } from '../../actions/actions';
 
 const Join = () => {
     const history = useHistory();

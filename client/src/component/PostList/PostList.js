@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-import CommonTable from '../../component/table/CommonTable';
-// import CommonTableColumn from '../../component/table/CommonTableColumn';
-// import CommonTableRow from '../../component/table/CommonTableRow';
+import CommonTable from '../table/CommonTable';
 import {postList} from '../../Data';
-import Row from '../../component/Row'
-// const Checkbox = props => <input type="checkbox" {...props} />;
+import Row from '../Row';
  
 const PostList = () => {
   const [ dataList, setDataList ] = useState([]);
