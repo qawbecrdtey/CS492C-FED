@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../../actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, getAllUser, modifyUser } from '../../actions/actions';
 
 const Join = () => {
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
+    const _userList = useSelector(state => state.user.userList);
 
     const [ID, setID] = useState('')
     const writeID = e => {
@@ -22,9 +23,24 @@ const Join = () => {
             userID: ID,
             password: PW
           };
-        dispatch(registerUser(body));
-        history.push('./');
+        var isinlist = false;
+        _userList.forEach(user => {
+          if (user[1] === ID) {
+            dispatch(modifyUser(body));
+            history.push('/');
+            isinlist = true;
+            return;
+          }
+        });
+
+        if (!isinlist) {
+          dispatch(registerUser(body));
+          history.push('/');
+        }
     }
+    useEffect(() => {
+      dispatch(getAllUser());
+    },[]);
 
     return(
         <Container>
@@ -36,6 +52,7 @@ const Join = () => {
           />
           <Input
             placeholder="password"
+            type="password"
             onChange={writePW}
           />
           <button onClick={register}>Register</button>

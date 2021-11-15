@@ -26,7 +26,10 @@ const Login = () => {
         var isinlist = false;
         _userList.forEach(user => {
         if (user[1] === ID & user[2] === PW) {
-            dispatch(userLogined(user));
+            dispatch(userLogined({
+                userID: ID,
+                password: PW,
+            }));
             history.push('./postMain');
             isinlist = true;
             return;
