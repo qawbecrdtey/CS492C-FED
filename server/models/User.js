@@ -1,8 +1,4 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const saltRounds = 10;
-const moment = require("moment");
+const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
   userID: {
@@ -12,10 +8,7 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     maxlength: 30,
-  }
-  // tokenExp: {
-  //   type: Number, //유효기간관리
-  // }
+  },
 });
 
 // userSchema.pre('save', function(next){
@@ -46,7 +39,6 @@ const userSchema = mongoose.Schema({
 // userSchema.methods.generateToken = function (cb) {
 //   var user = this;
 //   //jsonwebtoken을 이용해서 토큰을 생성하기
-//   var token = jwt.sign(user._id.toHexString(), "secretToken"); // user._id+ secretToken이 합쳐진이름으로 토큰이만들어짐
 //   var oneHour = moment().add(1, "hour").valueOf();
 
 //   user.token = token;
@@ -75,6 +67,6 @@ const userSchema = mongoose.Schema({
 //   });
 // };
 
-const User = mongoose.model("User", userSchema); //1st모델의이름,2nd데이터
+const User = mongoose.model('User', userSchema); // 1st모델의이름,2nd데이터
 
-module.exports = {User}; //다른파일에서사용가능
+module.exports = { User }; // 다른파일에서사용가능
