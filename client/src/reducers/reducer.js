@@ -22,8 +22,9 @@ export default function (state = initialstate, action) {
       return {...state, postList: action.payload};
     case types.USER_LOGINED:
       return {...state, loginUser: action.payload};
-    case types.GET_CURRENT_POSTS_NUM_INFO:
+    case types.GET_CURRENT_POSTS_NUM_INFO: {
       return {...state, num_of_total_posts: action.payload1, current_top_post_num: action.payload2};
+    }
     case types.UPDATE_POST_NUM:
       return {...state, num_of_total_posts: action.payload1, current_top_post_num: action.payload2};
     default:

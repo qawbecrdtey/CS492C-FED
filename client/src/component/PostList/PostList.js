@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
-import { getAllPost, getAllUser } from '../../actions/actions';
+import { getAllPost, getAllUser, getCurrentPostsNumInfo } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
  
 const PostList = () => {
-  // const [ dataList, setDataList ] = useState([]);
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
-  const _userList = useSelector(state => state.user.userList);
 
  
   useEffect(() => {
-    // setDataList(_postList);
     dispatch(getAllUser());
     dispatch(getAllPost());
-    console.log(_userList);
-    if (_postList) console.log('t');
-    console.log('postList : ' + _postList);
+    dispatch(getCurrentPostsNumInfo());
   }, [ ])
   return (
     <>

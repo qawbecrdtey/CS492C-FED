@@ -86,10 +86,8 @@ export function userLogined(userdata) {
 export async function getCurrentPostsNumInfo() {
   const _data = await request('get', POST_URL + '/currentposts', null);
   const data = Object.values(_data);
-  console.log(data[0]);
-  console.log(data[1]);
   return {
-    type: types.GET_ALL_POSTS,
+    type: types.GET_CURRENT_POSTS_NUM_INFO,
     payload1: data[0],
     payload2: data[1],
   };
@@ -103,10 +101,10 @@ export function updatePostNum(dataToSubmit) {
       payload: '',
     }
   }
-  const data = request('post', USER_URL + '/updatepostnum', dataToSubmit);
+  request('post', POST_URL + '/updatepostnum', dataToSubmit);
   return {
     type: types.UPDATE_POST_NUM,
-    payload1: data[0],
-    payload2: data[1],
+    payload1: dataToSubmit.num_of_total_posts,
+    payload2: dataToSubmit.current_top_post_num,
   };
 }
