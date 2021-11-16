@@ -45,6 +45,7 @@ app.get('/api/hello', (req, res) => {
 
 app.post('/api/post/register', async (req, res) => {
   var postList = mongoose.model('Post');
+  var userList = mongoose.model('User');
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
 
@@ -61,13 +62,33 @@ app.post('/api/post/register', async (req, res) => {
       return res.json({ success: false, err });
     }
   });
+  userList.findOne({ userID: post.userID }, function (err, sameUser) {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    console.log(sameUser.userID);
+    if (sameUser != null) { // 이미 같은 유저가 디비에 있을떄
+      console.log('user ownpost add');
+      sameUser.addOwnPosts(post.postNO);
+    }
+  });
+  // userList.findOneAndUpdate({ userID: user.userID }, { password: user.password }, (err) => {
+  //   if (err) return res.json({ success: false, err });
+  //   return res.status(200).json(
+  //     {
+  //       userID: user.userID,
+  //       password: user.password,
+  //     },
+  //   );
+  // });
   post.save((err) => {
     if (err) {
       console.log(err);
       return res.json({ success: false, err });
     }
     console.log('save post');
-    return res.status(200).json({});
+    // return res.status(200).json({});
+    // return res.json({});
   });
 });
 
@@ -153,27 +174,27 @@ app.get('/api/post/currentposts', async (req, res) => {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   console.log('getcurrentposts');
   const currentposts = await CurrentPosts.find({});
-  console.log('currentpost : ' + currentposts);
-  // res.json(currentposts);
   res.json({
-    num_of_total_posts: 0,
-    current_top_post_num: 0,
+    num_of_total_posts: currentposts[0].num_of_total_posts,
+    current_top_post_num: currentposts[0].current_top_post_num,
   });
 });
 
-app.get('/api/post/updatepostnum', async (req, res) => {
+app.post('/api/post/updatepostnum', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   console.log('updatepostnum');
   const currentPost = new CurrentPosts(req.body);
+  console.log('numoftotal : ' + currentPost.num_of_total_posts);
+  console.log('currenttoppostnum : ' + currentPost.current_top_post_num);
   var currentPostsInfo = mongoose.model('CurrentPosts');
   currentPostsInfo.findOneAndUpdate({}, { num_of_total_posts: currentPost.num_of_total_posts, current_top_post_num: currentPost.current_top_post_num }, (err) => {
     if (err) return res.json({ success: false, err });
-    return res.status(200).json(
-      {
-        num_of_total_posts: currentPost.num_of_total_posts,
-        current_top_post_num: currentPost.current_top_post_num,
-      },
-    );
+    // return res.status(200).json(
+    //   {
+    //     num_of_total_posts: currentPost.num_of_total_posts,
+    //     current_top_post_num: currentPost.current_top_post_num,
+    //   },
+    // );
   });
 });

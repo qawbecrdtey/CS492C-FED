@@ -9,7 +9,21 @@ const userSchema = mongoose.Schema({
     type: String,
     maxlength: 30,
   },
+  ownPosts: {
+    type: [Number],
+  },
+  likedPosts: {
+    type: [Number],
+  },
+  comments: {
+    type: [{ postNO: Number, commentNO: Number }],
+  },
 });
+
+userSchema.methods.addOwnPosts = function (postNO) {
+  this.ownPosts.push(postNO);
+  return this.save();
+};
 
 // userSchema.pre('save', function(next){
 //   var user = this;
