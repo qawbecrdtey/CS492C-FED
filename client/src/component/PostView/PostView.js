@@ -1,56 +1,40 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import { getPostByNo } from '../../Data';
-import './PostView.css';
+import { CommentContainer, ContentContainer, InfoContainer, MainContainer, PostHeaderContainer, TitleContainer, UnderTitleContainer } from './styled';
+import { useSelector } from 'react-redux';
+import { HeaderContainer } from '../../page/PostMain/styled';
+import Header from '../Header';
+import ReactMarkdown from 'react-markdown'
  
 const PostView = ({ history, location, match }) => {
-  const [ data, setData ] = useState({});
- 
+  const _postList = useSelector(state => state.user.postList);
   const { no } = match.params;
- 
-  useEffect(() => {
-    setData(getPostByNo(no));
-  }, [no]);
+  const data = _postList.find((element) => {
+    return element[1] == no
+  });
+  console.log(data);
  
   return (
-    <>
-      <h2 align="center">게시글 상세정보</h2>
- 
-      <div className="post-view-wrapper">
-        {
-          data ? (
-            <>
-              <div className="post-view-row">
-                <label>게시글 번호</label>
-                <label>{ data.no }</label>
-              </div>
-              <div className="post-view-row">
-                <label>제목</label>
-                <label>{ data.title }</label>
-              </div>
-              <div className="post-view-row">
-                <label>작성일</label>
-                <label>{ data.createDate }</label>
-              </div>
-              <div className="post-view-row">
-                <label>조회수</label>
-                <label>{ data.readCount }</label>
-              </div>
-              <div className="post-view-row">
-                <label>내용</label>
-                <div>
-                  {
-                    data.content
-                  }
-                </div>
-              </div>
-            </>
-          ) : '해당 게시글을 찾을 수 없습니다.'
-        }
-        <button className="post-view-go-list-btn" onClick={() => history.goBack()}>목록으로 돌아가기</button>
-      </div>
-    </>
+    <MainContainer>
+      <HeaderContainer>
+        <Header />
+      </HeaderContainer>
+      <PostHeaderContainer>
+        <TitleContainer>{data[2]}</TitleContainer>
+        <UnderTitleContainer>
+          <InfoContainer>{data[6]}</InfoContainer>
+          <InfoContainer>view: {data[7]}</InfoContainer>
+          <InfoContainer>no_comments: {data[3]}</InfoContainer>
+          <button>수정</button>
+          <button>삭제</button>
+        </UnderTitleContainer>
+      </PostHeaderContainer>
+      <ContentContainer>
+        <ReactMarkdown>{data[8]}</ReactMarkdown>
+      </ContentContainer>
+      <CommentContainer />
+    </MainContainer>
   )
 }
  

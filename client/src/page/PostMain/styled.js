@@ -11,7 +11,7 @@ export const GroundContainer = styled.div`
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  height: 10%;
+  height: 60px;
   background: #dddddd;
   display: flex;
   flex-direction: row;
