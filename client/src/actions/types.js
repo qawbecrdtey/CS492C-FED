@@ -9,6 +9,9 @@ const types = {
     GET_ALL_POSTS: 'GET_ALL_POSTS',
     GET_CURRENT_POSTS_NUM_INFO: 'GET_CURRENT_POSTS_NUM_INFO',
     UPDATE_POST_NUM: 'UPDATE_POST_NUM',
+    LIKE: 'LIKE',
+    UNLIKE: 'UNLIKE',
+    // ISLIKE: 'ISLIKE',
   };
   
   export default types;

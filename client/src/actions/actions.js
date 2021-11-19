@@ -116,3 +116,27 @@ export function updatePostNum(dataToSubmit) {
     payload2: dataToSubmit.current_top_post_num,
   };
 }
+
+export function like(dataToSubmit) {
+  request('post', POST_URL + '/like', dataToSubmit);
+  return {
+    type: types.LIKE,
+    payload: '',
+  };
+}
+
+export function unlike(dataToSubmit) {
+  request('post', POST_URL + '/unlike', dataToSubmit);
+  return {
+    type: types.UNLIKE,
+    payload: '',
+  };
+}
+
+// export function isLike(dataToSubmit) {
+//   const data = request('post', POST_URL + '/islike', dataToSubmit);
+//   return {
+//     type: types.ISLIKE,
+//     payload: data,
+//   };
+// }

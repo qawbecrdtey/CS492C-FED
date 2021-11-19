@@ -41,7 +41,7 @@ export const UnderTitleContainer = styled.div`
 
 export const InfoContainer = styled.div`
     font-size: 1rem;
-    padding: 20px;
+    padding: 8px;
 `;
 
 export const ContentContainer = styled.div`
@@ -81,4 +81,28 @@ export const InputContainer = styled.input`
       outline: none;
       box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
     }
+`;
+
+export const ReactContainer = styled.div`
+    width: 80%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    jusfify-content: flex-start;
+    border-top: 0.1rem solid grey;
+`;
+
+export const LikeButton = styled.button`
+    background-color: rgb(252, 156, 175);
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    font-size: 1rem;
+    border: 0.1rem solid grey;
+    border-radius: 20%;
+    opacity: 0.4
+    ${({ active }) =>
+    active && `opacity: 1;`}
 `;

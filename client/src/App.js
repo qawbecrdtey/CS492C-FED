@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import PostMain from './page/PostMain';
 import PostView from './component/PostView/PostView';
 import Landing from './page/Landing/Landing';
-import Post from './page/Post/Post'
 import Join from './page/Join'
 import PostWrite from './page/PostWrite/PostWrite';
  
@@ -15,7 +14,6 @@ function App() {
         <Route exact path='/' component={Landing} />
         <Route exact path='/postView/:no' component={PostView} />
         <Route exact path='/postMain/' component={PostMain} />
-        <Route exact path='/post' component={Post} />
         <Route exact path='/Join/' component={Join} />
         <Route exact path='/postWrite/' component={PostWrite} />
       </BrowserRouter>
