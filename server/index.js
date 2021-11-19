@@ -72,23 +72,93 @@ app.post('/api/post/register', async (req, res) => {
       sameUser.addOwnPosts(post.postNO);
     }
   });
-  // userList.findOneAndUpdate({ userID: user.userID }, { password: user.password }, (err) => {
-  //   if (err) return res.json({ success: false, err });
-  //   return res.status(200).json(
-  //     {
-  //       userID: user.userID,
-  //       password: user.password,
-  //     },
-  //   );
-  // });
   post.save((err) => {
     if (err) {
       console.log(err);
       return res.json({ success: false, err });
     }
     console.log('save post');
-    // return res.status(200).json({});
-    // return res.json({});
+  });
+});
+
+app.post('/api/post/edit', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  const post = new Post(req.body);
+  var postList = mongoose.model('Post');
+
+  postList.findOneAndUpdate({ postNO: post.postNO }, { title: post.title, created_date: post.created_date, content: post.content }, (err) => {
+    if (err) return res.json({ success: false, err });
+    console.log('edit post');
+  });
+});
+
+app.post('/api/post/like', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  var userList = mongoose.model('User');
+  var postList = mongoose.model('Post');
+
+  console.log('userID : ' + req.body.userID);
+  console.log('postNO : ' + req.body.postNO);
+  console.log('userList : ' + userList);
+  userList.findOne({ userID: req.body.userID }, function (err, sameUser) {
+    if (err) return res.json({ success: false, err });
+    // console.log('sameuser : ' + sameUser);
+    if (sameUser != null) {
+      sameUser.addLikedPosts(req.body.postNO);
+    }
+  });
+  postList.findOne({ postNO: req.body.postNO }, function (err, samePost) {
+    if (err) return res.json({ success: false, err });
+    // console.log('samePost : ' + samePost);
+    if (samePost != null) {
+      samePost.addLike();
+    }
+  });
+});
+
+app.post('/api/post/unlike', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  var userList = mongoose.model('User');
+  var postList = mongoose.model('Post');
+
+  userList.findOne({ userID: req.body.userID }, function (err, sameUser) {
+    if (err) return res.json({ success: false, err });
+    // console.log('sameUser : ' + sameUser);
+    if (sameUser != null) {
+      sameUser.deleteLikedPosts(req.body.postNO);
+    }
+  });
+  postList.findOne({ postNO: req.body.postNO }, function (err, samePost) {
+    if (err) return res.json({ success: false, err });
+    // console.log('samePost : ' + samePost);
+    if (samePost != null) {
+      samePost.deleteLike();
+    }
+  });
+});
+
+app.post('/api/post/islike', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  var userList = mongoose.model('User');
+
+  userList.findOne({ userID: req.body.userID }, function (err, sameUser) {
+    if (err) return res.json({ success: false, err });
+    if (sameUser != null) {
+      var likedPosts = new Array(sameUser.likedPosts);
+      console.log('type : ' + typeof (likedPosts));
+      console.log('values : ' + likedPosts.values());
+      for (var i; i < 4; i += 1) {
+        console.log(Object.values(likedPosts)[i]);
+      }
+      // console.log('kk : ' + Object.values(likedPosts));
+      // if (req.body.postNO in Object.values(likedPosts)) {
+      //   console.log('ttt');
+      // } else console.log('no');
+    }
   });
 });
 

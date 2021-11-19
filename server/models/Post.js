@@ -32,6 +32,16 @@ const postSchema = mongoose.Schema({
   },
 });
 
+postSchema.methods.addLike = function () {
+  this.likes += 1;
+  return this.save();
+};
+
+postSchema.methods.deleteLike = function () {
+  this.likes -= 1;
+  return this.save();
+};
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = { Post };

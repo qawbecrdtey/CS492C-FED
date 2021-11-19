@@ -25,6 +25,20 @@ userSchema.methods.addOwnPosts = function (postNO) {
   return this.save();
 };
 
+userSchema.methods.addLikedPosts = function (postNO) {
+  this.likedPosts.push(postNO);
+  return this.save();
+};
+
+userSchema.methods.deleteLikedPosts = function (postNO) {
+  this.likedPosts.pull(postNO);
+  return this.save();
+};
+
+// userSchema.methods.isLiked = function (postNO) {
+//   const isOrNot = this.likedPosts.find(postNO);
+//   return isOrNot;
+// };
 // userSchema.pre('save', function(next){
 //   var user = this;
 //   if (user.isModified('password')){
