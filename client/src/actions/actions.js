@@ -76,6 +76,14 @@ export function registerPost(dataToSubmit) {
   };
 }
 
+export function editPost(dataToSubmit) {
+  request('post', POST_URL + '/edit', dataToSubmit);
+  return {
+    type: types.EDIT_POST,
+    payload: '',
+  };
+}
+
 export function userLogined(userdata) {
   return {
     type: types.USER_LOGINED,

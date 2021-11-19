@@ -11,9 +11,9 @@ export const Text = styled.div`
 
 export const LogoutBtn = styled.button`
     display: flex;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #000000;
     font-weight: bold;
-    background: #ffffff;
+    // background: #ffffff;
     margin-right: 20px;
 `;

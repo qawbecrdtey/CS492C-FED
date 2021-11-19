@@ -10,9 +10,8 @@ export const GroundContainer = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 60px;
-  background: #dddddd;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,9 +19,10 @@ export const HeaderContainer = styled.div`
 `;
 
 export const FunctionContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 10%;
-  background: #eeeeee;
+  // background: #eeeeee;
+  border-top: 0.1rem solid grey;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,19 +30,21 @@ export const FunctionContainer = styled.div`
 `;
 
 export const ListContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 73%;
   display: flex;
   flex-direction: column;
+  border-top: 0.1rem solid grey;
 `;
 
 export const PageMoveContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: 7%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #a3a3a3;
+  // background: #a3a3a3;
+  border-top: 0.1rem solid grey;
 `;
 
 

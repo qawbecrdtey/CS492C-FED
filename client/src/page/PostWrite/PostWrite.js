@@ -5,11 +5,11 @@ import * as Showdown from "showdown";
 import { GroundContainer, HeaderContainer } from '../PostMain/styled';
 import { InputContainer } from './styled';
 import { EditorContainer, BottomContainer } from './styled';
-import ReactMde from 'react-mde';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerPost, updatePostNum } from '../../actions/actions';
+import MDEditor from '@uiw/react-md-editor';
 
 const converter = new Showdown.Converter({
     tables: true,
@@ -69,14 +69,10 @@ const PostWrite = () => {
                     placeholder="제목을 입력하세요"
                     onChange={writeTitle}
                 />
-                <ReactMde 
-                    value={content}
-                    onChange={setContent}
-                    selectedTab={selectedTab}
-                    onTabChange={setSelectedTab}
-                    generateMarkdownPreview={(markdown) =>
-                        Promise.resolve(converter.makeHtml(markdown))
-                    }
+                <MDEditor
+                height={500}
+                value={content}
+                onChange={setContent}
                 />
             </EditorContainer>
             <BottomContainer>

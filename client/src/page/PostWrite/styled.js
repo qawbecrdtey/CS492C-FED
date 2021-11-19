@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const EditorContainer = styled.div`
-    width: 100%;
+    width: 80%;
     height: 80%;
-    display: flex;
-    background: #aaaaaa;
+    // display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -14,7 +13,6 @@ export const BottomContainer = styled.div`
     width: 100%;
     height: 10%;
     display: flex;
-    background: #bba991;
     align-items: center;
     justify-content: center;
 `;
@@ -23,7 +21,8 @@ export const InputContainer = styled.input`
     display: flex;
     width: 50%;
     height: 5%;
-    background-color: #ffffff;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: transparent;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);
