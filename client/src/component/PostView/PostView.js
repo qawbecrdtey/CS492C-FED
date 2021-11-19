@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { request } from '../../utils/axios';
 import React, { useEffect, useState } from 'react';
 import { 
   CommentContainer, 
@@ -19,7 +18,7 @@ import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, like, unlike } from '../../actions/actions';
+import { editPost, getLikedPosts, like, unlike } from '../../actions/actions';
 const POST_URL = '/api/post';
  
 const PostView = ({ location, match }) => {
@@ -27,7 +26,7 @@ const PostView = ({ location, match }) => {
   const { no } = match.params;
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [data, setData] = useState('');
+  const _likedPostList = useSelector(state => state.user.likedPostList);
   const data = _postList.find((element) => {
     return element[1] == no
   });
@@ -72,23 +71,35 @@ const PostView = ({ location, match }) => {
     }
     if (!active) {
       dispatch(like(body));
+      console.log('dispatch like');
     } else {
       dispatch(unlike(body));
+      console.log('dispatch unlike');
     }
     setActive(!active);
   };
 
+  let body = {
+    postNO: data[1],
+    userID: data[5],
+  }
+  dispatch(getLikedPosts(body));
+  
   useEffect(() => {
     const data = _postList.find((element) => {
       return element[1] == no
     });
-    // setData(initialdata);
-    let body = {
-      postNO: data[1],
-      userID: data[5],
+    // let body = {
+    //   postNO: data[1],
+    //   userID: data[5],
+    // }
+    // dispatch(getLikedPosts(body));
+    for (var i = 0; i < _likedPostList.length; i++) {
+      if (data[1] == _likedPostList[i]) {
+        setActive(true);
+        console.log('already liked');
+      }
     }
-    const isornot = request('post', POST_URL + '/islike', body);
-    console.log(isornot);
   }, []);
  
   return (

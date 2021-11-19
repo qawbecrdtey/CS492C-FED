@@ -6,6 +6,7 @@ const initialstate = {
   postList: [],
   num_of_total_posts: 0,
   current_top_post_num: 0,
+  likedPostList: [],
 };
 
 export default function (state = initialstate, action) {
@@ -33,6 +34,8 @@ export default function (state = initialstate, action) {
       return state;
     case types.UNLIKE:
       return state;
+    case types.GET_LIKED_POSTS:
+      return {...state, likedPostList: action.payload}
     default:
       return state;
   }

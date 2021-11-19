@@ -11,7 +11,6 @@ const MainPageFunc = () => {
       <>
       <SearchContainer>검색container자리</SearchContainer>
       <Btn onClick={movetowriter}>글쓰기</Btn>
-      <Btn>수정하기</Btn>
       <Btn>삭제하기</Btn>
       </>
     )

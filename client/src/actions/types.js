@@ -11,7 +11,7 @@ const types = {
     UPDATE_POST_NUM: 'UPDATE_POST_NUM',
     LIKE: 'LIKE',
     UNLIKE: 'UNLIKE',
-    // ISLIKE: 'ISLIKE',
+    GET_LIKED_POSTS: 'GET_LIKED_POSTS',
   };
   
   export default types;
