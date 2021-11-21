@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './Checkbox.css';
+//import './Checkbox.css';
 
 const Checkbox = ({ uuid }) => {
     const [checked, setChecked] = useState(false);
