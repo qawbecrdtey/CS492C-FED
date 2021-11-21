@@ -18,8 +18,8 @@ import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, getLikedPosts, like, unlike } from '../../actions/actions';
-const POST_URL = '/api/post';
+import { editPost, like, unlike, getLikedPosts } from '../../actions/actions';
+import Comment from '../../component/Comment/Comment';
  
 const PostView = ({ location, match }) => {
   const _postList = useSelector(state => state.user.postList);
@@ -77,29 +77,32 @@ const PostView = ({ location, match }) => {
       console.log('dispatch unlike');
     }
     setActive(!active);
+    // window.location.replace(`/postView/${data[1]}`);
   };
 
-  let body = {
-    postNO: data[1],
-    userID: data[5],
-  }
-  dispatch(getLikedPosts(body));
+  // let body = {
+  //   postNO: data[1],
+  //   userID: data[5],
+  // }
+  // dispatch(getLikedPosts(body));
   
   useEffect(() => {
-    const data = _postList.find((element) => {
-      return element[1] == no
-    });
-    // let body = {
-    //   postNO: data[1],
-    //   userID: data[5],
-    // }
-    // dispatch(getLikedPosts(body));
+    // const data = _postList.find((element) => {
+    //   return element[1] == no
+    // });
+    let body = {
+      postNO: data[1],
+      userID: data[5],
+    }
+    dispatch(getLikedPosts(body));
     for (var i = 0; i < _likedPostList.length; i++) {
       if (data[1] == _likedPostList[i]) {
         setActive(true);
         console.log('already liked');
+        break;
       }
     }
+    console.log(_likedPostList);
   }, []);
  
   return (
@@ -147,7 +150,9 @@ const PostView = ({ location, match }) => {
         </LikeButton>
         <button onClick={toPostList}>목록으로</button>
       </ReactContainer>
-      <CommentContainer />
+      <CommentContainer>
+        <Comment postNo={data[1]}/>
+      </CommentContainer>
     </MainContainer>
   )
 }
