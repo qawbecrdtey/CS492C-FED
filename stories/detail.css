@@ -1,0 +1,45 @@
+.detail {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 48px 20px;
+  margin: 0 auto;
+  max-width:fit-content; 
+  color: #333;
+}
+
+.detail--header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flexbox;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail--header--footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail--content {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail--comment {
+  display: flexbox;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail--comment--input{
+  width: 80%;
+  border-radius: 24px;
+  padding-left: 20px;
+}
+
+.detail--comment--form{
+  border: 4px solid grey;
+}
