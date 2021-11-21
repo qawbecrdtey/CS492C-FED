@@ -1,17 +1,19 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+//import { useDispatch, useSelector } from 'react-redux';
 //import './Checkbox.css';
 
-const Checkbox = ({ uuid }) => {
+const Checkbox = ({ uuid, checkedItems, setCheckedItems }) => {
     const [checked, setChecked] = useState(false);
 
-    const checkedItemHandler = (uuid, isChecked) => {
+    let newCheckedItems = checkedItems;
+
+    const checkedItemHandler = (isChecked) => {
         if(isChecked) {
-            checkedItems.add(uuid);
+            newCheckedItems.add(uuid);
             setCheckedItems(checkedItems);
         }
         else if(checkedItems.has(uuid)) {
-            checkedItems.delete(uuid);
+            newCheckedItems.delete(uuid);
             setCheckedItems(checkedItems);
         }
     };
