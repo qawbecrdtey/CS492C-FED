@@ -26,6 +26,7 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use('/api/comment', require('./routes/comment'));
 
 app.listen(port, () => {
   console.log('서버가 가동중입니다');

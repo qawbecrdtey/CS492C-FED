@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
-  postNO: {
-    type: Number,
-  },
   commentNO: {
     type: Number,
   },
-  userID: {
+  writer: {
     type: String,
   },
   content: {
@@ -17,6 +14,10 @@ const commentSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  postID: {
+    type: Number,
+  },
+
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
