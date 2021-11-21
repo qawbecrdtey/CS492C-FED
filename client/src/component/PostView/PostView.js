@@ -18,7 +18,8 @@ import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, getLikedPosts, like, unlike } from '../../actions/actions';
+import { editPost, like, unlike } from '../../actions/actions';
+import Comment from '../../component/Comment/Comment';
 const POST_URL = '/api/post';
  
 const PostView = ({ location, match }) => {
@@ -147,7 +148,9 @@ const PostView = ({ location, match }) => {
         </LikeButton>
         <button onClick={toPostList}>목록으로</button>
       </ReactContainer>
-      <CommentContainer />
+      <CommentContainer>
+        <Comment postNo={data[1]}/>
+      </CommentContainer>
     </MainContainer>
   )
 }
