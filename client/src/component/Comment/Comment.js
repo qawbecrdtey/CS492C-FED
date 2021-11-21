@@ -36,6 +36,7 @@ function Comments(props) {
                     alert('Failed to save Comment')
                 }
         })
+        window.location.replace(`/postView/${postNo}`);
     }
 
     useEffect(()=>{
