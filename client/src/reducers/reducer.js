@@ -7,6 +7,7 @@ const initialstate = {
   num_of_total_posts: 0,
   current_top_post_num: 0,
   likedPostList: [],
+  checkboxCheckedPostList: [],
 };
 
 export default function (state = initialstate, action) {
@@ -36,6 +37,8 @@ export default function (state = initialstate, action) {
       return state;
     case types.GET_LIKED_POSTS:
       return {...state, likedPostList: action.payload}
+    case types.DELETE_CHECKED_POSTS:
+      return {...state, num_of_total_posts: action.payload1, current_top_post_num: action.payload2};
     default:
       return state;
   }

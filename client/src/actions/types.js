@@ -12,6 +12,7 @@ const types = {
     LIKE: 'LIKE',
     UNLIKE: 'UNLIKE',
     GET_LIKED_POSTS: 'GET_LIKED_POSTS',
+    DELETE_CHECKED_POSTS: 'DELETE_CHECKED_POSTS',
   };
   
   export default types;

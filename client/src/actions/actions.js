@@ -139,3 +139,14 @@ export async function getLikedPosts(dataToSubmit) {
     payload: Object.values(data),
   };
 }
+
+// dataToDelete: uuid(key) of posts to delete
+export async function deleteCheckedPosts(dataToDelete) {
+  const data = await request('delete', POST_URL + '/deletepost', dataToDelete);
+  console.log('deleted checked posts: ' + Object.values(dataToDelete));
+  return {
+    type: types.DELETE_CHECKED_POSTS,
+    payload1: data[0], // num_of_total_posts
+    payload2: data[1]  // current_top_post_num
+  };
+}

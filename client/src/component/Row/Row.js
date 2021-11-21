@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Checkbox = props => <input type="checkbox" {...props} />;
+import Checkbox from '../Checkbox';
+//const Checkbox = props => <input type="checkbox" {...props} />;
  
 // eslint-disable-next-line react/prop-types
-const Row = ({ postNO, title, no_comments, likes, userID, created_date, views }) => {
+const Row = ({ key, postNO, title, no_comments, likes, userID, created_date, views }) => {
   return (
     <tr className="common-table-row">
-      <td><Checkbox /></td>
+      <td><Checkbox uuid={key}/></td>
       <td>{postNO}</td>
       <td>
         <Link to={`/postView/${postNO}`}>{title}({no_comments})</Link>

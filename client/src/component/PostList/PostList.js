@@ -14,6 +14,8 @@ const PostList = () => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
   }, [ ])
+  // _postList.map((char, index) => ...)
+  // `index' contains UUID of each post.
   return (
     <>
       <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']}>
