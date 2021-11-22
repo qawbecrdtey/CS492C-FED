@@ -9,7 +9,7 @@ const MypageFunc = () => {
 
     const menus = [
         { name: '내가 쓴 글', path: '/myPage/myPosts'},
-        { name: '내가 좋아요 누근 글', path: '/myPage/myLikes'},
+        { name: '내가 좋아요 누른 글', path: '/myPage/myLikes'},
         { name: '내가 쓴 댓글', path: '/myPage/myComments'},
     ];
     return (
