@@ -5,6 +5,6 @@ git pull origin main-client
 
 CS492C-FED $: cd client
 
-CS492C-FED $: npm install
+CS492C-FED/client $: npm install
 
-CS492C-FED $: npm start
+CS492C-FED/client $: npm start
