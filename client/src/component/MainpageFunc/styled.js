@@ -12,3 +12,14 @@ export const Btn = styled.button`
     height: 90%;
     display: flex;
 `;
+
+export const FunctionContainer = styled.div`
+  width: 80%;
+  height: 10%;
+  // background: #eeeeee;
+  border-top: 0.1rem solid grey;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;

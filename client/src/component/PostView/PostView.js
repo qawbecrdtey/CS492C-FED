@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { request } from '../../utils/axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -19,16 +18,16 @@ import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, like, unlike } from '../../actions/actions';
+import { editPost, like, unlike, getLikedPosts } from '../../actions/actions';
 import Comment from '../../component/Comment/Comment';
-const POST_URL = '/api/post';
  
 const PostView = ({ location, match }) => {
   const _postList = useSelector(state => state.user.postList);
   const { no } = match.params;
   const history = useHistory();
+  // const initialLike = useRef(false);
   const dispatch = useDispatch();
-  // const [data, setData] = useState('');
+  const _likedPostList = useSelector(state => state.user.likedPostList);
   const data = _postList.find((element) => {
     return element[1] == no
   });
@@ -36,6 +35,7 @@ const PostView = ({ location, match }) => {
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState(data[8]);
   const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(initialLike.current);
   const clickEdit = () => {
     setEdit(true);
   };
@@ -73,30 +73,44 @@ const PostView = ({ location, match }) => {
     }
     if (!active) {
       dispatch(like(body));
+      console.log('dispatch like');
     } else {
       dispatch(unlike(body));
+      console.log('dispatch unlike');
     }
     setActive(!active);
+    // window.location.replace(`/postView/${data[1]}`);
   };
 
+  // let body = {
+  //   postNO: data[1],
+  //   userID: data[5],
+  // }
+  // dispatch(getLikedPosts(body));
+  
   useEffect(() => {
-    const data = _postList.find((element) => {
-      return element[1] == no
-    });
-    // setData(initialdata);
+    // const data = _postList.find((element) => {
+    //   return element[1] == no
+    // });
     let body = {
       postNO: data[1],
       userID: data[5],
     }
-    const isornot = request('post', POST_URL + '/islike', body);
-    console.log(isornot);
-  }, []);
+    dispatch(getLikedPosts(body));
+    for (var i = 0; i < _likedPostList.length; i++) {
+      if (data[1] == _likedPostList[i]) {
+        setActive(true);
+        // initialLike.current = true;
+        console.log('already liked');
+        break;
+      }
+    }
+    console.log(_likedPostList);
+  }, [_likedPostList]);
  
   return (
     <MainContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
+      <Header />
       <PostHeaderContainer>
         { edit ? 
           <TitleContainer>

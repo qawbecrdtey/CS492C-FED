@@ -5,6 +5,9 @@ import PostView from './component/PostView/PostView';
 import Landing from './page/Landing/Landing';
 import Join from './page/Join'
 import PostWrite from './page/PostWrite/PostWrite';
+import MyPagePost from './page/MyPagePost';
+import MyPageLike from './page/MyPageLike';
+import MyPageComment from './page/MyPageComment/MyPageComment';
  
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Route exact path='/postMain/' component={PostMain} />
         <Route exact path='/Join/' component={Join} />
         <Route exact path='/postWrite/' component={PostWrite} />
+        <Route exact path='/myPage/myPosts' component={MyPagePost} />
+        <Route exact path='/myPage/myLikes' component={MyPageLike} />
+        <Route exact path='/myPage/myComments' component={MyPageComment} />
       </BrowserRouter>
     </div>
   );

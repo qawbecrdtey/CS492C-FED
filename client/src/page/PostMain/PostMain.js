@@ -3,7 +3,7 @@ import PostList from '../../component/PostList';
 import { useSelector } from 'react-redux';
 import Header from '../../component/Header';
 import MainPageFunc from '../../component/MainpageFunc/MainPageFunc';
-import { GroundContainer, HeaderContainer, ListContainer, PageMoveContainer, FunctionContainer } from './styled';
+import { GroundContainer, PageMoveContainer } from './styled';
  
 const PostMain = () => {
   const _loginUser = useSelector(state => state.user.loginUser);
@@ -12,15 +12,9 @@ const PostMain = () => {
   },[]);
   return (
     <GroundContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
-      <FunctionContainer>
-        <MainPageFunc />
-      </FunctionContainer>
-      <ListContainer>
-        <PostList />
-      </ListContainer>
+      <Header />
+      <MainPageFunc />
+      <PostList />
       <PageMoveContainer />
     </GroundContainer>
   )

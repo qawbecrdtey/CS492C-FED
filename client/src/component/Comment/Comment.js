@@ -48,7 +48,7 @@ function Comments(props) {
         axios.post('/api/comment/getComments', variables)
         .then(response => {
             if (response.data.success) {
-                console.log('response.data.comments',response.data.comments)
+                // console.log('response.data.comments',response.data.comments)
                 setCommentLists(response.data.comments)
             } else {
                 alert('Failed to get video Info')

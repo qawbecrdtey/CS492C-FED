@@ -22,12 +22,24 @@ export async function getAllPost() {
   var postlist = [];
   var i;
   for (i = 0; i < data.length; i++) {
-    // console.log('dd : ' + Object.values(data[i]));
     postlist.push(Object.values(data[i]));
   }
   return {
     type: types.GET_ALL_POSTS,
     payload: postlist,
+  };
+}
+
+export async function getMyPost(dataToSubmit) {
+  const data = await request('post', POST_URL + '/myposts', dataToSubmit);
+  var mypostlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    mypostlist.push(Object.values(data[i]));
+  }
+  return {
+    type: types.GET_MY_POSTS,
+    payload: mypostlist,
   };
 }
 
@@ -39,7 +51,6 @@ export function registerUser(dataToSubmit) {
       payload: '',
     };
   }
-  // const data = request('post', USER_URL + '/register', dataToSubmit);
   request('post', USER_URL + '/register', dataToSubmit);
   return {
     type: types.REGISTER_USER,
@@ -121,7 +132,7 @@ export function like(dataToSubmit) {
   request('post', POST_URL + '/like', dataToSubmit);
   return {
     type: types.LIKE,
-    payload: '',
+    payload: dataToSubmit.postNO,
   };
 }
 
@@ -129,14 +140,15 @@ export function unlike(dataToSubmit) {
   request('post', POST_URL + '/unlike', dataToSubmit);
   return {
     type: types.UNLIKE,
-    payload: '',
+    payload: dataToSubmit.postNO,
   };
 }
 
-// export function isLike(dataToSubmit) {
-//   const data = request('post', POST_URL + '/islike', dataToSubmit);
-//   return {
-//     type: types.ISLIKE,
-//     payload: data,
-//   };
-// }
+export async function getLikedPosts(dataToSubmit) {
+  const data = await request('post', POST_URL + '/islike', dataToSubmit);
+  // console.log('likelist get from server : ' + Object.values(data))
+  return {
+    type: types.GET_LIKED_POSTS,
+    payload: Object.values(data),
+  };
+}
