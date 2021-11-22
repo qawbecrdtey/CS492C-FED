@@ -3,8 +3,8 @@
 
 git pull origin main-client
 
-cd client
+CS492C-FED $: cd client
 
-npm install
+CS492C-FED $: npm install
 
-npm start
+CS492C-FED $: npm start
