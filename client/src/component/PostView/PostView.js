@@ -81,7 +81,6 @@ const PostView = ({ location, match }) => {
     setActive(!active);
     // window.location.replace(`/postView/${data[1]}`);
   };
-
   // let body = {
   //   postNO: data[1],
   //   userID: data[5],
