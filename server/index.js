@@ -242,6 +242,15 @@ app.get('/api/post/posts', async (req, res) => {
   res.json(posts);
 });
 
+app.post('/api/post/myposts', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  console.log('getmyposts');
+  console.log(req.body.userID);
+  const myposts = await Post.find({ userID: req.body.userID });
+  res.json(myposts);
+});
+
 app.get('/api/post/currentposts', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
