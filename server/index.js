@@ -145,20 +145,22 @@ app.post('/api/post/islike', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   var userList = mongoose.model('User');
+  console.log('islike');
 
   userList.findOne({ userID: req.body.userID }, function (err, sameUser) {
     if (err) return res.json({ success: false, err });
     if (sameUser != null) {
-      var likedPosts = new Array(sameUser.likedPosts);
-      console.log('type : ' + typeof (likedPosts));
-      console.log('values : ' + likedPosts.values());
-      for (var i; i < 4; i += 1) {
-        console.log(Object.values(likedPosts)[i]);
-      }
-      // console.log('kk : ' + Object.values(likedPosts));
-      // if (req.body.postNO in Object.values(likedPosts)) {
-      //   console.log('ttt');
-      // } else console.log('no');
+      // for (i = 0; i < sameUser.likedPosts.length; i += 1) {
+      //   if (req.body.postNO === sameUser.likedPosts[i]) {
+      //     return res.status(200).json(
+      //       {
+      //         is: true,
+      //       },
+      //     );
+      //   }
+      //   break;
+      // }
+      return res.status(200).json(sameUser.likedPosts);
     }
   });
 });
@@ -238,6 +240,15 @@ app.get('/api/post/posts', async (req, res) => {
   console.log('getallpost');
   const posts = await Post.find({});
   res.json(posts);
+});
+
+app.post('/api/post/myposts', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  console.log('getmyposts');
+  console.log(req.body.userID);
+  const myposts = await Post.find({ userID: req.body.userID });
+  res.json(myposts);
 });
 
 app.get('/api/post/currentposts', async (req, res) => {
