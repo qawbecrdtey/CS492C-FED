@@ -40,7 +40,6 @@ function Comments(props) {
     }
 
     useEffect(()=>{
-
         const variables = {
             content: Comment
         }
@@ -80,7 +79,6 @@ function Comments(props) {
                 <br />
                 <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
             </form>
-
         </div>
     )
 }

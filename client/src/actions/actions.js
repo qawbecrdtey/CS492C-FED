@@ -127,28 +127,3 @@ export function updatePostNum(dataToSubmit) {
     payload2: dataToSubmit.current_top_post_num,
   };
 }
-
-export function like(dataToSubmit) {
-  request('post', POST_URL + '/like', dataToSubmit);
-  return {
-    type: types.LIKE,
-    payload: dataToSubmit.postNO,
-  };
-}
-
-export function unlike(dataToSubmit) {
-  request('post', POST_URL + '/unlike', dataToSubmit);
-  return {
-    type: types.UNLIKE,
-    payload: dataToSubmit.postNO,
-  };
-}
-
-export async function getLikedPosts(dataToSubmit) {
-  const data = await request('post', POST_URL + '/islike', dataToSubmit);
-  // console.log('likelist get from server : ' + Object.values(data))
-  return {
-    type: types.GET_LIKED_POSTS,
-    payload: Object.values(data),
-  };
-}
