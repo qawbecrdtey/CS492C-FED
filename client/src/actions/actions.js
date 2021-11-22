@@ -30,6 +30,19 @@ export async function getAllPost() {
   };
 }
 
+export async function getMyPost(dataToSubmit) {
+  const data = await request('post', POST_URL + '/myposts', dataToSubmit);
+  var mypostlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    mypostlist.push(Object.values(data[i]));
+  }
+  return {
+    type: types.GET_MY_POSTS,
+    payload: mypostlist,
+  };
+}
+
 export function registerUser(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");

@@ -17,3 +17,17 @@ export const LogoutBtn = styled.button`
     // background: #ffffff;
     margin-right: 20px;
 `;
+
+export const HeaderContainer = styled.div`
+  width: 80%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid grey;
+`;
+
+export const Btn = styled.button`
+    display: flex;
+`;

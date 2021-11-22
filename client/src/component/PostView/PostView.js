@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -25,6 +25,7 @@ const PostView = ({ location, match }) => {
   const _postList = useSelector(state => state.user.postList);
   const { no } = match.params;
   const history = useHistory();
+  // const initialLike = useRef(false);
   const dispatch = useDispatch();
   const _likedPostList = useSelector(state => state.user.likedPostList);
   const data = _postList.find((element) => {
@@ -34,6 +35,7 @@ const PostView = ({ location, match }) => {
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState(data[8]);
   const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(initialLike.current);
   const clickEdit = () => {
     setEdit(true);
   };
@@ -98,18 +100,17 @@ const PostView = ({ location, match }) => {
     for (var i = 0; i < _likedPostList.length; i++) {
       if (data[1] == _likedPostList[i]) {
         setActive(true);
+        // initialLike.current = true;
         console.log('already liked');
         break;
       }
     }
     console.log(_likedPostList);
-  }, []);
+  }, [_likedPostList]);
  
   return (
     <MainContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
+      <Header />
       <PostHeaderContainer>
         { edit ? 
           <TitleContainer>

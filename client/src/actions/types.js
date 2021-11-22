@@ -11,6 +11,7 @@ const types = {
     UPDATE_POST_NUM: 'UPDATE_POST_NUM',
     LIKE: 'LIKE',
     UNLIKE: 'UNLIKE',
+    GET_MY_POSTS: 'GET_MY_POSTS',
     GET_LIKED_POSTS: 'GET_LIKED_POSTS',
   };
   
