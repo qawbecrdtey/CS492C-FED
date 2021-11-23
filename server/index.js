@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable object-shorthand */
 /* eslint-disable camelcase */
 /* eslint-disable prefer-template */
@@ -19,6 +20,7 @@ const dbAddress = 'mongodb+srv://dain:1234@cluster0.hq96u.mongodb.net/myFirstDat
 const { User } = require('./models/User');
 const { Post } = require('./models/Post');
 const { CurrentPosts } = require('./models/CurrentPosts');
+const { Comment } = require('./models/Comment');
 // eslint-disable-next-line no-undef
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -39,10 +41,6 @@ mongoose
   })
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.log(err));
-
-app.get('/api/hello', (req, res) => {
-  res.send('하하하하하하');
-});
 
 app.post('/api/post/register', async (req, res) => {
   var postList = mongoose.model('Post');
@@ -86,7 +84,6 @@ app.post('/api/post/edit', async (req, res) => {
 app.post('/api/post/islike', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
-  // var userList = mongoose.model('User');
   var postList = mongoose.model('Post');
   console.log('islike');
 
@@ -201,8 +198,17 @@ app.post('/api/post/mylikes', async (req, res) => {
   const user = await User.findOne({ userID: req.body.userID });
   var postList = mongoose.model('Post');
   console.log('getmylikes');
-  const likepostlist = await postList.find({ postNO: { $in: user.likeposts } });
+  // const likepostlist = await postList.find({ postNO: { $in: user.likeposts } });
+  const likepostlist = await postList.find({ likeUsers: user.userID });
   res.json(likepostlist);
+});
+
+app.post('/api/post/mycomments', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  console.log('getmycomments');
+  const mycomments = await Comment.find({ writer: req.body.userID });
+  res.json(mycomments);
 });
 
 app.get('/api/post/currentposts', async (req, res) => {
@@ -234,7 +240,11 @@ app.post('/api/post/deletePost', async (req, res) => {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   console.log('deletepost');
   var postList = mongoose.model('Post');
+  var commentList = mongoose.model('Comment');
   postList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
+    if (err) res.json({ success: false, err });
+  });
+  commentList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
     if (err) res.json({ success: false, err });
   });
 });
@@ -254,7 +264,7 @@ io.on('connection', (socket) => {
   console.log('connection');
   socket.on('like-snd', (item) => {
     var postList = mongoose.model('Post');
-    var userList = mongoose.model('User');
+    // var userList = mongoose.model('User');
     postList.findOne({ postNO: item.postNO }, function (err, samePost) {
       if (err) return res.json({ success: false, err });
       if (samePost != null) {
@@ -262,17 +272,11 @@ io.on('connection', (socket) => {
         console.log('like');
       }
     });
-    userList.findOne({ userID: item.userID }, function (err, sameUser) {
-      if (err) return res.json({ success: false, err });
-      if (sameUser != null) {
-        sameUser.addLikePost(item.postNO);
-      }
-    });
     io.emit('like-rcv', item);
   });
   socket.on('unlike-snd', (item) => {
     var postList = mongoose.model('Post');
-    var userList = mongoose.model('User');
+    // var userList = mongoose.model('User');
     postList.findOne({ postNO: item.postNO }, function (err, samePost) {
       if (err) return res.json({ success: false, err });
       if (samePost != null) {
@@ -280,13 +284,26 @@ io.on('connection', (socket) => {
         console.log('unlike');
       }
     });
-    userList.findOne({ userID: item.userID }, function (err, sameUser) {
-      if (err) return res.json({ success: false, err });
-      if (sameUser != null) {
-        sameUser.deleteLikePost(item.postNO);
-      }
-    });
     io.emit('unlike-rcv', item);
+  });
+  socket.on('post-click-snd', (item) => {
+    console.log('post clicked');
+    var postList = mongoose.model('Post');
+    postList.findOneAndUpdate({ postNO: item.postNO }, { $inc: { views: 1 } }, (err) => {
+      if (err) return res.json({ success: false, err });
+    });
+  });
+  socket.on('remove-snd', (item) => {
+    item.removelist.map((postNO) => {
+      var postList = mongoose.model('Post');
+      var commentList = mongoose.model('Comment');
+      postList.findOneAndDelete({ postNO: postNO }, (err) => {
+        if (err) return res.json({ success: false, err });
+      });
+      commentList.findOneAndDelete({ postNO: postNO }, (err) => {
+        if (err) res.json({ success: false, err });
+      });
+    });
   });
 });
 
