@@ -12,7 +12,7 @@ function Comments(props) {
     const [Comment, setComment] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
-    const postNo = props.postNo
+    const postNO = props.postNO
 
     const handleClick = (e) => {
         setComment(e.currentTarget.value)
@@ -23,7 +23,7 @@ function Comments(props) {
 
         const variables = {
             content: Comment,
-            postID: postNo,
+            postNO: postNO,
             writer: userID,
         }
 
@@ -36,10 +36,10 @@ function Comments(props) {
                     alert('Failed to save Comment')
                 }
         })
+        window.location.replace(`/postView/${postNO}`);
     }
 
     useEffect(()=>{
-
         const variables = {
             content: Comment
         }
@@ -47,7 +47,7 @@ function Comments(props) {
         axios.post('/api/comment/getComments', variables)
         .then(response => {
             if (response.data.success) {
-                console.log('response.data.comments',response.data.comments)
+                // console.log('response.data.comments',response.data.comments)
                 setCommentLists(response.data.comments)
             } else {
                 alert('Failed to get video Info')
@@ -65,7 +65,7 @@ function Comments(props) {
                 <SingleComment 
                     key={comment._id} 
                     comment={comment}
-                    postNo={postNo}
+                    postNO={postNO}
                 />
             ))}
             {/* Root Comment Form */}
@@ -79,7 +79,6 @@ function Comments(props) {
                 <br />
                 <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
             </form>
-
         </div>
     )
 }

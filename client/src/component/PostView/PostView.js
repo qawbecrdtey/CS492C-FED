@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { request } from '../../utils/axios';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -13,16 +14,19 @@ import {
   LikeButton,
  } from './styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { HeaderContainer } from '../../page/PostMain/styled';
 import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, like, unlike } from '../../actions/actions';
+import { editPost, like, unlike, getLikedPosts } from '../../actions/actions';
 import Comment from '../../component/Comment/Comment';
 const POST_URL = '/api/post';
+
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:80/');
  
-const PostView = ({ location, match }) => {
+const PostView = ({ match }) => {
+  const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
   const { no } = match.params;
   const history = useHistory();
@@ -35,6 +39,7 @@ const PostView = ({ location, match }) => {
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState(data[8]);
   const [active, setActive] = useState(false);
+  
   const clickEdit = () => {
     setEdit(true);
   };
@@ -55,6 +60,7 @@ const PostView = ({ location, match }) => {
         created_date: created_date,
         view: data[7],
         content: content,
+        likeUsers: data[9],
     }
     dispatch(editPost(body));
     console.log(body);
@@ -65,49 +71,51 @@ const PostView = ({ location, match }) => {
     history.push('/postMain');
   };
 
+  const deletePost = () => {
+    let body = {
+      postNO : data[1],
+    }
+    request('post', POST_URL + '/deletePost', body)
+    history.push('/postMain');
+  }
+
   const clickLike = () => {
     let body = {
       postNO: data[1],
-      userID: data[5],
+      userID: _loginUser['userID'],
     }
     if (!active) {
-      dispatch(like(body));
       console.log('dispatch like');
+      socket.emit('like-snd', body);
     } else {
-      dispatch(unlike(body));
       console.log('dispatch unlike');
+      socket.emit('unlike-snd', body);
     }
-    setActive(!active);
   };
 
-  let body = {
-    postNO: data[1],
-    userID: data[5],
-  }
-  dispatch(getLikedPosts(body));
-  
   useEffect(() => {
-    const data = _postList.find((element) => {
-      return element[1] == no
-    });
-    // let body = {
-    //   postNO: data[1],
-    //   userID: data[5],
-    // }
-    // dispatch(getLikedPosts(body));
-    for (var i = 0; i < _likedPostList.length; i++) {
-      if (data[1] == _likedPostList[i]) {
-        setActive(true);
-        console.log('already liked');
+    const islike = data[9].find((element) => {
+      if(element === _loginUser['userID']) {
+        return true;
       }
+    })
+    if (islike == _loginUser['userID']) {
+      setActive(true);
+    } else {
+      setActive(false);
     }
+    console.log('liked users : ' + data[9]);
+    socket.on('like-rcv', item => {
+      setActive(true);
+    });
+    socket.on('unlike-rcv', item => {
+      setActive(false);
+    });
   }, []);
  
   return (
     <MainContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
+      <Header />
       <PostHeaderContainer>
         { edit ? 
           <TitleContainer>
@@ -126,7 +134,7 @@ const PostView = ({ location, match }) => {
           {edit ?<button onClick={editContent}>등록</button>
           : <button onClick={clickEdit}>수정</button>}
           {edit ? <button onClick={cancle}>취소</button> : null}
-          {!edit ? <button>삭제</button> : null}
+          {!edit ? <button onClick={deletePost}>삭제</button> : null}
         </UnderTitleContainer>
       </PostHeaderContainer>
       <ContentContainer>
@@ -149,7 +157,7 @@ const PostView = ({ location, match }) => {
         <button onClick={toPostList}>목록으로</button>
       </ReactContainer>
       <CommentContainer>
-        <Comment postNo={data[1]}/>
+        <Comment postNO={data[1]}/>
       </CommentContainer>
     </MainContainer>
   )

@@ -61,9 +61,7 @@ const PostWrite = () => {
     });
     return (
         <GroundContainer >
-            <HeaderContainer>
-                <Header />
-            </HeaderContainer>
+            <Header />
             <EditorContainer>
                 <InputContainer 
                     placeholder="제목을 입력하세요"

@@ -30,6 +30,32 @@ export async function getAllPost() {
   };
 }
 
+export async function getMyPost(dataToSubmit) {
+  const data = await request('post', POST_URL + '/myposts', dataToSubmit);
+  var mypostlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    mypostlist.push(Object.values(data[i]));
+  }
+  return {
+    type: types.GET_MY_POSTS,
+    payload: mypostlist,
+  };
+}
+
+export async function getMyLikedPosts(dataToSubmit) {
+  const data = await request('post', POST_URL + '/mylikes', dataToSubmit);
+  var mylikelist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    mylikelist.push(Object.values(data[i]));
+  }
+  return {
+    type: types.GET_MY_LIKED_POSTS,
+    payload: mylikelist,
+  };
+}
+
 export function registerUser(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");
@@ -112,41 +138,5 @@ export function updatePostNum(dataToSubmit) {
     type: types.UPDATE_POST_NUM,
     payload1: dataToSubmit.num_of_total_posts,
     payload2: dataToSubmit.current_top_post_num,
-  };
-}
-
-export function like(dataToSubmit) {
-  request('post', POST_URL + '/like', dataToSubmit);
-  return {
-    type: types.LIKE,
-    payload: '',
-  };
-}
-
-export function unlike(dataToSubmit) {
-  request('post', POST_URL + '/unlike', dataToSubmit);
-  return {
-    type: types.UNLIKE,
-    payload: '',
-  };
-}
-
-export async function getLikedPosts(dataToSubmit) {
-  const data = await request('post', POST_URL + '/islike', dataToSubmit);
-  console.log('likelist get from server : ' + Object.values(data))
-  return {
-    type: types.GET_LIKED_POSTS,
-    payload: Object.values(data),
-  };
-}
-
-// dataToDelete: uuid(key) of posts to delete
-export async function deleteCheckedPosts(dataToDelete) {
-  const data = await request('delete', POST_URL + '/deletepost', dataToDelete);
-  console.log('deleted checked posts: ' + Object.values(dataToDelete));
-  return {
-    type: types.DELETE_CHECKED_POSTS,
-    payload1: data[0], // num_of_total_posts
-    payload2: data[1]  // current_top_post_num
   };
 }
