@@ -85,39 +85,15 @@ const PostView = ({ match }) => {
       userID: _loginUser['userID'],
     }
     if (!active) {
-      // dispatch(like(body));
       console.log('dispatch like');
       socket.emit('like-snd', body);
     } else {
-      // dispatch(unlike(body));
       console.log('dispatch unlike');
       socket.emit('unlike-snd', body);
     }
-    // setActive(!active);
   };
-  // let body = {
-  //   postNO: data[1],
-  //   userID: data[5],
-  // }
-  // dispatch(getLikedPosts(body));
-  
-  // useEffect(() => {
-  //   let body = {
-  //     postNO: data[1],
-  //     userID: data[5],
-  //   }
-  //   dispatch(getLikedPosts(body));
-  //   for (var i = 0; i < _likedPostList.length; i++) {
-  //     if (data[1] == _likedPostList[i]) {
-  //       setActive(true);
-  //       console.log('already liked');
-  //       break;
-  //     }
-  //   }
-  // }, [_likedPostList]);
 
   useEffect(() => {
-    // console.log(_loginUser['userID']);
     const islike = data[9].find((element) => {
       if(element === _loginUser['userID']) {
         return true;
