@@ -8,6 +8,7 @@ const initialstate = {
   current_top_post_num: 0,
   myPostList: [],
   myLikeList: [],
+  myCommentList: [],
 };
 
 export default function (state = initialstate, action) {
@@ -35,6 +36,8 @@ export default function (state = initialstate, action) {
       return {...state, myPostList: action.payload}
     case types.GET_MY_LIKED_POSTS:
       return {...state, myLikeList: action.payload}
+    case types.GET_MY_COMMENTS:
+      return {...state, myCommentList: action.payload}
     default:
       return state;
   }

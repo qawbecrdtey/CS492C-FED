@@ -14,12 +14,11 @@ export const Btn = styled.button`
 `;
 
 export const FunctionContainer = styled.div`
-  width: 80%;
+  width: 100%;
   height: 10%;
-  // background: #eeeeee;
-  border-top: 0.1rem solid grey;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-bottom: 0.1rem solid grey;
 `;
