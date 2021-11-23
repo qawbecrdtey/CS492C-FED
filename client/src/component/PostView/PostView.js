@@ -157,7 +157,7 @@ const PostView = ({ match }) => {
         <button onClick={toPostList}>목록으로</button>
       </ReactContainer>
       <CommentContainer>
-        <Comment postNo={data[1]}/>
+        <Comment postNO={data[1]}/>
       </CommentContainer>
     </MainContainer>
   )

@@ -12,7 +12,7 @@ function Comments(props) {
     const [Comment, setComment] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
-    const postNo = props.postNo
+    const postNO = props.postNO
 
     const handleClick = (e) => {
         setComment(e.currentTarget.value)
@@ -23,7 +23,7 @@ function Comments(props) {
 
         const variables = {
             content: Comment,
-            postID: postNo,
+            postNO: postNO,
             writer: userID,
         }
 
@@ -36,7 +36,7 @@ function Comments(props) {
                     alert('Failed to save Comment')
                 }
         })
-        window.location.replace(`/postView/${postNo}`);
+        window.location.replace(`/postView/${postNO}`);
     }
 
     useEffect(()=>{
@@ -65,7 +65,7 @@ function Comments(props) {
                 <SingleComment 
                     key={comment._id} 
                     comment={comment}
-                    postNo={postNo}
+                    postNO={postNO}
                 />
             ))}
             {/* Root Comment Form */}
