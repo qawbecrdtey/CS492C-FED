@@ -5,12 +5,13 @@ import MypageFunc from '../../component/MypageFunc/MypageFunc';
 import MyPostList from '../../component/MyPostList/MyPostList';
 
 const MyPagePost = () => {
+    const pagetype = 'post';
     
     return (
         <GroundContainer>
             <Header mypage={true} />
             <MypageFunc />
-            <MyPostList />
+            <MyPostList type={pagetype} />
         </GroundContainer>
     )
 };
