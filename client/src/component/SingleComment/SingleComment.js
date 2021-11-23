@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import profileImage from '../../images/logo.svg';
 
 function SingleComment(props) {
-    const checkID = props.postNo === props.comment.postNO ? true : false
+    const checkID = props.postNo === props.comment.postID ? true : false
     const [isAuthorHover, setIsAuthorHover] = useState(false);
     
     return (
