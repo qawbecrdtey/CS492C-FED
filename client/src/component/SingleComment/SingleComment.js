@@ -1,16 +1,30 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import {Comment} from 'antd';
+import React, { useState} from 'react';
+import profileImage from '../../images/logo.svg';
 
 function SingleComment(props) {
-    const checkID = props.postNO === props.comment.postNO ? true : false
+    const checkID = props.postNo === props.comment.postNO ? true : false
+    const [isAuthorHover, setIsAuthorHover] = useState(false);
+    
     return (
         <div>
             {
                 checkID&&
-                <Comment
-                    content = {<p>{props.comment.content}</p>}
-                />
+                <div>
+                    <div 
+                        onMouseOver={() => setIsAuthorHover(true)}
+                        onMouseOut={() => setIsAuthorHover(false)}
+                    >
+                        <img
+                            src={isAuthorHover ? profileImage : ""}
+                            alt=""
+                        />
+                        {props.comment.writer}
+                    </div>
+                        <p>
+                            {props.comment.content}
+                        </p>
+                </div>
             }
         </div>
     )
