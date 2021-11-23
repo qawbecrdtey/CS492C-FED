@@ -55,7 +55,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const CommentContainer = styled.div`
-    width: 100%;
+    width: 80%;
     height: 27%;
     overflow-y: visible;
     border-top: 0.1rem solid grey;
