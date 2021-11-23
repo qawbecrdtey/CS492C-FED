@@ -10,11 +10,11 @@ const Checkbox = ({ uuid, checkedItems, setCheckedItems }) => {
     const checkedItemHandler = (isChecked) => {
         if(isChecked) {
             newCheckedItems.add(uuid);
-            setCheckedItems(checkedItems);
+            setCheckedItems(newCheckedItems);
         }
         else if(checkedItems.has(uuid)) {
             newCheckedItems.delete(uuid);
-            setCheckedItems(checkedItems);
+            setCheckedItems(newCheckedItems);
         }
     };
 
