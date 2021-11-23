@@ -13,11 +13,16 @@
 /* eslint-disable import/newline-after-import */
 /* eslint-disable no-undef */
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const { Comment } = require('../models/Comment');
 
 router.post('/saveComment', (req, res) => {
   const comment = new Comment(req.body);
+  var postList = mongoose.model('Post');
+  postList.findOneAndUpdate({ postNO: req.body.postNO }, { $inc: { no_comments: 1 } }, (err) => {
+    if (err) res.json({ success: false, err });
+  });
 
   console.log(comment);
   comment.save((err, comment) => {
@@ -32,7 +37,7 @@ router.post('/saveComment', (req, res) => {
 });
 
 router.post('/getComments', (req, res) => {
-  Comment.find({ postNo: req.body.postNo })
+  Comment.find({ postNO: req.body.postNO })
     .populate('writer')
     .exec((err, comments) => {
       if (err) return res.status(400).send(err);
