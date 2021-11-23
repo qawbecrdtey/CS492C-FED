@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
-  commentNO: {
-    type: Number,
-  },
   writer: {
     type: String,
   },
@@ -14,7 +11,7 @@ const commentSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  postID: {
+  postNO: {
     type: Number,
   },
 
