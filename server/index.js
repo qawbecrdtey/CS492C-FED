@@ -191,9 +191,18 @@ app.post('/api/post/myposts', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   console.log('getmyposts');
-  console.log(req.body.userID);
   const myposts = await Post.find({ userID: req.body.userID });
   res.json(myposts);
+});
+
+app.post('/api/post/mylikes', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  const user = await User.findOne({ userID: req.body.userID });
+  var postList = mongoose.model('Post');
+  console.log('getmylikes');
+  const likepostlist = await postList.find({ postNO: { $in: user.likeposts } });
+  res.json(likepostlist);
 });
 
 app.get('/api/post/currentposts', async (req, res) => {
