@@ -20,8 +20,8 @@ const Header = () => {
     return (
         <HeaderContainer>
             <Text onClick={backtoMain}>Board</Text>
-            <Btn onClick={goMyPage}>MyPage</Btn>
             <Btn onClick={backtoMain}>목록으로</Btn>
+            <Btn onClick={goMyPage}>MyPage</Btn>
             <LogoutBtn onClick={logout}>Logout</LogoutBtn>
         </HeaderContainer>
     )
