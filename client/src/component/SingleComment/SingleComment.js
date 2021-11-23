@@ -3,7 +3,7 @@ import React from 'react'
 import {Comment} from 'antd';
 
 function SingleComment(props) {
-    const checkID = props.postNo === props.comment.postID ? true : false
+    const checkID = props.postNO === props.comment.postNO ? true : false
     return (
         <div>
             {
