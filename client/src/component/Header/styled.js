@@ -17,6 +17,7 @@ export const LogoutBtn = styled.button`
     font-weight: bold;
     // background: #ffffff;
     margin-right: 20px;
+    cursor:pointer;
 `;
 
 export const HeaderContainer = styled.div`
@@ -31,4 +32,5 @@ export const HeaderContainer = styled.div`
 
 export const Btn = styled.button`
     display: flex;
+    cursor:pointer;
 `;
