@@ -7,6 +7,7 @@ export const Text = styled.div`
     color: #000000;
     font-weight: bold;
     padding-left: 20px;
+    cursor:pointer;
 `;
 
 export const LogoutBtn = styled.button`
