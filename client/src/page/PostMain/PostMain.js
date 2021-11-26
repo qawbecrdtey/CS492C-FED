@@ -2,11 +2,15 @@ import React, { useEffect } from 'react';
 import PostList from '../../component/PostList';
 import { useSelector } from 'react-redux';
 import Header from '../../component/Header';
-// import MainPageFunc from '../../component/MainpageFunc/MainPageFunc';
-import { GroundContainer, PageMoveContainer } from './styled';
+import { GroundContainer } from './styled';
+import PageNumSelector from '../../component/PageNumSelector';
  
-const PostMain = () => {
+// eslint-disable-next-line react/prop-types
+const PostMain = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
+  // eslint-disable-next-line react/prop-types
+  const { pageNO } = match.params;
+  console.log('pageNO : ' + pageNO);
   useEffect(()=>{
     console.log(_loginUser);
   },[]);
@@ -14,7 +18,7 @@ const PostMain = () => {
     <GroundContainer>
       <Header />
       <PostList />
-      <PageMoveContainer />
+      <PageNumSelector />
     </GroundContainer>
   )
 }

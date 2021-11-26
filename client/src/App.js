@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Route exact path='/' component={Landing} />
         <Route exact path='/postView/:no' component={PostView} />
-        <Route exact path='/postMain/' component={PostMain} />
+        <Route exact path='/postMain/:no' component={PostMain} />
         <Route exact path='/Join/' component={Join} />
         <Route exact path='/postWrite/' component={PostWrite} />
         <Route exact path='/myPage/myPosts' component={MyPagePost} />

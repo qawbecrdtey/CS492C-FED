@@ -38,6 +38,8 @@ export default function (state = initialstate, action) {
       return {...state, myLikeList: action.payload}
     case types.GET_MY_COMMENTS:
       return {...state, myCommentList: action.payload}
+    case types.GET_PAGINATION_INFO:
+      return {...state } // TODO: Get currentPage, articlePerPage, and totalPageCount.
     default:
       return state;
   }

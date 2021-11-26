@@ -9,14 +9,10 @@ export const GroundContainer = styled.div`
   justify-content: flex-start;
 `;
 
-export const PageMoveContainer = styled.div`
-  width: 80%;
-  height: 7%;
+export const PageNumSelectorContainer = styled.div`
+  width: 70px;
+  height: 80%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  // background: #a3a3a3;
-  border-top: 0.1rem solid grey;
+  background: #aa33aa;
 `;
-
 

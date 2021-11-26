@@ -5,7 +5,6 @@ import { getMyPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListContainer } from './styled';
  
-// eslint-disable-next-line react/prop-types
 const MyPostList = () => {
   const dispatch = useDispatch();
   const _mypostList = useSelector(state => state.user.myPostList);

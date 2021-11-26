@@ -30,7 +30,7 @@ const Login = () => {
                 userID: ID,
                 password: PW,
             }));
-            history.push('./postMain');
+            history.push('./postMain/1');
             isinlist = true;
             return;
         }

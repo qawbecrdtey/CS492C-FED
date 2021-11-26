@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
-import { getAllPost, getAllUser, getCurrentPostsNumInfo } from '../../actions/actions';
+import { getAllPost, getCurrentPostsNumInfo } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListContainer } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
@@ -10,7 +10,6 @@ const PostList = () => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   const [removeList, setRemoveList] = useState([]);
-
   const addRemove = postNO => {
     setRemoveList(removeList.concat(postNO));
   };
@@ -21,10 +20,11 @@ const PostList = () => {
   };
  
   useEffect(() => {
-    dispatch(getAllUser());
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
   }, [ ])
+  // _postList.map((char, index) => ...)
+  // `index' contains UUID of each post.
   return (
     <ListContainer>
       <MainPageFunc removelist={removeList}/>
