@@ -33,7 +33,7 @@ const PaginationArrow = props => {
     setCurrentPage(pageNo);
     return (
     <td type={type}>
-        <Link to={`/postMain/${pageNo}`} >{symbol}</Link>
+        <Link to={`/postMain/${pageNo}`}>{symbol}</Link>
     </td>
     );
 };

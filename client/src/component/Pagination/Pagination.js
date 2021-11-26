@@ -17,6 +17,9 @@ const Pagination = ({ articlePerPage }) => {
     const pagePerPagination = 10;
     const startIndex = Math.floor((currentPage - 1) / pagePerPagination + 1);
 
+    console.log(`pagePerPagination = ${pagePerPagination}`);
+    console.log(`currentPage = ${currentPage}`);
+
     const pagiFirstEnabled = (currentPage > pagePerPagination);
     const pagiPrevEnabled = (currentPage > pagePerPagination);
     const pagiNextEnabled = (currentPage <= Math.floor((totalPostNumber - 1) / articlePerPage));
