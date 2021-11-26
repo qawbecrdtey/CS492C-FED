@@ -11,6 +11,7 @@ const PaginationIndex = props => {
     const clicked = () => {
         setCurrentPage(pageNo);
     };
+    console.log(`pageNo = ${pageNo}`);
     return (
     <td key={pageNo}>
         <Link to={`/postMain/${pageNo}`} onClick={clicked}>{pageNo}</Link>
