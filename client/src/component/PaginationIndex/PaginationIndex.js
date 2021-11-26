@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PaginationIndex = props => {
     const { currentPage, setCurrentPage, pageNo } = props;
@@ -12,7 +13,7 @@ const PaginationIndex = props => {
     };
     return (
     <td key={pageNo}>
-        <Link to={`/Main/${pageNo}`} onClick={clicked}>{pageNo}</Link>
+        <Link to={`/postMain/${pageNo}`} onClick={clicked}>{pageNo}</Link>
     </td>
     );
 };

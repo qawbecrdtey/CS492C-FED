@@ -15,7 +15,6 @@ export const PageMoveContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: #a3a3a3;
   border-top: 0.1rem solid grey;
 `;
 

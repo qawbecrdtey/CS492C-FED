@@ -5,7 +5,7 @@ import Header from '../../component/Header';
 // import Pagination from '../../component/Pagination'
 // import MainPageFunc from '../../component/MainpageFunc/MainPageFunc';
 import { GroundContainer, PageMoveContainer/*, PageNumSelectorContainer*/ } from './styled';
-import PageNumSelector from '../../component/PageNumSelector/PageNumSelector';
+import PageNumSelector from '../../component/PageNumSelector';
  
 const PostMain = () => {
   const _loginUser = useSelector(state => state.user.loginUser);

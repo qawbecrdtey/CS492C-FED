@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import PaginationIndex from './PaginationIndex';
+import PaginationIndex from '../PaginationIndex';
 
 // returns JSX of form (<div><td></td><td></td>...<td></td></div>)
 const PaginationPageList = props => {

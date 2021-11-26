@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, GContainer, PageContainer} from './styled';
-
+import Pagination from '../Pagination/Pagination';
 
 const PageNumSelector = () => {
     const [isActive, setIsActive] = useState(false);
@@ -34,8 +34,11 @@ const PageNumSelector = () => {
             name: 20,
         },{
             id: 4,
-            name: 50
-        }];
+            name: 50,
+        },{
+          id: 5,
+          name: 2,
+      }];
   
     return (
     <GContainer>
@@ -59,7 +62,9 @@ const PageNumSelector = () => {
           ))}
         </DropdownMenu>
       </DropdownContainer>
-      <PageContainer articlePerPage={item}/>
+      <PageContainer>
+            <Pagination articlePerPage={item}/>
+      </PageContainer>
     </GContainer>
     );
   };
