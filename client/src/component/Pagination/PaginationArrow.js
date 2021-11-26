@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Socket } from 'socket.io-client';
 
 // returns JSX of form (<td></td>)
 const PaginationArrow = props => {
-    const { currentPagi, pagePerPagi, totalPagiCount, symbol, type, enabled } = props;
+    const { currentPagi, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled } = props;
     if(enabled === false) return (<td type={type}><p>{symbol}</p></td>);
     
-    const startIndex = currentPagi * pagePerPagi + 1;
+    //const startIndex = currentPagi * pagePerPagi + 1;
     const getGotoPagi = (t) => {
         if(t == 'first') {
             return 1;
@@ -36,10 +37,11 @@ const PaginationArrow = props => {
         Socket.emit('post-click-snd', item);
     };
 
-    if(gotoPagi === null) return (<></>);
+    if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
+    setCurrentPage(pageNo);
     return (
     <td type={type}>
-        <Link to={`/Main/${gotoPagi}`} onClick={clicked}>{symbol}</Link>
+        <Link to={`/Main/${pageNo}`} onClick={clicked}>{symbol}</Link>
     </td>
     );
 };

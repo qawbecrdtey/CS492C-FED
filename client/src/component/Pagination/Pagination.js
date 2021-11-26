@@ -4,15 +4,13 @@ import PaginationArrow from './PaginationArrow';
 import { getAllPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-// TODO: Get information about total post count from server and current page number.
 const Pagination = () => {
-    // TODO: Implement getPaginationInfo.
     const [currentPage, setCurrentPage] = useState(1);
-    const [articlePerPage, setArticlePerPage] = useState(15);
+    //const [articlePerPage, setArticlePerPage] = useState(15);
+    const articlePerPage = 15;
     const dispatch = useDispatch();
     const _postlist = useSelector(state => state.user.postList);
     const totalPostNumber = _postlist.length();
-    //const { currentPage, articlePerPage } = getPaginationInfo();
 
     const pagePerPagination = 10;
     const startIndex = Math.floor((currentPage - 1) / pagePerPagination + 1);
@@ -39,11 +37,11 @@ const Pagination = () => {
         <table>
             <tbody>
                 <tr>
-                    <PaginationArrow currentPagi={currentPagi} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<<' type='first' enabled={pagiFirstEnabled} />
-                    <PaginationArrow currentPagi={currentPagi} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<' type='prev' enabled={pagiPrevEnabled} />
-                    <PaginationPageList start={startIndex} size={pagePerPagination} currentPage={currentPage} />
-                    <PaginationArrow currentPagi={currentPagi} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>' type='next' enabled={pagiNextEnabled} />
-                    <PaginationArrow currentPagi={currentPagi} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>>' type='last' enabled={pagiLastEnabled} />
+                    <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<<' type='first' enabled={pagiFirstEnabled} />
+                    <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<' type='prev' enabled={pagiPrevEnabled} />
+                    <PaginationPageList currentPage={currentPage} setCurrentPage={setCurrentPage} start={startIndex} size={pagePerPagination} currentPage={currentPage} />
+                    <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>' type='next' enabled={pagiNextEnabled} />
+                    <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>>' type='last' enabled={pagiLastEnabled} />
                 </tr>
             </tbody>
         </table>
