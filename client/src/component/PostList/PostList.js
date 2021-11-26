@@ -11,18 +11,44 @@ const PostList = ({ pageNO, postPerPage }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   const sorted_postList = [..._postList];
-  const len_postlist = _postList.length;
-  console.log('len_postlist : ' + len_postlist);
+  // eslint-disable-next-line no-unused-vars
+  const [element, setElement] = useState('글번호');
   sorted_postList.sort((a,b) => {
-    if(a[1] > b[1]) return -11;
-    if(a[1] == b[1]) return 0;
-    if(a[1] < b[1]) return 1;
+    if (element == '글번호') {
+      if(a[1] > b[1]) return -1;
+      if(a[1] == b[1]) return 0;
+      if(a[1] < b[1]) return 1;
+    } else if (element == '제목(댓글수') {
+      if(a[2] > b[2]) return -1;
+      if(a[2] == b[2]) return 0;
+      if(a[2] < b[2]) return 1;
+    } else if (element == '좋아요') {
+      if(a[4] > b[4]) return -1;
+      if(a[4] == b[4]) return 0;
+      if(a[4] < b[4]) return 1;
+    } else if (element == '작성자') {
+      if(a[5] > b[5]) return -1;
+      if(a[5] == b[5]) return 0;
+      if(a[5] < b[5]) return 1;
+    } else if (element == '작성 시간') {
+      if(a[6] > b[6]) return -1;
+      if(a[6] == b[6]) return 0;
+      if(a[6] < b[6]) return 1;
+    } else if (element == '조회수') {
+      if(a[7] > b[7]) return -1;
+      if(a[7] == b[7]) return 0;
+      if(a[7] < b[7]) return 1;
+    }
   })
 
   console.log('pageNO : ' + pageNO);
   console.log('postperpage : ' + postPerPage);
+  console.log('element : ' + element);
 
-  const render_postList = sorted_postList.slice(0,100);
+  const startIndex = (pageNO - 1) * postPerPage;
+  const endIndex = pageNO * postPerPage;
+
+  const render_postList = sorted_postList.slice(startIndex, endIndex);
   const [removeList, setRemoveList] = useState([]);
   const addRemove = postNO => {
     setRemoveList(removeList.concat(postNO));
@@ -32,6 +58,10 @@ const PostList = ({ pageNO, postPerPage }) => {
       removeList.filter(removeList => removeList != postNO)
     );
   };
+
+  const getElement = (element) => {
+    setElement(element);
+  }
  
   useEffect(() => {
     dispatch(getAllPost());
@@ -41,7 +71,7 @@ const PostList = ({ pageNO, postPerPage }) => {
   return (
     <ListContainer>
       <MainPageFunc removelist={removeList}/>
-      <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']}>
+      <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement}>
         {
           render_postList ? render_postList.map((char, index) => {
             return (

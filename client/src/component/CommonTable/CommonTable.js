@@ -1,18 +1,25 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './CommonTable.css';
+import { TableContainer, TableHeaderColumn } from './styled';
  
 const CommonTable = props => {
   const { headersName, children } = props;
+  // eslint-disable-next-line no-unused-vars
+  // const [element, setElement] = useState('');
+  const handleClick = e => {
+    props.getElement(e.target.innerText);
+  }
  
   return (
-    <table className="common-table">
+    <TableContainer>
       <thead>
         <tr>
           {
             headersName.map((item, index) => {
               return (
-                <td className="common-table-header-column" key={index}>{ item }</td>
+                <TableHeaderColumn key={index}>
+                  {item ? <button onClick={handleClick}>{ item }</button> : null}
+                </TableHeaderColumn>
               )
             })
           }
@@ -23,7 +30,7 @@ const CommonTable = props => {
           children
         }
       </tbody>
-    </table>
+    </TableContainer>
   )
 }
  
