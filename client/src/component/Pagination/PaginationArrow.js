@@ -29,19 +29,19 @@ const PaginationArrow = props => {
     };
     const gotoPagi = getGotoPagi(type);
     const pageNo = gotoPagi * pagePerPagi + 1;
-
+/*
     const clicked = () => {
         let item = {
             pageNo: pageNo
         };
         Socket.emit('post-click-snd', item);
     };
-
+*/
     if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
     setCurrentPage(pageNo);
     return (
     <td type={type}>
-        <Link to={`/Main/${pageNo}`} onClick={clicked}>{symbol}</Link>
+        <Link to={`/Main/${pageNo}`}>{symbol}</Link>
     </td>
     );
 };
