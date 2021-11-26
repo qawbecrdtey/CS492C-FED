@@ -25,6 +25,8 @@ const PostList = () => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
   }, [ ])
+  // _postList.map((char, index) => ...)
+  // `index' contains UUID of each post.
   return (
     <ListContainer>
       <MainPageFunc removelist={removeList}/>

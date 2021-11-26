@@ -12,6 +12,7 @@ const types = {
     GET_MY_POSTS: 'GET_MY_POSTS',
     GET_MY_LIKED_POSTS: 'GET_MY_LIKED_POSTS',
     GET_MY_COMMENTS: 'GET_MY_LIKED_COMMENTS',
+    GET_PAGINATION_INFO: 'GET_PAGINATION_INFO',
   };
   
   export default types;
