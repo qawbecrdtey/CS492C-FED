@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PaginationIndex from './PaginationIndex';
 
@@ -10,7 +11,7 @@ const PaginationPageList = props => {
         arr.push(<PaginationIndex idx={start + i} />);
         i++;
     }
-    return (<div>{arr}</div>)
+    return (<div>{arr}</div>);
 };
 
 export default PaginationPageList;
