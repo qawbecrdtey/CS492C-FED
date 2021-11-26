@@ -4,7 +4,7 @@ import PaginationArrow from './PaginationArrow';
 
 // TODO: Get information about total post count from server and current page number.
 const Pagination = () => {
-    // TODO: get current page, user-defined article-per-page, and total page count.
+    // TODO: Implement getPaginationInfo.
     const { currentPage, articlePerPage, totalPageCount } = getPaginationInfo();
 
     const pagePerPagination = 10;

@@ -5,6 +5,7 @@ import React from 'react';
 const PaginationArrow = props => {
     const { symbol, type, enabled } = props;
     if(enabled === false) return (<td type={type}><p>{symbol}</p></td>);
+    // TODO: fix a href.
     return (<td type={type}><a href='#'>{symbol}</a></td>);
 };
 
