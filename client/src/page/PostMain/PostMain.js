@@ -15,8 +15,9 @@ const PostMain = () => {
     <GroundContainer>
       <Header />
       <PostList />
-      <Pagination />
-      <PageMoveContainer />
+      <PageMoveContainer>
+        <Pagination />
+      </PageMoveContainer>
     </GroundContainer>
   )
 }
