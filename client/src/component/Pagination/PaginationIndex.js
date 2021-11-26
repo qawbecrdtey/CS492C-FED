@@ -6,9 +6,9 @@ const PaginationIndex = props => {
     if(currentPage === pageNo) {
         return (<td key={pageNo}><p><b>{pageNo}</b></p></td>);
     }
-    // TODO: implement clicked.
+
     const clicked = () => {
-        
+        setCurrentPage(pageNo);
     };
     return (
     <td key={pageNo}>
