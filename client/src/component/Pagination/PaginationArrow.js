@@ -28,6 +28,8 @@ const PaginationArrow = props => {
         }
     };
     const gotoPagi = getGotoPagi(type);
+    if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
+    
     const pageNo = gotoPagi * pagePerPagi + 1;
 /*
     const clicked = () => {
@@ -37,7 +39,6 @@ const PaginationArrow = props => {
         Socket.emit('post-click-snd', item);
     };
 */
-    if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
     setCurrentPage(pageNo);
     return (
     <td type={type}>
