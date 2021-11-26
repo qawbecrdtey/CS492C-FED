@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PostList from '../../component/PostList';
 import { useSelector } from 'react-redux';
 import Header from '../../component/Header';
-import MainPageFunc from '../../component/MainpageFunc/MainPageFunc';
+// import MainPageFunc from '../../component/MainpageFunc/MainPageFunc';
 import { GroundContainer, PageMoveContainer } from './styled';
  
 const PostMain = () => {
@@ -13,7 +13,6 @@ const PostMain = () => {
   return (
     <GroundContainer>
       <Header />
-      <MainPageFunc />
       <PostList />
       <PageMoveContainer />
     </GroundContainer>

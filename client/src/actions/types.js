@@ -11,6 +11,7 @@ const types = {
     UPDATE_POST_NUM: 'UPDATE_POST_NUM',
     GET_MY_POSTS: 'GET_MY_POSTS',
     GET_MY_LIKED_POSTS: 'GET_MY_LIKED_POSTS',
+    GET_MY_COMMENTS: 'GET_MY_LIKED_COMMENTS',
   };
   
   export default types;

@@ -56,6 +56,19 @@ export async function getMyLikedPosts(dataToSubmit) {
   };
 }
 
+export async function getMyComments(dataToSubmit) {
+  const data = await request('post', POST_URL + '/mycomments', dataToSubmit);
+  var mycommentlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    mycommentlist.push(Object.values(data[i]));
+  }
+  return {
+    type: types.GET_MY_COMMENTS,
+    payload: mycommentlist,
+  };
+}
+
 export function registerUser(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");
