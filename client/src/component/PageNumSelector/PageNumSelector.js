@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, GContainer, PageContainer} from './styled';
+import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, PageMoveContainer, PageContainer} from './styled';
 import Pagination from '../Pagination/Pagination';
 
 const PageNumSelector = () => {
@@ -41,7 +41,7 @@ const PageNumSelector = () => {
       }];
   
     return (
-    <GContainer>
+    <PageMoveContainer>
       <DropdownContainer>
         <DropdownBody onClick={onActiveToggle}>
           {item ? (
@@ -65,7 +65,7 @@ const PageNumSelector = () => {
       <PageContainer>
             <Pagination articlePerPage={item}/>
       </PageContainer>
-    </GContainer>
+    </PageMoveContainer>
     );
   };
   

@@ -10,7 +10,6 @@ const PostList = () => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   const [removeList, setRemoveList] = useState([]);
-
   const addRemove = postNO => {
     setRemoveList(removeList.concat(postNO));
   };

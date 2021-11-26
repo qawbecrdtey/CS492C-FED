@@ -23,7 +23,7 @@ import Comment from '../../component/Comment/Comment';
 const POST_URL = '/api/post';
 
 import io from 'socket.io-client';
-const socket = io.connect('http://localhost:80/');
+const socket = io.connect('http://localhost:4080/');
  
 const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
@@ -68,7 +68,7 @@ const PostView = ({ match }) => {
   };
 
   const toPostList = () => {
-    history.push('/postMain');
+    history.push('/postMain/1');
   };
 
   const deletePost = () => {
@@ -76,7 +76,7 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    history.push('/postMain');
+    history.push('/postMain/1');
   }
 
   const clickLike = () => {

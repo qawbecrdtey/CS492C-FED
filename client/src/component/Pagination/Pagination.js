@@ -25,6 +25,7 @@ const Pagination = ({ articlePerPage }) => {
     const totalPageCount = Math.floor((totalPostNumber - 1) / articlePerPage + 1);
     const currentPagi = Math.floor(currentPage / pagePerPagination + 1);
     const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination + 1);
+    console.log('currentPage : ' + currentPage);
 
     useEffect(() => {
         dispatch(getAllPost());
