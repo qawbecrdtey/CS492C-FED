@@ -14,9 +14,15 @@ export const PageMoveContainer = styled.div`
   height: 7%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  // background: #a3a3a3;
+  justify-content: flex-start;
+  background: #a3a3a3;
   border-top: 0.1rem solid grey;
 `;
 
+export const PageNumSelectorContainer = styled.div`
+  width: 70px;
+  height: 80%;
+  display: flex;
+  background: #aa33aa;
+`;
 
