@@ -1,10 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, PageMoveContainer, PageContainer} from './styled';
+import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, PageMoveContainer, PageContainer, GContainer} from './styled';
 import Pagination from '../Pagination/Pagination';
+import { setPostPerPage } from '../../actions/actions';
+import { useDispatch } from 'react-redux';
+import PostList from '../PostList';
 
-const PageNumSelector = () => {
+// eslint-disable-next-line react/prop-types
+const PageNumSelector = ({ pageNO }) => {
     const [isActive, setIsActive] = useState(false);
     const [item, setItem] = useState(20);
+    const dispatch = useDispatch();
   
     const onActiveToggle = () => {
       setIsActive((prev) => !prev);
@@ -15,9 +20,11 @@ const PageNumSelector = () => {
         const targetId = e.target.id;
 
         if (targetId === "item_name") {
-        setItem(e.target.parentElement.innerText);
+          setItem(e.target.parentElement.innerText);
+          dispatch(setPostPerPage(parseInt(e.target.parentElement.innerText)));
         } else if (targetId === "item") {
-        setItem(e.target.innerText);
+          setItem(e.target.innerText);
+          dispatch(setPostPerPage(parseInt(e.target.innerText)));
         }
 
         setIsActive((prev) => !prev);
@@ -41,31 +48,34 @@ const PageNumSelector = () => {
       }];
   
     return (
-    <PageMoveContainer>
-      <DropdownContainer>
-        <DropdownBody onClick={onActiveToggle}>
-          {item ? (
-            <>
-              <ItemName>{item}</ItemName>
-            </>
-          ) : (
-            <>
-              <DropdownSelect>선택해주세요.</DropdownSelect>
-            </>
-          )}
-        </DropdownBody>
-        <DropdownMenu isActive={isActive}>
-          {dropdownItems.map((item) => (
-            <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
-              <ItemName id="item_name">{item.name}</ItemName>
-            </DropdownItemContainer>
-          ))}
-        </DropdownMenu>
-      </DropdownContainer>
-      <PageContainer>
-            <Pagination articlePerPage={item}/>
-      </PageContainer>
-    </PageMoveContainer>
+    <GContainer>
+      <PostList pageNO={pageNO} postPerPage={parseInt(item)}/>
+      <PageMoveContainer>
+        <DropdownContainer>
+          <DropdownBody onClick={onActiveToggle}>
+            {item ? (
+              <>
+                <ItemName>{item}</ItemName>
+              </>
+            ) : (
+              <>
+                <DropdownSelect>선택해주세요.</DropdownSelect>
+              </>
+            )}
+          </DropdownBody>
+          <DropdownMenu isActive={isActive}>
+            {dropdownItems.map((item) => (
+              <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
+                <ItemName id="item_name">{item.name}</ItemName>
+              </DropdownItemContainer>
+            ))}
+          </DropdownMenu>
+        </DropdownContainer>
+        <PageContainer>
+              <Pagination articlePerPage={item}/>
+        </PageContainer>
+      </PageMoveContainer>
+    </GContainer>
     );
   };
   
