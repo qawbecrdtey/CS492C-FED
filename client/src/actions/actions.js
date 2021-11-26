@@ -153,3 +153,10 @@ export function updatePostNum(dataToSubmit) {
     payload2: dataToSubmit.current_top_post_num,
   };
 }
+
+export function setPostPerPage(no) {
+  return {
+    type: types.SET_POST_PER_PAGE,
+    payload: no,
+  };
+}

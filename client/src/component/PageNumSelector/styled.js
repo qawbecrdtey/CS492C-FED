@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
-export const PageMoveContainer = styled.div`
+export const GContainer = styled.div`
   width: 80%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageMoveContainer = styled.div`
+  width: 100%;
   height: 7%;
   display: flex;
   align-items: center;

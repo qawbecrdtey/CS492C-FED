@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { request } from '../../utils/axios';
 import { 
   CommentContainer, 
@@ -18,7 +18,7 @@ import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
 import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
-import { editPost, like, unlike, getLikedPosts } from '../../actions/actions';
+import { editPost } from '../../actions/actions';
 import Comment from '../../component/Comment/Comment';
 const POST_URL = '/api/post';
 
