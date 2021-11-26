@@ -7,7 +7,7 @@ const socket = io.connect('http://localhost:80/');
  
 // eslint-disable-next-line react/prop-types
 const MyCommentRow = ({ comment }) => {
-  const _myPostList = useSelector(state => state.user.myLikeList);
+  const _myPostList = useSelector(state => state.user.myCommentList);
   const _postNO = comment[3];
   const clickpost = () => {
     let item = {
@@ -15,12 +15,14 @@ const MyCommentRow = ({ comment }) => {
     }
     socket.emit('post-click-snd', item);
   }
-
+  console.log(_myPostList)
+  console.log(_postNO)
   const thispost = _myPostList.find((element) => {
-      if (element[1] === _postNO) {
+      if (element[3] === _postNO) {
           return true;
       }
   })
+  
   return (
     <>
         <tr>
