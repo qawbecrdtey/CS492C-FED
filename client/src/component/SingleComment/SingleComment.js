@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { BodyContainer, SingleCommentContainer, WriterContainer,
      ContentContainer, HoverContainer, HoverContent, ProfileContent
@@ -7,7 +8,25 @@ import { BodyContainer, SingleCommentContainer, WriterContainer,
 
 function SingleComment(props) {
     const test = useSelector(state => state.user);
-    console.log(test)
+    const deleteComment = (e) => {
+        e.preventDefault();
+        
+        const variables = {
+            _id: props.comment._id
+        }
+
+        axios.post('/api/comment/deleteComment', variables)
+            .then(response => {
+                if (response.data.success) {
+                    console.log(response.data.result)
+                } else {
+                    alert('Failed to delete Comment')
+                }
+        })
+        window.location.replace(`/postView/${props.postNO}`);
+    }
+
+
     return (
         <SingleCommentContainer>
             <BodyContainer>
@@ -26,6 +45,7 @@ function SingleComment(props) {
                             </ProfileContent>
                         </HoverContent>
                     </HoverContainer>
+                    <button onClick={deleteComment}>삭제</button>
                 </WriterContainer>
                 <ContentContainer>{props.comment.content}</ContentContainer>
             </BodyContainer>
@@ -33,4 +53,4 @@ function SingleComment(props) {
     )
 }
 
-export default SingleComment
+export default SingleComment;
