@@ -1,23 +1,16 @@
-.common-table {
+import styled from 'styled-components';
+
+export const TableContainer = styled.table`
     width: 100%;
     margin: 0 auto;
     text-align: center;
     border-spacing: 0;
-  }
-   
-  .common-table-header-column {
+`;
+
+export const TableHeaderColumn = styled.td`
     border-bottom: 1px solid #e8e8e8;
     padding: 0;
     font-size: 16px;
     padding: 10px 5px;
     font-weight: bold;
-  }
-   
-  .common-table-row:hover {
-    background-color: #eceaea;
-    cursor: pointer;
-  }
-   
-  .common-table-column {
-    padding: 10px 5px;
-  }
+`;

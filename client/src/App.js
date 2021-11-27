@@ -17,8 +17,6 @@ function App() {
         <Route exact path='/' component={Landing} />
         <Route exact path='/postView/:no' component={PostView} />
         <Route exact path='/postMain/:pageNO' component={PostMain} />
-        {/* <Route exact path='/postMain/:no' 
-          component={(props) => <PostMain {...props}/>} /> */}
         <Route exact path='/Join/' component={Join} />
         <Route exact path='/postWrite/' component={PostWrite} />
         <Route exact path='/myPage/myPosts' component={MyPagePost} />
