@@ -13,23 +13,19 @@ const PostList = ({ pageNO, postPerPage }) => {
   const sorted_postList = [..._postList];
   // eslint-disable-next-line no-unused-vars
   const [element, setElement] = useState('글번호');
-  sorted_postList.sort((a,b) => {
+  sorted_postList.sort(function(a,b) {
     if (element == '글번호') {
       if(a[1] > b[1]) return -1;
       if(a[1] == b[1]) return 0;
       if(a[1] < b[1]) return 1;
-    } else if (element == '제목(댓글수') {
-      if(a[2] > b[2]) return -1;
-      if(a[2] == b[2]) return 0;
-      if(a[2] < b[2]) return 1;
+    } else if (element == '제목(댓글수)') {
+      return a[2].localeCompare(b[2]);
     } else if (element == '좋아요') {
       if(a[4] > b[4]) return -1;
       if(a[4] == b[4]) return 0;
       if(a[4] < b[4]) return 1;
     } else if (element == '작성자') {
-      if(a[5] > b[5]) return -1;
-      if(a[5] == b[5]) return 0;
-      if(a[5] < b[5]) return 1;
+      return a[5].localeCompare(b[5])
     } else if (element == '작성 시간') {
       if(a[6] > b[6]) return -1;
       if(a[6] == b[6]) return 0;
