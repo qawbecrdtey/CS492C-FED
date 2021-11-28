@@ -21,7 +21,9 @@ const Pagination = ({ articlePerPage }) => {
     const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination) + 1;
 
     const currentPagi = Math.floor((currentPage - 1) / pagePerPagination) + 1;
-    const pageCountInCurrentPagination = (currentPagi === totalPagiCount ? (totalPageCount - (currentPagi - 1) * pagePerPagination) : (pagePerPagination));
+    const pageCountInCurrentPagination = (currentPagi === totalPagiCount ?
+        (totalPageCount - (currentPagi - 1) * pagePerPagination)
+      : (pagePerPagination));
 
     const pagiFirstEnabled = (currentPagi > 1);
     const pagiPrevEnabled = (currentPagi > 1);
