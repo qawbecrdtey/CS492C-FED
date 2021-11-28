@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 
 const PaginationIndex = props => {
     const { currentPage, setCurrentPage, pageNo } = props;
+    console.log(`pageNo = ${pageNo}`);
     if(currentPage === pageNo) {
         return (<td key={pageNo}><p><b>{pageNo}</b></p></td>);
     }
-
+    
     const clicked = () => {
+        console.log(`clicked from PaginationIndex.js! pageNo = ${pageNo}`);
         setCurrentPage(pageNo);
     };
     return (

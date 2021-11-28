@@ -7,11 +7,14 @@ const PaginationPageList = props => {
     const { currentPage, setCurrentPage, start, size } = props;
     let i = 0;
     let arr = [];
+    console.log(`size = ${size}`);
+    console.log(`start = ${start}`);
     while(i < size) {
+        console.log(`i = ${i}`);
         arr.push(<PaginationIndex currentPage={currentPage} setCurrentPage={setCurrentPage} pageNo={start + i} />);
         i++;
     }
-    return (<div>{arr}</div>);
+    return (<>{arr}</>);
 };
 
 export default PaginationPageList;
