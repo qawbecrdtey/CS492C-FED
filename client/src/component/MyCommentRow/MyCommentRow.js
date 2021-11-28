@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -7,7 +7,7 @@ const socket = io.connect('http://localhost:80/');
  
 // eslint-disable-next-line react/prop-types
 const MyCommentRow = ({ comment }) => {
-  const _myPostList = useSelector(state => state.user.myCommentList);
+  const _postList = useSelector(state => state.user.postList);
   const _postNO = comment[3];
   const clickpost = () => {
     let item = {
@@ -15,13 +15,17 @@ const MyCommentRow = ({ comment }) => {
     }
     socket.emit('post-click-snd', item);
   }
-  console.log(_myPostList)
+  console.log(_postList)
   console.log(_postNO)
-  const thispost = _myPostList.find((element) => {
-      if (element[3] === _postNO) {
+  const thispost = _postList.find((element) => {
+      if (element[1] === _postNO) {
           return true;
       }
   })
+
+  useEffect(() => {
+    console.log(thispost);
+  }, []);
   
   return (
     <>

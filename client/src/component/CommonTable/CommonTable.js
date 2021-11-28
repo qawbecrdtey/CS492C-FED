@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { TableContainer, TableHeaderColumn } from './styled';
+import { TableContainer, TableHeaderColumn, HeaderButton } from './styled';
  
 const CommonTable = props => {
   const { headersName, children } = props;
@@ -18,7 +18,7 @@ const CommonTable = props => {
             headersName.map((item, index) => {
               return (
                 <TableHeaderColumn key={index}>
-                  {item ? <button onClick={handleClick}>{ item }</button> : null}
+                  {item ? <HeaderButton onClick={handleClick}>{ item }</HeaderButton> : null}
                 </TableHeaderColumn>
               )
             })
