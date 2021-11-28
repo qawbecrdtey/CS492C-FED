@@ -135,7 +135,7 @@ const PostList = ({ pageNO, postPerPage }) => {
   const getElement = (element) => {
     setElement(element);
   }
- 
+
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());

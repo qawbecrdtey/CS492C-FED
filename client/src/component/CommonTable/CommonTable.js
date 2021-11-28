@@ -6,6 +6,8 @@ const CommonTable = props => {
   const { headersName, children } = props;
   // eslint-disable-next-line no-unused-vars
   // const [element, setElement] = useState('');
+  console.log(`props = ${props}`);
+  console.log(props);
   const handleClick = e => {
     props.getElement(e.target.innerText);
   }
