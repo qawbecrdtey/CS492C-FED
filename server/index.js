@@ -249,6 +249,13 @@ app.post('/api/post/deletePost', async (req, res) => {
   });
 });
 
+app.post('/api/querycomment', async (req, res) => {
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  const queriedComment = await Comment.find({ content: { $regex: req.body.queryString } });
+  res.json(queriedComment);
+});
+
 // for socket io
 const httpServer = require('http').createServer();
 const io = require('socket.io')(httpServer, {
