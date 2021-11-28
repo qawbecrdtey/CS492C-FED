@@ -294,6 +294,7 @@ io.on('connection', (socket) => {
     });
   });
   socket.on('remove-snd', (item) => {
+    console.log('remove-snd');
     item.removelist.map((postNO) => {
       var postList = mongoose.model('Post');
       var commentList = mongoose.model('Comment');
