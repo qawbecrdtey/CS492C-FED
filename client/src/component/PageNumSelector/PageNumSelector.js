@@ -1,5 +1,16 @@
 import React, { useCallback, useState } from 'react';
-import { DropdownContainer, DropdownBody, DropdownSelect, DropdownMenu, DropdownItemContainer, ItemName, PageMoveContainer, PageContainer, GContainer} from './styled';
+import { 
+  DropdownContainer, 
+  DropdownBody, 
+  DropdownSelect, 
+  DropdownMenu, 
+  DropdownItemContainer, 
+  ItemName, 
+  PageMoveContainer, 
+  PageContainer, 
+  GContainer, 
+  TextContainer, 
+} from './styled';
 import Pagination from '../Pagination/Pagination';
 import { setPostPerPage } from '../../actions/actions';
 import { useDispatch } from 'react-redux';
@@ -30,37 +41,35 @@ const PageNumSelector = ({ pageNO }) => {
         setIsActive((prev) => !prev);
     }, []);
 
-    const dropdownItems = [{
-            id: 0,
-            name: 5,
-        },{
-            id: 11,
-            name: 10,
-        },{
-            id: 3,
-            name: 20,
-        },{
-            id: 4,
-            name: 50,
-        },{
-          id: 5,
-          name: 2,
-      }];
+    const dropdownItems = 
+    [{
+        id: 1,
+        name: 2,
+    },{
+        id: 2,
+        name: 5,
+    },{
+        id: 3,
+        name: 10,
+    },{
+        id: 4,
+        name: 20,
+    },{
+        id: 5,
+        name: 50,
+    }];
   
     return (
     <GContainer>
       <PostList pageNO={pageNO} postPerPage={parseInt(item)}/>
       <PageMoveContainer>
+        <TextContainer>post/page</TextContainer>
         <DropdownContainer>
           <DropdownBody onClick={onActiveToggle}>
             {item ? (
-              <>
                 <ItemName>{item}</ItemName>
-              </>
             ) : (
-              <>
                 <DropdownSelect>선택해주세요.</DropdownSelect>
-              </>
             )}
           </DropdownBody>
           <DropdownMenu isActive={isActive}>
