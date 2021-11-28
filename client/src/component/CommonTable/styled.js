@@ -14,3 +14,8 @@ export const TableHeaderColumn = styled.td`
     padding: 10px 5px;
     font-weight: bold;
 `;
+
+export const HeaderButton = styled.div`
+    font-size: 16px;
+    font-weight: bold;
+`;

@@ -12,7 +12,8 @@ function SingleComment(props) {
         e.preventDefault();
         
         const variables = {
-            _id: props.comment._id
+            _id: props.comment._id,
+            postNO: props.postNO,
         }
 
         axios.post('/api/comment/deleteComment', variables)

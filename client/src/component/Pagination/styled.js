@@ -6,5 +6,4 @@ export const GContainer = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
-    background: #aaff24;
 `; 

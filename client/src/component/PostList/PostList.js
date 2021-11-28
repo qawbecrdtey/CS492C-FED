@@ -1,9 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
 import { getAllPost, getCurrentPostsNumInfo } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { ListContainer } from './styled';
+import { 
+  FunctionContainer, 
+  ListContainer, 
+  SearchContainer, 
+  SearchTextContainer, 
+  Input,
+  CategoryContainer,
+  TriangleDown,
+  TriangleUp,
+  TriangleContainer,
+  QueryElementTextContainer,
+  DropDownBody,
+  DropDownMenu,
+  DropDownContent
+ } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
  
 // eslint-disable-next-line react/prop-types
@@ -11,8 +26,12 @@ const PostList = ({ pageNO, postPerPage }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   const sorted_postList = [..._postList];
-  // eslint-disable-next-line no-unused-vars
+  // const [filterElement, setFilterElement] = useState('');
+  // const [filterText, setFilterText] = useState('');
   const [element, setElement] = useState('글번호');
+  const [active, setActive] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [queryItem, setQueryItem] = useState('전체');
   sorted_postList.sort(function(a,b) {
     if (element == '글번호') {
       if(a[1] > b[1]) return -1;
@@ -55,6 +74,39 @@ const PostList = ({ pageNO, postPerPage }) => {
     );
   };
 
+  const onActiveToggle = () => {
+    setActive(!active);
+    console.log('active: ' + active);
+  }
+
+  const onSelectQueryItem = (e) => {
+    setQueryItem(e.target.innerText);
+    setActive(false);
+  }
+  
+  const dropDownElements = [
+    {
+      id: 1,
+      name: '전체',
+    },
+    {
+      id: 2,
+      name: '제목',
+    },
+    {
+      id: 3,
+      name: '내용',
+    },
+    {
+      id: 4,
+      name: '글쓴이',
+    },
+    {
+      id: 5,
+      name: '댓글',
+    },
+  ]
+
   const getElement = (element) => {
     setElement(element);
   }
@@ -66,7 +118,28 @@ const PostList = ({ pageNO, postPerPage }) => {
 
   return (
     <ListContainer>
-      <MainPageFunc removelist={removeList}/>
+      <FunctionContainer>
+        <SearchContainer>
+          <SearchTextContainer>검색분류</SearchTextContainer>
+          <DropDownMenu>
+            <CategoryContainer onClick={onActiveToggle}>
+              <TriangleContainer>
+                <TriangleUp />
+                <TriangleDown />
+              </TriangleContainer>
+              <QueryElementTextContainer>{queryItem}</QueryElementTextContainer>
+            </CategoryContainer>
+            <DropDownBody isActive={active}>
+              {dropDownElements.map((item) => (
+                <DropDownContent key={item.id} onClick={onSelectQueryItem}>{item.name}</DropDownContent>
+              ))}
+            </DropDownBody>
+          </DropDownMenu>
+          <SearchTextContainer>검색어</SearchTextContainer>
+          <Input />
+        </SearchContainer>
+        <MainPageFunc removelist={removeList}/>
+      </FunctionContainer>
       <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement}>
         {
           render_postList ? render_postList.map((char, index) => {
