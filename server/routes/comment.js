@@ -51,6 +51,10 @@ router.post('/deleteComment', (req, res) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({ success: true, comments });
     });
+  var postList = mongoose.model('Post');
+  postList.findOneAndUpdate({ postNO: req.body.postNO }, { $inc: { no_comments: -1 } }, (err) => {
+    if (err) return res.json({ success: false, err });
+  });
 });
 
 module.exports = router;
