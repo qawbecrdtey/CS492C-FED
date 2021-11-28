@@ -57,8 +57,9 @@ const PostList = ({ pageNO, postPerPage }) => {
 
   const getElement = (element) => {
     setElement(element);
-  }
- 
+  } 
+  const [checkedItems, setCheckedItems] = useState(new Set());
+
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
@@ -77,6 +78,10 @@ const PostList = ({ pageNO, postPerPage }) => {
         }
       </CommonTable>
     </ListContainer>
+      <TableActionButtons>
+        
+      </TableActionButtons>
+    </>
   )
 }
  
