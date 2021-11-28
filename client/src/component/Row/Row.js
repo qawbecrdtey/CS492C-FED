@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Checkbox from '../Checkbox';
-//const Checkbox = props => <input type="checkbox" {...props} />;
+const Checkbox = props => <input type="checkbox" {...props} />;
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:4080/');
  
 // eslint-disable-next-line react/prop-types
-const Row = ({ uuid, postNO, title, no_comments, likes, userID, created_date, views, checkedItems, setCheckedItems }) => {
+const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del }) => {
+  const [checked, setChecked] = useState(false);
+  const handleClick = () => {
+    setChecked(!checked);
+    if (checked) {
+      del(postNO);
+    } else {
+      add(postNO);
+    }
+  }
+  const clickpost = () => {
+    let item = {
+      postNO: postNO,
+    }
+    socket.emit('post-click-snd', item);
+  }
   return (
     <tr className="common-table-row">
-      <td><Checkbox key={uuid} uuid={uuid} checkedItems={checkedItems} setCheckedItems={setCheckedItems} /></td>
+      {mypage ? null : <td><Checkbox checked={checked} onClick={handleClick} /></td>}
       <td>{postNO}</td>
       <td>
-        <Link to={`/postView/${postNO}`}>{title}({no_comments})</Link>
+        <Link to={`/postView/${postNO}`} onClick={clickpost}>{title}({no_comments})</Link>
       </td>
       <td>{likes}</td>
-      <td>{userID}</td>
+      {!mypage||userID ? <td>{userID}</td> : null}
       <td>{created_date}</td>
       <td>{views}</td>
     </tr>

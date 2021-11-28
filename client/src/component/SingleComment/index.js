@@ -1,1 +1,1 @@
-export {default} from './SingleComment.js';
+export {default} from './SingleComment';

@@ -7,6 +7,7 @@ export const Text = styled.div`
     color: #000000;
     font-weight: bold;
     padding-left: 20px;
+    cursor:pointer;
 `;
 
 export const LogoutBtn = styled.button`
@@ -16,4 +17,20 @@ export const LogoutBtn = styled.button`
     font-weight: bold;
     // background: #ffffff;
     margin-right: 20px;
+    cursor:pointer;
+`;
+
+export const HeaderContainer = styled.div`
+  width: 80%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid grey;
+`;
+
+export const Btn = styled.button`
+    display: flex;
+    cursor:pointer;
 `;

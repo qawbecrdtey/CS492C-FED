@@ -6,8 +6,10 @@ const initialstate = {
   postList: [],
   num_of_total_posts: 0,
   current_top_post_num: 0,
-  likedPostList: [],
-  checkboxCheckedPostList: [],
+  myPostList: [],
+  myLikeList: [],
+  myCommentList: [],
+  postPerPage: 0,
 };
 
 export default function (state = initialstate, action) {
@@ -31,15 +33,17 @@ export default function (state = initialstate, action) {
     }
     case types.UPDATE_POST_NUM:
       return {...state, num_of_total_posts: action.payload1, current_top_post_num: action.payload2};
-    case types.LIKE:
-      return state;
-    case types.UNLIKE:
-      return state;
-    case types.GET_LIKED_POSTS:
-      return {...state, likedPostList: action.payload}
-    case types.DELETE_CHECKED_POSTS:
-      return {...state, num_of_total_posts: action.payload1, current_top_post_num: action.payload2};
-    default:
+    case types.GET_MY_POSTS:
+      return {...state, myPostList: action.payload}
+    case types.GET_MY_LIKED_POSTS:
+      return {...state, myLikeList: action.payload}
+    case types.GET_MY_COMMENTS:
+      return {...state, myCommentList: action.payload}
+    case types.GET_PAGINATION_INFO:
+      return {...state } // TODO: Get currentPage, articlePerPage, and totalPageCount.
+    case types.SET_POST_PER_PAGE:
+      return {...state, postPerPage: action.payload}
+      default:
       return state;
   }
 }

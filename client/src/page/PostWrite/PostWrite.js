@@ -50,10 +50,10 @@ const PostWrite = () => {
             current_top_post_num: _current_top_post_num+1,
         }
         dispatch(updatePostNum(PostNumBody));
-        history.push('/postMain');
+        history.push('/postMain/1');
     }
     const toPostList = () => {
-        history.push('/postMain');
+        history.push('/postMain/1');
     }
     useEffect(() => {
         // dispatch(getCurrentPostsNumInfo());
@@ -61,9 +61,7 @@ const PostWrite = () => {
     });
     return (
         <GroundContainer >
-            <HeaderContainer>
-                <Header />
-            </HeaderContainer>
+            <Header />
             <EditorContainer>
                 <InputContainer 
                     placeholder="제목을 입력하세요"
