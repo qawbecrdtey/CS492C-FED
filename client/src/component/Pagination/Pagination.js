@@ -15,21 +15,25 @@ const Pagination = ({ articlePerPage }) => {
     const totalPostNumber = _postlist.length;
 
     const pagePerPagination = articlePerPage;
-    const startIndex = Math.floor((currentPage - 1) / pagePerPagination + 1);
+    const startIndex = Math.floor((currentPage - 1) / pagePerPagination) + 1;
 
-    const pagiFirstEnabled = (currentPage > pagePerPagination);
-    const pagiPrevEnabled = (currentPage > pagePerPagination);
-    const pagiNextEnabled = (currentPage <= Math.floor((totalPostNumber - 1) / articlePerPage));
-    const pagiLastEnabled = (currentPage <= Math.floor((totalPostNumber - 1) / articlePerPage));
+    const totalPageCount = Math.floor((totalPostNumber - 1) / articlePerPage) + 1;
+    const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination) + 1;
 
-    const totalPageCount = Math.floor((totalPostNumber - 1) / articlePerPage + 1);
-    const currentPagi = Math.floor(currentPage / pagePerPagination + 1);
-    const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination + 1);
-    const pagiSize = Math.min(totalPagiCount - (currentPagi - 1) * pagePerPagination, pagePerPagination);
+    const currentPagi = Math.floor(currentPage / pagePerPagination) + 1;
+    //const currentPostCount = (currentPagi === totalPagiCount ? (totalPostNumber - (totalPagiCount - 1) * pagePerPagination) : (pagePerPagination));
+    const pagiSize = 10 ;
 
-    console.log(`pagePerPagination = ${pagePerPagination}`);
-    console.log(`currentPage = ${currentPage}`);
-    console.log(`currentPagi = ${currentPagi}`);
+    const pagiFirstEnabled = (currentPagi !== 1);
+    const pagiPrevEnabled = (currentPagi !== 1);
+    const pagiNextEnabled = (currentPagi !== totalPagiCount);
+    const pagiLastEnabled = (currentPagi !== totalPagiCount);
+
+    console.log('currentPage : ' + currentPage);
+    console.log(`totalPostNumber = ${totalPostNumber}`);
+    console.log(`totalPagiCount = ${totalPagiCount}`);
+    console.log(`PagePerPagination = ${pagePerPagination}`);
+    console.log(`totalPostNumber - (totalPagiCount - 1) * pagePerPagination = ${totalPostNumber - (totalPagiCount - 1) * pagePerPagination}`);
 
     useEffect(() => {
         dispatch(getAllPost());
@@ -44,11 +48,39 @@ const Pagination = ({ articlePerPage }) => {
             <table>
                 <tbody>
                     <tr>
-                        <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<<' type='first' enabled={pagiFirstEnabled} />
-                        <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='<' type='prev' enabled={pagiPrevEnabled} />
-                        <PaginationPageList currentPage={currentPage} setCurrentPage={setCurrentPage} start={startIndex} size={pagiSize} />
-                        <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>' type='next' enabled={pagiNextEnabled} />
-                        <PaginationArrow currentPagi={currentPagi} setCurrentPage={setCurrentPage} pagePerPagi={pagePerPagination} totalPagiCount={totalPagiCount} symbol='>>' type='last' enabled={pagiLastEnabled} />
+                        <PaginationArrow
+                            currentPagi={currentPagi}
+                            setCurrentPage={setCurrentPage}
+                            pagePerPagi={pagePerPagination}
+                            totalPagiCount={totalPagiCount}
+                            symbol='<<' type='first'
+                            enabled={pagiFirstEnabled} />
+                        <PaginationArrow
+                            currentPagi={currentPagi}
+                            setCurrentPage={setCurrentPage}
+                            pagePerPagi={pagePerPagination}
+                            totalPagiCount={totalPagiCount}
+                            symbol='<' type='prev'
+                            enabled={pagiPrevEnabled} />
+                        <PaginationPageList
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                            start={startIndex}
+                            size={pagiSize} />
+                        <PaginationArrow
+                            currentPagi={currentPagi}
+                            setCurrentPage={setCurrentPage}
+                            pagePerPagi={pagePerPagination}
+                            totalPagiCount={totalPagiCount}
+                            symbol='>' type='next'
+                            enabled={pagiNextEnabled} />
+                        <PaginationArrow
+                            currentPagi={currentPagi}
+                            setCurrentPage={setCurrentPage}
+                            pagePerPagi={pagePerPagination}
+                            totalPagiCount={totalPagiCount}
+                            symbol='>>' type='last'
+                            enabled={pagiLastEnabled} />
                     </tr>
                 </tbody>
             </table>

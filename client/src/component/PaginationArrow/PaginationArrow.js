@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // returns JSX of form (<td></td>)
 const PaginationArrow = props => {
     const { currentPagi, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled } = props;
-    if(enabled === false) return (<td type={type}><p>{symbol}</p></td>);
+    if(enabled === false) return (<td hover={type}><p>{symbol}</p></td>);
     
     //const startIndex = currentPagi * pagePerPagi + 1;
     const getGotoPagi = (t) => {
@@ -29,11 +29,21 @@ const PaginationArrow = props => {
     const gotoPagi = getGotoPagi(type);
     const pageNo = gotoPagi * pagePerPagi + 1;
 
+    console.log();
+    console.log(`type = ${type}`);
+    console.log(`gotoPagi = ${gotoPagi}`);
+    console.log(`pageNo = ${pageNo}`);
+
+    const clicked = () => {
+        setCurrentPage(pageNo);
+    };
+
     if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
-    setCurrentPage(pageNo);
+    console.log(`set from PaginationArrow.js! pageNo = ${pageNo}`);
+    //setCurrentPage(pageNo);
     return (
-    <td type={type}>
-        <Link to={`/postMain/${pageNo}`}>{symbol}</Link>
+    <td key={pageNo} type={type}>
+        <Link to={`/postMain/${gotoPagi}`} onClick={clicked}>{symbol}</Link>
     </td>
     );
 };

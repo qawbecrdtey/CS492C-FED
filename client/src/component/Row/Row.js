@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 const Checkbox = props => <input type="checkbox" {...props} />;
 import io from 'socket.io-client';
-const socket = io.connect('http://localhost:80/');
+const socket = io.connect('http://localhost:4080/');
  
 // eslint-disable-next-line react/prop-types
 const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del }) => {

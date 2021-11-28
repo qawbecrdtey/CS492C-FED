@@ -1,12 +1,21 @@
 import styled from "styled-components";
 
 export const GContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 80%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PageMoveContainer = styled.div`
+  width: 100%;
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 0.1rem solid grey;
 `;
 
 export const DropdownContainer = styled.div`
