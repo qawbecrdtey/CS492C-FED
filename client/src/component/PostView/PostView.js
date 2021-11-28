@@ -76,7 +76,7 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    history.push('/postMain/1');
+    window.location.replace('/postMain/1');
   }
 
   const clickLike = () => {

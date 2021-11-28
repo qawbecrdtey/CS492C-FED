@@ -26,14 +26,12 @@ import MainPageFunc from '../MainpageFunc/MainPageFunc';
 const PostList = ({ pageNO, postPerPage }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
-  // const sorted_postList = [..._postList];
   const [searched_postList, setSP] = useState([..._postList]);
   const [element, setElement] = useState('글번호');
   const [active, setActive] = useState(false);
   const [queryItem, setQueryItem] = useState('');
   const [query, setQuery] = useState('');
-  const sorted_postList = [...searched_postList]
-  // console.log(searched_postList);
+  const sorted_postList = [...searched_postList];
   sorted_postList.sort(function(a,b) {
     if (element == '글번호') {
       if(a[1] > b[1]) return -1;
@@ -56,11 +54,7 @@ const PostList = ({ pageNO, postPerPage }) => {
       if(a[7] == b[7]) return 0;
       if(a[7] < b[7]) return 1;
     }
-  })
-
-  // console.log('pageNO : ' + pageNO);
-  // console.log('postperpage : ' + postPerPage);
-  // console.log('element : ' + element);
+  });
 
   const startIndex = (pageNO - 1) * postPerPage;
   const endIndex = pageNO * postPerPage;
@@ -78,7 +72,6 @@ const PostList = ({ pageNO, postPerPage }) => {
 
   const onActiveToggle = () => {
     setActive(!active);
-    console.log('active: ' + active);
   }
 
   const onSelectQueryItem = (e) => {
@@ -101,6 +94,9 @@ const PostList = ({ pageNO, postPerPage }) => {
       setSP(_postList.filter(item => {
         return item[8].includes(query);
       }))
+      console.log(_postList.filter(item => {
+        return item[8].includes(query);
+      }).length);
     } else if (queryItem == '전체') {
       setSP(_postList.filter(item => {
         return (item[2].includes(query) || item[5].includes(query) || item[8].includes(query));
@@ -139,7 +135,6 @@ const PostList = ({ pageNO, postPerPage }) => {
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
-    setSP([..._postList]);
   }, []);
 
   return (
