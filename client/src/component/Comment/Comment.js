@@ -45,11 +45,10 @@ function Comments(props) {
             content: Comment,
             postNO: postNO,
         }
-
         axios.post('/api/comment/getComments', variables)
         .then(response => {
             if (response.data.success) {
-                // console.log('response.data.comments',response.data.comments)
+                console.log('response.data.comments',response.data)
                 setCommentLists(response.data.comments)
             } else {
                 alert('Failed to get video Info')
@@ -76,6 +75,7 @@ function Comments(props) {
                 <SingleComment 
                     key={comment._id} 
                     comment={comment}
+                    postNO={postNO}
                 />
             ))}
         </CommentContainer>
