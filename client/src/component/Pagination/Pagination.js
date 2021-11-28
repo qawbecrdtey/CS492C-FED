@@ -15,25 +15,18 @@ const Pagination = ({ articlePerPage }) => {
 
     const pagePerPagination = 10;
 
-    const startIndex = Math.floor((currentPage - 1) / pagePerPagination) + 1;
+    const startIndex = Math.floor((currentPage - 1) / pagePerPagination) * pagePerPagination + 1;
 
     const totalPageCount = Math.floor((totalPostNumber - 1) / articlePerPage) + 1;
     const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination) + 1;
 
-    const currentPagi = Math.floor(currentPage / pagePerPagination) + 1;
+    const currentPagi = Math.floor((currentPage - 1) / pagePerPagination) + 1;
     const pageCountInCurrentPagination = (currentPagi === totalPagiCount ? (totalPageCount - (currentPagi - 1) * pagePerPagination) : (pagePerPagination));
 
     const pagiFirstEnabled = (currentPagi > 1);
     const pagiPrevEnabled = (currentPagi > 1);
     const pagiNextEnabled = (currentPagi < totalPagiCount);
     const pagiLastEnabled = (currentPagi < totalPagiCount);
-
-    console.log('currentPage : ' + currentPage);
-    console.log(`currentPagi = ${currentPagi}`);
-    console.log(`totalPostNumber = ${totalPostNumber}`);
-    console.log(`totalPagiCount = ${totalPagiCount}`);
-    console.log(`PagePerPagination = ${pagePerPagination}`);
-    console.log(`totalPostNumber - (totalPagiCount - 1) * pagePerPagination = ${totalPostNumber - (totalPagiCount - 1) * pagePerPagination}`);
 
     useEffect(() => {
         dispatch(getAllPost());

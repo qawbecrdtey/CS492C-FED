@@ -27,23 +27,17 @@ const PaginationArrow = props => {
         }
     };
     const gotoPagi = getGotoPagi(type);
-    const pageNo = gotoPagi * pagePerPagi + 1;
-
-    console.log();
-    console.log(`type = ${type}`);
-    console.log(`gotoPagi = ${gotoPagi}`);
-    console.log(`pageNo = ${pageNo}`);
+    const pageNo = (gotoPagi - 1) * pagePerPagi + 1;
 
     const clicked = () => {
         setCurrentPage(pageNo);
     };
 
     if(gotoPagi === null) return (<td type={type}><p>{symbol}</p></td>);
-    console.log(`set from PaginationArrow.js! pageNo = ${pageNo}`);
-    //setCurrentPage(pageNo);
+    
     return (
     <td key={pageNo} type={type}>
-        <Link to={`/postMain/${gotoPagi}`} onClick={clicked}>{symbol}</Link>
+        <Link to={`/postMain/${pageNo}`} onClick={clicked}>{symbol}</Link>
     </td>
     );
 };
