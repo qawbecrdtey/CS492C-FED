@@ -142,3 +142,21 @@ export const TriangleUp = styled.div`
   border-right: 4px solid transparent;
   margin: 1px;
 `;
+
+export const SearchButton = styled.div`
+  width: 40px;
+  height: 30px;
+  display: flex;
+  background: skyblue;
+  margin: 10px;
+  box-shadow: 3px 3px 3px grey;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &:active{
+    left: 3px;
+    top: 3px;
+    box-shadow: none;
+  }
+`;

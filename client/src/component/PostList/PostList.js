@@ -17,7 +17,8 @@ import {
   QueryElementTextContainer,
   DropDownBody,
   DropDownMenu,
-  DropDownContent
+  DropDownContent,
+  SearchButton
  } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
  
@@ -25,13 +26,14 @@ import MainPageFunc from '../MainpageFunc/MainPageFunc';
 const PostList = ({ pageNO, postPerPage }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
-  const sorted_postList = [..._postList];
-  // const [filterElement, setFilterElement] = useState('');
-  // const [filterText, setFilterText] = useState('');
+  // const sorted_postList = [..._postList];
+  const [searched_postList, setSP] = useState([..._postList]);
   const [element, setElement] = useState('글번호');
   const [active, setActive] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [queryItem, setQueryItem] = useState('전체');
+  const [queryItem, setQueryItem] = useState('');
+  const [query, setQuery] = useState('');
+  const sorted_postList = [...searched_postList]
+  // console.log(searched_postList);
   sorted_postList.sort(function(a,b) {
     if (element == '글번호') {
       if(a[1] > b[1]) return -1;
@@ -56,9 +58,9 @@ const PostList = ({ pageNO, postPerPage }) => {
     }
   })
 
-  console.log('pageNO : ' + pageNO);
-  console.log('postperpage : ' + postPerPage);
-  console.log('element : ' + element);
+  // console.log('pageNO : ' + pageNO);
+  // console.log('postperpage : ' + postPerPage);
+  // console.log('element : ' + element);
 
   const startIndex = (pageNO - 1) * postPerPage;
   const endIndex = pageNO * postPerPage;
@@ -84,6 +86,29 @@ const PostList = ({ pageNO, postPerPage }) => {
     setActive(false);
   }
   
+  const onSetQuery = e => {
+    setQuery(e.target.value);
+  }
+
+  const search = () => {
+    if (queryItem == '작성자') {
+      setSP(_postList.filter(item => item[5] == query));
+    } else if (queryItem == '제목') {
+      setSP(_postList.filter(item => {
+        return item[2].includes(query);
+      }))
+    } else if (queryItem == '내용') {
+      setSP(_postList.filter(item => {
+        return item[8].includes(query);
+      }))
+    } else if (queryItem == '전체') {
+      setSP(_postList.filter(item => {
+        return (item[2].includes(query) || item[5].includes(query) || item[8].includes(query));
+      }))
+    }
+    setActive(false);
+  }
+  
   const dropDownElements = [
     {
       id: 1,
@@ -99,7 +124,7 @@ const PostList = ({ pageNO, postPerPage }) => {
     },
     {
       id: 4,
-      name: '글쓴이',
+      name: '작성자',
     },
     {
       id: 5,
@@ -114,7 +139,8 @@ const PostList = ({ pageNO, postPerPage }) => {
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
-  }, [ ])
+    setSP([..._postList]);
+  }, []);
 
   return (
     <ListContainer>
@@ -136,7 +162,8 @@ const PostList = ({ pageNO, postPerPage }) => {
             </DropDownBody>
           </DropDownMenu>
           <SearchTextContainer>검색어</SearchTextContainer>
-          <Input />
+          <Input onChange={onSetQuery}/>
+          <SearchButton onClick={search}>검색</SearchButton>
         </SearchContainer>
         <MainPageFunc removelist={removeList}/>
       </FunctionContainer>
