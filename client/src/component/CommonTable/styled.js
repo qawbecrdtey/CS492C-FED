@@ -9,7 +9,6 @@ export const TableContainer = styled.table`
 
 export const TableHeaderColumn = styled.td`
     border-bottom: 1px solid #e8e8e8;
-    padding: 0;
     font-size: 16px;
     padding: 10px 5px;
     font-weight: bold;

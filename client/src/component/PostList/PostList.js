@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
+import { request } from '../../utils/axios';
 import { getAllPost, getCurrentPostsNumInfo } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
@@ -21,38 +22,40 @@ import {
   SearchButton
  } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
- 
+
 // eslint-disable-next-line react/prop-types
-const PostList = ({ pageNO, postPerPage }) => {
+const PostList = ({ pageNO, postPerPage, getPostCount }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   const [searched_postList, setSP] = useState([..._postList]);
-  const [element, setElement] = useState('글번호');
+  const [sortCondition, setSortCondition] = useState({
+    element: '글번호',
+    sortFlag: [false, false, false, false, false, false],
+  })
   const [active, setActive] = useState(false);
   const [queryItem, setQueryItem] = useState('');
   const [query, setQuery] = useState('');
   const sorted_postList = [...searched_postList];
+  getPostCount(sorted_postList.length);
   sorted_postList.sort(function(a,b) {
-    if (element == '글번호') {
-      if(a[1] > b[1]) return -1;
-      if(a[1] == b[1]) return 0;
-      if(a[1] < b[1]) return 1;
-    } else if (element == '제목(댓글수)') {
-      return a[2].localeCompare(b[2]);
-    } else if (element == '좋아요') {
-      if(a[4] > b[4]) return -1;
-      if(a[4] == b[4]) return 0;
-      if(a[4] < b[4]) return 1;
-    } else if (element == '작성자') {
-      return a[5].localeCompare(b[5])
-    } else if (element == '작성 시간') {
-      if(a[6] > b[6]) return -1;
-      if(a[6] == b[6]) return 0;
-      if(a[6] < b[6]) return 1;
-    } else if (element == '조회수') {
-      if(a[7] > b[7]) return -1;
-      if(a[7] == b[7]) return 0;
-      if(a[7] < b[7]) return 1;
+    if (sortCondition.element == '글번호') {
+      if (sortCondition.sortFlag[0]) return a[1] - b[1]
+      else return b[1] - a[1]
+    } else if (sortCondition.element == '제목(댓글수)') {
+      if (sortCondition.sortFlag[1]) return a[2].localeCompare(b[2]); 
+      else return b[2].localeCompare(a[2]);
+    } else if (sortCondition.element == '좋아요') {
+      if (sortCondition.sortFlag[2]) return a[4] - b[4]
+      else return b[4] - a[4]
+    } else if (sortCondition.element == '작성자') {
+      if (sortCondition.sortFlag[3]) return a[5].localeCompare(b[5]);
+      else return b[5].localeCompare(a[5]);
+    } else if (sortCondition.element == '작성 시간') {
+      if (sortCondition.sortFlag[4]) return a[6] - b[6]
+      else return b[6] - a[6]
+    } else if (sortCondition.element == '조회수') {
+      if (sortCondition.sortFlag[5]) return a[7] - b[7]
+      else return b[7] - a[7]
     }
   });
 
@@ -89,47 +92,56 @@ const PostList = ({ pageNO, postPerPage }) => {
     } else if (queryItem == '제목') {
       setSP(_postList.filter(item => {
         return item[2].includes(query);
-      }))
+      }));
     } else if (queryItem == '내용') {
       setSP(_postList.filter(item => {
         return item[8].includes(query);
-      }))
-      console.log(_postList.filter(item => {
-        return item[8].includes(query);
-      }).length);
+      }));
     } else if (queryItem == '전체') {
-      setSP(_postList.filter(item => {
-        return (item[2].includes(query) || item[5].includes(query) || item[8].includes(query));
-      }))
+      let body = {
+        queryString: query,
+      };
+      request('post', '/api/querycomment', body).then(response => {
+        setSP(_postList.filter(item => {
+          if (item[2].includes(query) || item[5].includes(query) || item[8].includes(query)) return true;
+          var i;
+          for (i = 0; i < response.length; i++) {
+            if (item[1] == response[i].postNO) {
+              return true;
+            }
+          }
+          return false;
+        }))
+      });
+    } else if (queryItem == '댓글') {
+      let body = {
+        queryString: query,
+      };
+      request('post', '/api/querycomment', body).then(response => {
+        setSP(_postList.filter(item => {
+          var i;
+          for (i = 0; i < response.length; i++) {
+            if (item[1] == response[i].postNO) {
+              return true;
+            }
+          }
+          return false;
+        }))
+      });
     }
     setActive(false);
   }
   
   const dropDownElements = [
-    {
-      id: 1,
-      name: '전체',
-    },
-    {
-      id: 2,
-      name: '제목',
-    },
-    {
-      id: 3,
-      name: '내용',
-    },
-    {
-      id: 4,
-      name: '작성자',
-    },
-    {
-      id: 5,
-      name: '댓글',
-    },
+    {id: 1, name: '전체',},
+    {id: 2, name: '제목',},
+    {id: 3, name: '내용',},
+    {id: 4, name: '작성자',},
+    {id: 5, name: '댓글',},
   ]
 
-  const getElement = (element) => {
-    setElement(element);
+  const getElement = (condition) => {
+    setSortCondition(condition);
   }
 
   useEffect(() => {

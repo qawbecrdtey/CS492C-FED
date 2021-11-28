@@ -21,14 +21,16 @@ export const SearchContainer = styled.div`
     width: 80%;
     height: 90%;
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
+    // border: solid;
     // background: #cccccc;
 `;
 
 export const SearchTextContainer = styled.div`
   font-weight: bold;
   font-size: 20px;
+  padding-top: 9px;
 `;
 
 export const Input = styled.input`
@@ -40,6 +42,7 @@ export const Input = styled.input`
   box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.15);
   font-size: 1.3rem;
   padding-left: 20px;
+  margin-top: 5px;
   margin-left: 10px;
 
   ::-webkit-input-placeholder {
@@ -68,15 +71,18 @@ export const CategoryContainer = styled.div`
 
 export const DropDownMenu = styled.div`
   width: 15%;
-  height: 200px;
+  // height: 200px;
+  height: auto;
   display: flex;
   position: relative;
-  top: 85px;
+  top: 5px;
   flex-direction: column;
   align-items: flex-end;
   margin-left: 20px;
   margin-right: 20px;
   overflow: visible;
+  // border: solid;
+  z-index: 0;
 `;
 
 export const DropDownBody = styled.div`
@@ -120,7 +126,6 @@ export const TriangleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // border: 0.1rem solid grey;
   margin-left: 8px;
   margin-right: 8px;
 `;
@@ -148,7 +153,7 @@ export const SearchButton = styled.div`
   height: 30px;
   display: flex;
   background: skyblue;
-  margin: 10px;
+  margin: 5px;
   box-shadow: 3px 3px 3px grey;
   border-radius: 8px;
   justify-content: center;

@@ -68,6 +68,7 @@ const PostView = ({ match }) => {
   };
 
   const toPostList = () => {
+    // window.location.replace('/postMain/1');
     history.push('/postMain/1');
   };
 
