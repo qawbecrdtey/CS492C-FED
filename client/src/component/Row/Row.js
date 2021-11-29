@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const Checkbox = props => <input type="checkbox" {...props} />;
 import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4080/');
  
 // eslint-disable-next-line react/prop-types
-const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del }) => {
+const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked }) => {
   const [checked, setChecked] = useState(false);
+
   const handleClick = () => {
     setChecked(!checked);
     if (checked) {
@@ -21,6 +22,9 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
     }
     socket.emit('post-click-snd', item);
   }
+  useEffect(() => {
+    setChecked(isAllChecked);
+  }, [isAllChecked]);
   return (
     <tr className="common-table-row">
       {mypage ? null : <td><Checkbox checked={checked} onClick={handleClick} /></td>}

@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { TableContainer, TableHeaderColumn, HeaderButton } from './styled';
+import { TableContainer, TableHeaderColumn, HeaderItem } from './styled';
+const Checkbox = props => <input type="checkbox" {...props} />;
  
-const CommonTable = props => {
-  const { headersName, children } = props;
+const CommonTable = ({ headersName, getElement, getChecked, children }) => {
   const [sortFlag, setSortFlag] = useState([true, false, false, false, false, false]);
-  // eslint-disable-next-line no-unused-vars
-  // const handleClick = e => {
-  //   props.getElement(e.target.innerText);
-  // }
+  const [checked, setChecked] = useState(false);
+
+  const handleClick = () => {
+    setChecked(!checked);
+    getChecked(!checked);
+  }
 
   const handleClick2 = e => {
     if (e.target.innerText == '글번호') {
@@ -24,7 +26,7 @@ const CommonTable = props => {
     } else if (e.target.innerText == '조회수') {
       setSortFlag([sortFlag[0], sortFlag[1], sortFlag[2], sortFlag[3], sortFlag[4], !sortFlag[5]])
     }
-    props.getElement({
+    getElement({
       element: e.target.innerText,
       sortFlag: sortFlag,
     });
@@ -37,8 +39,10 @@ const CommonTable = props => {
           {
             headersName.map((item, index) => {
               return (
-                <TableHeaderColumn key={index} onClick={handleClick2}>
-                  {item ? <HeaderButton /*onClick={handleClick}*/>{ item }</HeaderButton> : null}
+                <TableHeaderColumn key={index} >
+                  {index==0 
+                  ? <Checkbox checked={checked} onClick={handleClick} />
+                  : item ? <HeaderItem onClick={handleClick2}>{ item }</HeaderItem> : null}
                 </TableHeaderColumn>
               )
             })
