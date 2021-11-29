@@ -19,9 +19,9 @@ function App() {
         <Route exact path='/postMain/:pageNO' component={PostMain} />
         <Route exact path='/Join/' component={Join} />
         <Route exact path='/postWrite/' component={PostWrite} />
-        <Route exact path='/myPage/myPosts' component={MyPagePost} />
-        <Route exact path='/myPage/myLikes' component={MyPageLike} />
-        <Route exact path='/myPage/myComments' component={MyPageComment} />
+        <Route exact path='/myPage/myPosts/:pageNO' component={MyPagePost} />
+        <Route exact path='/myPage/myLikes/:pageNO' component={MyPageLike} />
+        <Route exact path='/myPage/myComments/:pageNO' component={MyPageComment} />
       </BrowserRouter>
     </div>
   );

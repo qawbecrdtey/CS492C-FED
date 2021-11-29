@@ -1,15 +1,18 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { GroundContainer } from "../PostMain/styled";
 import Header from '../../component/Header';
 import MypageFunc from "../../component/MypageFunc/MypageFunc";
-import MyCommentList from "../../component/MyCommentList";
+import PageNumSelector from "../../component/PageNumSelector";
 
-const MyPageComment = () => {
+const MyPageComment = ({ match }) => {
+    const thiscomponent = 'MyPageComment';
+    const { pageNO } = match.params;
     return (
         <GroundContainer>
             <Header mypage={true} />
             <MypageFunc />
-            <MyCommentList />
+            <PageNumSelector pageNO={pageNO} parentComponent={thiscomponent}/>
         </GroundContainer>
     )
 

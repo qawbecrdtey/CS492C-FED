@@ -12,9 +12,6 @@ import {
   SearchTextContainer, 
   Input,
   CategoryContainer,
-  TriangleDown,
-  TriangleUp,
-  TriangleContainer,
   QueryElementTextContainer,
   DropDownBody,
   DropDownMenu,
@@ -22,6 +19,7 @@ import {
   SearchButton
  } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
+import Triangle from '../Triangle';
 
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount }) => {
@@ -156,10 +154,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
           <SearchTextContainer>검색분류</SearchTextContainer>
           <DropDownMenu>
             <CategoryContainer onClick={onActiveToggle}>
-              <TriangleContainer>
-                <TriangleUp />
-                <TriangleDown />
-              </TriangleContainer>
+              <Triangle />
               <QueryElementTextContainer>{queryItem}</QueryElementTextContainer>
             </CategoryContainer>
             <DropDownBody isActive={active}>
