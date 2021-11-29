@@ -19,9 +19,11 @@ const MyCommentRow = ({ comment }) => {
   console.log(_postNO)
   const thispost = _postList.find((element) => {
       if (element[1] === _postNO) {
-          return true;
+        // console.log(element[1]);
+        return true;
       }
   })
+  console.log(thispost);
 
   useEffect(() => {
     console.log(thispost);

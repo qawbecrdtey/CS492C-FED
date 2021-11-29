@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { GContainer } from './styled';
 
 // eslint-disable-next-line react/prop-types
-const Pagination = ({ articlePerPage, postCount }) => {
+const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const dispatch = useDispatch();
@@ -48,33 +48,38 @@ const Pagination = ({ articlePerPage, postCount }) => {
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='<<' type='first'
-                            enabled={pagiFirstEnabled} />
+                            enabled={pagiFirstEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='<' type='prev'
-                            enabled={pagiPrevEnabled} />
+                            enabled={pagiPrevEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationPageList
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             start={startIndex}
-                            size={pageCountInCurrentPagination} />
+                            size={pageCountInCurrentPagination}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='>' type='next'
-                            enabled={pagiNextEnabled} />
+                            enabled={pagiNextEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='>>' type='last'
-                            enabled={pagiLastEnabled} />
+                            enabled={pagiLastEnabled}
+                            parentComponent={parentComponent} />
                     </tr>
                 </tbody>
             </table>

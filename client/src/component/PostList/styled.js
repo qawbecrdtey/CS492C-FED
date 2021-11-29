@@ -56,8 +56,6 @@ export const Input = styled.input`
 `;
 
 export const CategoryContainer = styled.div`
-  // width: 15%;
-  // height: 70%;
   width: 100%;
   height: 30px;
   border-radius: 10px;
@@ -71,7 +69,6 @@ export const CategoryContainer = styled.div`
 
 export const DropDownMenu = styled.div`
   width: 15%;
-  // height: 200px;
   height: auto;
   display: flex;
   position: relative;
@@ -81,7 +78,6 @@ export const DropDownMenu = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   overflow: visible;
-  // border: solid;
   z-index: 0;
 `;
 
@@ -105,47 +101,20 @@ export const DropDownContent = styled.div`
   border-bottom: 0.1rem solid grey;
   align-items: center;
   justify-content: center;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const QueryElementTextContainer = styled.div`
   width: 80%;
   heigh: 100%;
-  // border: solid;
   margin-top: 5px;
   font-weight: normal;
   text-align: center;
   font-size: 18px;
   padding-bottom: 3px;
   padding-right: 10px;
-`;
-
-export const TriangleContainer = styled.div`
-  width: 10px;
-  height: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: 8px;
-  margin-right: 8px;
-`;
-
-export const TriangleDown = styled.div`
-  width: 0;
-  height: 0;
-  border-top: 6px solid grey;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  margin: 1px;
-`;
-
-export const TriangleUp = styled.div`
-  width: 0;
-  height: 0;
-  border-bottom: 6px solid grey;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  margin: 1px;
 `;
 
 export const SearchButton = styled.div`

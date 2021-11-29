@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PaginationIndex = props => {
-    const { currentPage, setCurrentPage, pageNo } = props;
+    const { currentPage, setCurrentPage, pageNo, parentComponent } = props;
     const clicked = () => {
         setCurrentPage(pageNo);
     };
@@ -13,7 +13,10 @@ const PaginationIndex = props => {
     }
     return (
     <td key={pageNo}>
-        <Link to={`/postMain/${pageNo}`} onClick={clicked}>{pageNo}</Link>
+        {parentComponent == 'PostMain' ? <Link to={`/postMain/${pageNo}`} onClick={clicked}>{pageNo}</Link> : null}
+        {parentComponent == 'MyPagePost' ? <Link to={`/myPage/myPosts/${pageNo}`} onClick={clicked}>{pageNo}</Link> : null}
+        {parentComponent == 'MyPageLike' ? <Link to={`/myPage/myLikes/${pageNo}`} onClick={clicked}>{pageNo}</Link> : null}
+        {parentComponent == 'MyPageComment' ? <Link to={`/myPage/myComments/${pageNo}`} onClick={clicked}>{pageNo}</Link> : null}
     </td>
     );
 };
