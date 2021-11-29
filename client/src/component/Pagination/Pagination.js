@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PaginationPageList from '../PaginationPageList';
 import PaginationArrow from '../PaginationArrow';
 import { getAllPost } from '../../actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { GContainer } from './styled';
 
 // eslint-disable-next-line react/prop-types
-const Pagination = ({ articlePerPage }) => {
+const Pagination = ({ articlePerPage, postCount }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const dispatch = useDispatch();
-    const _postlist = useSelector(state => state.user.postList);
-    const totalPostNumber = _postlist.length;
+    const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
 
