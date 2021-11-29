@@ -27,9 +27,7 @@ const MyPostList = () => {
     } else if (element == '작성자') {
       return a[5].localeCompare(b[5])
     } else if (element == '작성 시간') {
-      if(a[6] > b[6]) return -1;
-      if(a[6] == b[6]) return 0;
-      if(a[6] < b[6]) return 1;
+      return a[6].localeCompare(b[6])
     } else if (element == '조회수') {
       if(a[7] > b[7]) return -1;
       if(a[7] == b[7]) return 0;
