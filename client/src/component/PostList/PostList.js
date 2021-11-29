@@ -51,8 +51,8 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
       if (sortCondition.sortFlag[3]) return a[5].localeCompare(b[5]);
       else return b[5].localeCompare(a[5]);
     } else if (sortCondition.element == '작성 시간') {
-      if (sortCondition.sortFlag[4]) return a[6] - b[6]
-      else return b[6] - a[6]
+      if (sortCondition.sortFlag[4]) return a[6].localeCompare(b[6]);
+      else return b[6].localeCompare(a[6]);
     } else if (sortCondition.element == '조회수') {
       if (sortCondition.sortFlag[5]) return a[7] - b[7]
       else return b[7] - a[7]
