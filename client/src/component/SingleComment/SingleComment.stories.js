@@ -1,13 +1,13 @@
-// import React from 'react';
-// import SingleComment from './SingleComment';
+import React from 'react';
+import SingleComment from './SingleComment';
 
-// export default {
-//     title : 'SingleComment component',
-//     component: SingleComment,
-// };
+export default {
+    title : 'SingleComment component',
+    component: SingleComment,
+};
 
-// export const SingleCommentComponent = () => <SingleComment />;
+export const SingleCommentComponent = () => <SingleComment />;
 
-// SingleCommentComponent.story = {
-//     name: 'SingleComment',
-// };
+SingleCommentComponent.story = {
+    name: 'SingleComment',
+};
