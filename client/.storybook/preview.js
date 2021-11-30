@@ -8,6 +8,7 @@ import ReduxThunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';
+import { BrowserRouter } from 'react-router-dom';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -36,10 +37,12 @@ const persistor = persistStore(store);
 export const decorators = [
   Story => (
     <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <Story />
-    </PersistGate>
-  </Provider>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <Story />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   ),
 ]
 
