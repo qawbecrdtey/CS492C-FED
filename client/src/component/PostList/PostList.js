@@ -169,7 +169,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
   return (
     <ListContainer>
       <FunctionContainer>
-        <button onClick={printRemoveList}>ggg</button>
+        <button onClick={printRemoveList}>print checked</button>
         <SearchContainer>
           <SearchTextContainer>검색분류</SearchTextContainer>
           <DropDownMenu>

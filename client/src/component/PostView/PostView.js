@@ -64,12 +64,12 @@ const PostView = ({ match }) => {
     }
     dispatch(editPost(body));
     console.log(body);
-    history.push('/postMain');
+    history.push('/postMain/1');
   };
 
   const toPostList = () => {
-    // window.location.replace('/postMain/1');
-    history.push('/postMain/1');
+    // history.push('/postMain/1');
+    history.goBack();
   };
 
   const deletePost = () => {
