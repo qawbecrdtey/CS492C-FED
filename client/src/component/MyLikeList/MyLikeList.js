@@ -18,6 +18,9 @@ const MyLikeList = ({ pageNO, postPerPage, getPostCount }) => {
 
   const getElement = () => {
   }
+
+  const getChecked = () => {
+  }
   
   useEffect(() => {
     let body = {
@@ -27,7 +30,7 @@ const MyLikeList = ({ pageNO, postPerPage, getPostCount }) => {
   }, [ ])
   return (
     <ListContainer>
-      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성자', '작성 시간', '조회수']} getElement={getElement}>
+      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
         {
           render_postList ? render_postList.map((char, index) => {
               return (

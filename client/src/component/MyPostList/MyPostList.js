@@ -45,6 +45,9 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
     setSortCondition(condition);
   }
 
+  const getChecked = () => {
+  }
+
   useEffect(() => {
     let body = {
         userID: _loginUser['userID']
@@ -53,11 +56,11 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
   }, [ ])
   return (
     <ListContainer>
-      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성 시간', '조회수']} getElement={getElement}>
+      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
         {
           render_postList ? render_postList.map((char, index) => {
             return (
-              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={null} created_date={char[6]} views={char[7]} mypage={true} />
+              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={null} created_date={char[6]} views={char[7]} mypage={true}/>
             )
           }) : null
         }
