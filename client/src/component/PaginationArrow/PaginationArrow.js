@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // returns JSX of form (<td></td>)
 const PaginationArrow = props => {
-    const { currentPagi, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled } = props;
+    const { currentPagi, currentPage, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled, parentComponent } = props;
     if(enabled === false) return (<td hover={type}><p>{symbol}</p></td>);
     
     //const startIndex = currentPagi * pagePerPagi + 1;
@@ -28,8 +28,10 @@ const PaginationArrow = props => {
     };
     const gotoPagi = getGotoPagi(type);
     const pageNo = (() => {
-        if(type === 'first' || type === 'prev') return gotoPagi * pagePerPagi;
-        if(type === 'next' || type === 'last') return (gotoPagi - 1) * pagePerPagi + 1;
+        if(type === 'first') return gotoPagi * pagePerPagi;
+        if(type === 'prev') return currentPage - 1;
+        if(type === 'next') return currentPage + 1;
+        if(type === 'last') return (gotoPagi - 1) * pagePerPagi + 1;
         else return null;
     })();
 
@@ -41,7 +43,10 @@ const PaginationArrow = props => {
     
     return (
     <td key={pageNo} type={type}>
-        <Link to={`/postMain/${pageNo}`} onClick={clicked}>{symbol}</Link>
+        {parentComponent == 'PostMain' ? <Link to={`/postMain/${pageNo}`} onClick={clicked}>{symbol}</Link> : null}
+        {parentComponent == 'MyPagePost' ? <Link to={`/myPage/myPosts/${pageNo}`} onClick={clicked}>{symbol}</Link> : null}
+        {parentComponent == 'MyPageLike' ? <Link to={`/myPage/myLikes/${pageNo}`} onClick={clicked}>{symbol}</Link> : null}
+        {parentComponent == 'MyPageComment' ? <Link to={`/myPage/myComments/${pageNo}`} onClick={clicked}>{symbol}</Link> : null}
     </td>
     );
 };

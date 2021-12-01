@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PaginationPageList from '../PaginationPageList';
 import PaginationArrow from '../PaginationArrow';
 import { getAllPost } from '../../actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { GContainer } from './styled';
 
 // eslint-disable-next-line react/prop-types
-const Pagination = ({ articlePerPage }) => {
+const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const dispatch = useDispatch();
-    const _postlist = useSelector(state => state.user.postList);
-    const totalPostNumber = _postlist.length;
+    const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
 
@@ -26,8 +25,8 @@ const Pagination = ({ articlePerPage }) => {
       : (pagePerPagination));
 
     const pagiFirstEnabled = (currentPagi > 1);
-    const pagiPrevEnabled = (currentPagi > 1);
-    const pagiNextEnabled = (currentPagi < totalPagiCount);
+    const pagiPrevEnabled = (currentPage > 1);
+    const pagiNextEnabled = (currentPage < totalPageCount);
     const pagiLastEnabled = (currentPagi < totalPagiCount);
 
     useEffect(() => {
@@ -45,37 +44,46 @@ const Pagination = ({ articlePerPage }) => {
                     <tr>
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='<<' type='first'
-                            enabled={pagiFirstEnabled} />
+                            enabled={pagiFirstEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='<' type='prev'
-                            enabled={pagiPrevEnabled} />
+                            enabled={pagiPrevEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationPageList
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             start={startIndex}
-                            size={pageCountInCurrentPagination} />
+                            size={pageCountInCurrentPagination}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='>' type='next'
-                            enabled={pagiNextEnabled} />
+                            enabled={pagiNextEnabled}
+                            parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
                             symbol='>>' type='last'
-                            enabled={pagiLastEnabled} />
+                            enabled={pagiLastEnabled}
+                            parentComponent={parentComponent} />
                     </tr>
                 </tbody>
             </table>
