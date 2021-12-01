@@ -98,7 +98,21 @@ export function modifyUser(dataToSubmit) {
   };
 }
 
-export function registerPost(dataToSubmit) {
+// export function registerPost(dataToSubmit) {
+//   if (dataToSubmit['userID'] == '') {
+//     console.log("userID is none");
+//     return {
+//       type: types.REGISTER_POST,
+//       payload: '',
+//     };
+//   }
+//   request('post', POST_URL + '/register', dataToSubmit);
+//   return {
+//     type: types.REGISTER_POST,
+//     payload: '',
+//   };
+// }
+export async function registerPost(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");
     return {
@@ -106,10 +120,16 @@ export function registerPost(dataToSubmit) {
       payload: '',
     };
   }
-  request('post', POST_URL + '/register', dataToSubmit);
+  const data = await request('post', POST_URL + '/register', dataToSubmit);
+  var postlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    postlist.push(Object.values(data[i]));
+  }
+  console.log('register and got postlist');
   return {
     type: types.REGISTER_POST,
-    payload: '',
+    payload: postlist,
   };
 }
 
