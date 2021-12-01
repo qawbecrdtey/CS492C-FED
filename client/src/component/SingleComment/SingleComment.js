@@ -6,13 +6,12 @@ import { BodyContainer, SingleCommentContainer, WriterContainer,
      ContentContainer, HoverContainer, HoverContent, ProfileContent
     } from './styled';
 
-function SingleComment({ key, comment, postNO}) {
+function SingleComment({ comment, postNO}) {
     const test = useSelector(state => state.user);
     const deleteComment = (e) => {
         e.preventDefault();
         
         const variables = {
-            _id: key,
             postNO: postNO,
         }
 
