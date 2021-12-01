@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { 
   DropdownContainer, 
   DropdownBody, 
-  DropdownSelect, 
   DropdownMenu, 
   DropdownItemContainer, 
   ItemName, 
@@ -13,18 +12,27 @@ import {
 } from './styled';
 import Pagination from '../Pagination/Pagination';
 import { setPostPerPage } from '../../actions/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../PostList';
+import Triangle from '../Triangle';
+import MyPostList from '../MyPostList';
+import MyLikeList from '../MyLikeList';
+import MyCommentList from '../MyCommentList';
 
 // eslint-disable-next-line react/prop-types
-const PageNumSelector = ({ pageNO }) => {
+const PageNumSelector = ({ pageNO, parentComponent }) => {
     const [isActive, setIsActive] = useState(false);
     const [item, setItem] = useState(20);
     const dispatch = useDispatch();
+    const _postlist = useSelector(state => state.user.postList);
+    const [_postCount, setPostCount] = useState(_postlist.length);
   
+    const getPostCount = (no) => {
+      setPostCount(no);
+    }
+
     const onActiveToggle = () => {
       setIsActive((prev) => !prev);
-      console.log(isActive);
     };
   
     const onSelectItem = useCallback((e) => {
@@ -41,37 +49,23 @@ const PageNumSelector = ({ pageNO }) => {
         setIsActive((prev) => !prev);
     }, []);
 
-    const dropdownItems = 
-    [{
-        id: 1,
-        name: 2,
-    },{
-        id: 2,
-        name: 5,
-    },{
-        id: 3,
-        name: 10,
-    },{
-        id: 4,
-        name: 20,
-    },{
-        id: 5,
-        name: 50,
-    }];
+    const dropdownItems = [
+      {id: 1, name: 2,},
+      {id: 2, name: 5,},
+      {id: 3, name: 10,},
+      {id: 4, name: 20,},
+      {id: 5, name: 50,}
+    ];
   
     return (
     <GContainer>
-      <PostList pageNO={pageNO} postPerPage={parseInt(item)}/>
+      {parentComponent == 'PostMain' ? <PostList pageNO={pageNO} postPerPage={parseInt(item)} getPostCount={getPostCount}/> : null}
+      {parentComponent == 'MyPagePost' ? <MyPostList pageNO={pageNO} postPerPage={parseInt(item)} getPostCount={getPostCount}/> : null}
+      {parentComponent == 'MyPageLike' ? <MyLikeList pageNO={pageNO} postPerPage={parseInt(item)} getPostCount={getPostCount}/> : null}
+      {parentComponent == 'MyPageComment' ? <MyCommentList pageNO={pageNO} postPerPage={parseInt(item)} getPostCount={getPostCount}/> : null}
       <PageMoveContainer>
         <TextContainer>post/page</TextContainer>
         <DropdownContainer>
-          <DropdownBody onClick={onActiveToggle}>
-            {item ? (
-                <ItemName>{item}</ItemName>
-            ) : (
-                <DropdownSelect>선택해주세요.</DropdownSelect>
-            )}
-          </DropdownBody>
           <DropdownMenu isActive={isActive}>
             {dropdownItems.map((item) => (
               <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
@@ -79,9 +73,13 @@ const PageNumSelector = ({ pageNO }) => {
               </DropdownItemContainer>
             ))}
           </DropdownMenu>
+          <DropdownBody onClick={onActiveToggle}>
+            <Triangle />
+            <ItemName>{item}</ItemName>
+          </DropdownBody>
         </DropdownContainer>
         <PageContainer>
-              <Pagination articlePerPage={item}/>
+              <Pagination articlePerPage={item} postCount={_postCount} parentComponent={parentComponent}/>
         </PageContainer>
       </PageMoveContainer>
     </GContainer>

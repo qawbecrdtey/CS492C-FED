@@ -8,10 +8,10 @@ const Header = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const backtoMain = () => {
-        history.push('/postMain/1');
+        window.location.replace('/postMain/1');
     }
     const goMyPage = () => {
-        history.push('/myPage/myPosts');
+        history.push('/myPage/myPosts/1');
     }
     const logout = () => {
         dispatch(userLogined({}));

@@ -64,11 +64,12 @@ const PostView = ({ match }) => {
     }
     dispatch(editPost(body));
     console.log(body);
-    history.push('/postMain');
+    history.push('/postMain/1');
   };
 
   const toPostList = () => {
-    history.push('/postMain/1');
+    // history.push('/postMain/1');
+    history.goBack();
   };
 
   const deletePost = () => {
@@ -76,7 +77,7 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    history.push('/postMain/1');
+    window.location.replace('/postMain/1');
   }
 
   const clickLike = () => {
