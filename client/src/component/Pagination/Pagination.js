@@ -25,8 +25,8 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
       : (pagePerPagination));
 
     const pagiFirstEnabled = (currentPagi > 1);
-    const pagiPrevEnabled = (currentPagi > 1);
-    const pagiNextEnabled = (currentPagi < totalPagiCount);
+    const pagiPrevEnabled = (currentPage > 1);
+    const pagiNextEnabled = (currentPage < totalPageCount);
     const pagiLastEnabled = (currentPagi < totalPagiCount);
 
     useEffect(() => {
@@ -44,6 +44,7 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                     <tr>
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
@@ -52,6 +53,7 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
@@ -66,6 +68,7 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
@@ -74,6 +77,7 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
