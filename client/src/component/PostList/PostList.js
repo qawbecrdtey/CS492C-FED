@@ -20,12 +20,16 @@ import {
  } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
 import Triangle from '../Triangle';
+const POST_URL = '/api/post';
 
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount }) => {
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
+  // const [_postList , setPL] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [allCheck, setAllCheck] = useState(false);
+  // const [searched_postList, setSP] = useState([..._postList]);
   const [searched_postList, setSP] = useState([..._postList]);
   const [sortCondition, setSortCondition] = useState({
     element: '글번호',
@@ -161,10 +165,26 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
     console.log(removeList);
   }
 
+  async function loadPosts () {
+    const data = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<data.length; i++) {
+      postlist.push(Object.values(data[i]));
+    }
+    // setPL(postlist);
+    setSP(postlist);
+    setLoading(false);    
+  }
+
   useEffect(() => {
     dispatch(getAllPost());
     dispatch(getCurrentPostsNumInfo());
+    loadPosts();
   }, []);
+  console.log('postlist from useSelector length : ' + _postList.length);
+  console.log('loading : ' + loading);
+  console.log('pl length : ' + _postList.length);
 
   return (
     <ListContainer>
@@ -189,15 +209,17 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         </SearchContainer>
         <MainPageFunc removelist={removeList}/>
       </FunctionContainer>
-      <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
-        {
-          render_postList ? render_postList.map((char, index) => {
-            return (
-              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck}/>
-            )
-          }) : ''
-        }
-      </CommonTable>
+      {loading ? null :
+        <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
+          {
+            render_postList ? render_postList.map((char, index) => {
+              return (
+                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck}/>
+              )
+            }) : ''
+          }
+        </CommonTable>
+      }
     </ListContainer>
   )
 }

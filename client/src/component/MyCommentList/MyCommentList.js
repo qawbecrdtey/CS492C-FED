@@ -30,6 +30,7 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
         userID: _loginUser['userID']
     }
     dispatch(getMyComments(body));
+    console.log(render_postList[0]);
   }, [ ])
   return (
     <ListContainer>

@@ -28,18 +28,18 @@ const socket = io.connect('http://localhost:4080/');
 const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
+  const [_reducerpostList , setRPL] = useState([..._postList]);
   const { no } = match.params;
   const history = useHistory();
   const dispatch = useDispatch();
-  const _likedPostList = useSelector(state => state.user.likedPostList);
-  const data = _postList.find((element) => {
+  const data = _reducerpostList.find((element) => {
     return element[1] == no
   });
   const [title, setTitle] = useState(data[2]);
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState(data[8]);
   const [active, setActive] = useState(false);
-  
+
   const clickEdit = () => {
     setEdit(true);
   };
@@ -68,8 +68,7 @@ const PostView = ({ match }) => {
   };
 
   const toPostList = () => {
-    // history.push('/postMain/1');
-    history.goBack();
+    history.push('/postMain/1');
   };
 
   const deletePost = () => {
@@ -77,7 +76,7 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    window.location.replace('/postMain/1');
+    history.push('/postMain/1');
   }
 
   const clickLike = () => {
@@ -94,8 +93,18 @@ const PostView = ({ match }) => {
     }
   };
 
-  useEffect(() => {
-    const islike = data[9].find((element) => {
+  async function loadPosts () {
+    const data = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<data.length; i++) {
+      postlist.push(Object.values(data[i]));
+    }
+    setRPL(postlist);
+    const received_data = postlist.find((element) => {
+      return element[1] == no
+    });    
+    const islike = received_data[9].find((element) => {
       if(element === _loginUser['userID']) {
         return true;
       }
@@ -105,14 +114,17 @@ const PostView = ({ match }) => {
     } else {
       setActive(false);
     }
-    console.log('liked users : ' + data[9]);
+  }
+
+  useEffect(() => {
+    loadPosts();
     socket.on('like-rcv', item => {
       setActive(true);
     });
     socket.on('unlike-rcv', item => {
       setActive(false);
     });
-  }, []);
+  }, [active]);
  
   return (
     <MainContainer>

@@ -17,7 +17,7 @@ export default function (state = initialstate, action) {
     case types.REGISTER_USER: 
       return state;
     case types.REGISTER_POST: 
-      return state;
+      return {...state, postList: action.payload};
     case types.EDIT_POST:
       return state;
     case types.MODIFY_USER:
