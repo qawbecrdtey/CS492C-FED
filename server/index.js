@@ -60,12 +60,14 @@ app.post('/api/post/register', async (req, res) => {
       return res.json({ success: false, err });
     }
   });
-  post.save((err) => {
+  post.save(async (err) => {
     if (err) {
       console.log(err);
       return res.json({ success: false, err });
     }
     console.log('save post');
+    const posts = await Post.find({});
+    return res.json(posts);
   });
 });
 
@@ -78,33 +80,6 @@ app.post('/api/post/edit', async (req, res) => {
   postList.findOneAndUpdate({ postNO: post.postNO }, { title: post.title, created_date: post.created_date, content: post.content }, (err) => {
     if (err) return res.json({ success: false, err });
     console.log('edit post');
-  });
-});
-
-app.post('/api/post/islike', async (req, res) => {
-  res.set('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  var postList = mongoose.model('Post');
-  console.log('islike');
-
-  postList.findOne({ postNO: req.body.postNO }, function (err, samePost) {
-    if (err) return res.json({ success: false, err });
-    if (samePost != null) {
-      for (i = 0; i < samePost.likeUsers.length; i += 1) {
-        if (req.body.userID === samePost.likeUsers[i]) {
-          return res.status(200).json(
-            {
-              is: true,
-            },
-          );
-        }
-      }
-      return res.status(200).json(
-        {
-          is: false,
-        },
-      );
-    }
   });
 });
 
@@ -271,7 +246,6 @@ io.on('connection', (socket) => {
   console.log('connection');
   socket.on('like-snd', (item) => {
     var postList = mongoose.model('Post');
-    // var userList = mongoose.model('User');
     postList.findOne({ postNO: item.postNO }, function (err, samePost) {
       if (err) return res.json({ success: false, err });
       if (samePost != null) {
@@ -283,7 +257,6 @@ io.on('connection', (socket) => {
   });
   socket.on('unlike-snd', (item) => {
     var postList = mongoose.model('Post');
-    // var userList = mongoose.model('User');
     postList.findOne({ postNO: item.postNO }, function (err, samePost) {
       if (err) return res.json({ success: false, err });
       if (samePost != null) {
@@ -311,6 +284,22 @@ io.on('connection', (socket) => {
       commentList.findOneAndDelete({ postNO: postNO }, (err) => {
         if (err) res.json({ success: false, err });
       });
+    });
+  });
+  socket.on('registerpost-snd', (item) => {
+    console.log('registerpost socket');
+    var postList = mongoose.model('Post');
+    const post = new Post(item);
+    if (post.postNO === '') {
+      console.log('err : postNO is empty while registering the post');
+    }
+    postList.findOne({ postNO: post.postNO }, function (err, samePost) {
+      if (err) console.log(err);
+      if (samePost != null) console.log('err : same postNO');
+    });
+    post.save((err) => {
+      if (err) console.log(err);
+      console.log('save post');
     });
   });
 });
