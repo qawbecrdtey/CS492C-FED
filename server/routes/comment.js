@@ -46,12 +46,12 @@ router.post('/getComments', (req, res) => {
 });
 
 router.post('/deleteComment', (req, res) => {
-  Comment.remove({ _id: req.body })
-    .exec((err, comments) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).json({ success: true, comments });
-    });
+  var commentList = mongoose.model('Comment');
+  commentList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
+    if (err) res.json({ success: false, err });
+  });
   var postList = mongoose.model('Post');
+  console.log('delete comment');
   postList.findOneAndUpdate({ postNO: req.body.postNO }, { $inc: { no_comments: -1 } }, (err) => {
     if (err) return res.json({ success: false, err });
   });
