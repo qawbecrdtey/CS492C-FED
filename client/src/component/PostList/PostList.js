@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
 import { request } from '../../utils/axios';
-import { getAllPost, getCurrentPostsNumInfo } from '../../actions/actions';
+import { getAllPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   FunctionContainer, 
@@ -161,10 +161,6 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
     }
   }
 
-  const printRemoveList = () => {
-    console.log(removeList);
-  }
-
   async function loadPosts () {
     const data = await request('get', POST_URL + '/posts', null);
     var postlist = [];
@@ -172,24 +168,18 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
     for (i=0; i<data.length; i++) {
       postlist.push(Object.values(data[i]));
     }
-    // setPL(postlist);
     setSP(postlist);
     setLoading(false);    
   }
 
   useEffect(() => {
     dispatch(getAllPost());
-    dispatch(getCurrentPostsNumInfo());
     loadPosts();
   }, []);
-  console.log('postlist from useSelector length : ' + _postList.length);
-  console.log('loading : ' + loading);
-  console.log('pl length : ' + _postList.length);
 
   return (
     <ListContainer>
       <FunctionContainer>
-        <button onClick={printRemoveList}>print checked</button>
         <SearchContainer>
           <SearchTextContainer>검색분류</SearchTextContainer>
           <DropDownMenu>
