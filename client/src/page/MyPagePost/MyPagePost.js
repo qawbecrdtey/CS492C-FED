@@ -1,16 +1,19 @@
+/* eslint-disable react/prop-types */
 import Header from '../../component/Header';
 import React from 'react';
-import { GroundContainer } from '../PostMain/styled';
+import { GroundContainer} from '../PostMain/styled';
 import MypageFunc from '../../component/MypageFunc/MypageFunc';
-import MyPostList from '../../component/MyPostList/MyPostList';
+import PageNumSelector from '../../component/PageNumSelector';
 
-const MyPagePost = () => {
+const MyPagePost = ({ match }) => {
+    const thiscomponent = 'MyPagePost';
+    const { pageNO } = match.params;
     
     return (
         <GroundContainer>
             <Header mypage={true} />
             <MypageFunc />
-            <MyPostList />
+            <PageNumSelector pageNO={pageNO} parentComponent={thiscomponent}/>
         </GroundContainer>
     )
 };

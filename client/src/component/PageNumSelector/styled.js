@@ -13,79 +13,80 @@ export const PageMoveContainer = styled.div`
   width: 100%;
   height: 7%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   border-top: 0.1rem solid grey;
 `;
 
 export const DropdownContainer = styled.div`
-    width: 60px;
-    height: 50%;
-    display: flex;
-    border-radius: 10px;
-    border: 0.15rem solid;
-    display: flex;
-    position: relative;
-    justify-content: flex-end;
-    z-index: 2;
-    &:hover {
-        cursor: pointer;
-    }
-    overflow-y: visible;
+  width: 60px;
+  height: auto;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow: visible;
+  z-index: 0;
+  &:hover {
+      cursor: pointer;
+  }
 `;
 
 export const DropdownBody = styled.div`
   width: 100%;
-  height: 100%;
+  height: 30px;
+  border-radius: 10px;
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  // background: grey;
+  position: relative;
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.15);
+  z-index: 1;
 `;
 
-export const DropdownSelect = styled.p`
-  font-weight: bold;
-`;
-
-export const DropdownMenu = styled.nav`
+export const DropdownMenu = styled.div`
+  width: 80%;
+  height: 150px;
   display: ${(props) => (props.isActive ? `flex` : `none`)};
-  width: 30px;
-  padding-top: 30px;
-  // background-color: blue;
-  // position: absolute;
-  // display: flex;
+  border: 0.1rem solid grey;
+  margin-right: 5px;
+  z-index: 2;
   flex-direction: column;
+  background: white;
+  border-radius: 10px;
   align-items: center;
-  // border: 2px solid #000000;
 `;
 
 export const TextContainer = styled.div`
-    padding: 5px;
-    font-weight: bold;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
 `;
 
-export const DropdownItemContainer = styled.li`
-  display: flex;
-  justify-content: center;
+export const DropdownItemContainer = styled.div`
+  width: 90%;
   height: 30px;
-  width: 50px;
-  // justify-content: flex-start;
+  display: flex;
+  border-bottom: 0.1rem solid grey;
   align-items: center;
-
-  // padding: 9px 14px;
-  // border-bottom: 2px solid #d2d2d2;
-  // border-left: 2px solid #d2d2d2;
-  // border-right: 2px solid #d2d2d2;
-  border: 2px solid #d2d2d2;
-
+  justify-content: center;
   &:last-child {
     border-bottom: none;
   }
 `;
 
-export const ItemName = styled.p`
-  font-weight: bold;
-  align-items: center;
+export const ItemName = styled.div`
+  width: 80%;
+  heigh: 100%;
+  margin-top: 5px;
+  font-weight: normal;
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 3px;
+  padding-right: 10px;
 `;
 
 export const PageContainer = styled.div`

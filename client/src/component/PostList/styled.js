@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export const ListContainer = styled.div`
   width: 100%;
-  height: 90%;
+  // height: 90%;
+  height: auto;
+  min-height: 90%;
   display: flex;
   flex-direction: column;
 `;
@@ -21,14 +23,16 @@ export const SearchContainer = styled.div`
     width: 80%;
     height: 90%;
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
+    // border: solid;
     // background: #cccccc;
 `;
 
 export const SearchTextContainer = styled.div`
   font-weight: bold;
   font-size: 20px;
+  padding-top: 9px;
 `;
 
 export const Input = styled.input`
@@ -40,6 +44,7 @@ export const Input = styled.input`
   box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.15);
   font-size: 1.3rem;
   padding-left: 20px;
+  margin-top: 5px;
   margin-left: 10px;
 
   ::-webkit-input-placeholder {
@@ -53,8 +58,6 @@ export const Input = styled.input`
 `;
 
 export const CategoryContainer = styled.div`
-  // width: 15%;
-  // height: 70%;
   width: 100%;
   height: 30px;
   border-radius: 10px;
@@ -68,15 +71,16 @@ export const CategoryContainer = styled.div`
 
 export const DropDownMenu = styled.div`
   width: 15%;
-  height: 200px;
+  height: auto;
   display: flex;
   position: relative;
-  top: 85px;
+  top: 5px;
   flex-direction: column;
   align-items: flex-end;
   margin-left: 20px;
   margin-right: 20px;
   overflow: visible;
+  z-index: 0;
 `;
 
 export const DropDownBody = styled.div`
@@ -99,12 +103,14 @@ export const DropDownContent = styled.div`
   border-bottom: 0.1rem solid grey;
   align-items: center;
   justify-content: center;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const QueryElementTextContainer = styled.div`
   width: 80%;
   heigh: 100%;
-  // border: solid;
   margin-top: 5px;
   font-weight: normal;
   text-align: center;
@@ -113,32 +119,20 @@ export const QueryElementTextContainer = styled.div`
   padding-right: 10px;
 `;
 
-export const TriangleContainer = styled.div`
-  width: 10px;
-  height: 20px;
+export const SearchButton = styled.div`
+  width: 40px;
+  height: 30px;
   display: flex;
-  flex-direction: column;
+  background: skyblue;
+  margin: 5px;
+  box-shadow: 3px 3px 3px grey;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
-  // border: 0.1rem solid grey;
-  margin-left: 8px;
-  margin-right: 8px;
-`;
-
-export const TriangleDown = styled.div`
-  width: 0;
-  height: 0;
-  border-top: 6px solid grey;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  margin: 1px;
-`;
-
-export const TriangleUp = styled.div`
-  width: 0;
-  height: 0;
-  border-bottom: 6px solid grey;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  margin: 1px;
+  position: relative;
+  &:active{
+    left: 3px;
+    top: 3px;
+    box-shadow: none;
+  }
 `;
