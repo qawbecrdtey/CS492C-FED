@@ -24,6 +24,7 @@ const POST_URL = '/api/post';
 
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount }) => {
+  const thiscomponent = '/postMain';
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
   // const [_postList , setPL] = useState([]);
@@ -204,7 +205,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
           {
             render_postList ? render_postList.map((char, index) => {
               return (
-                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck}/>
+                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck} parentcomponent={thiscomponent}/>
               )
             }) : ''
           }

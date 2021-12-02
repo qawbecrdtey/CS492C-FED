@@ -17,13 +17,14 @@ export async function getAllUser() {
   };
 }
 
-export async function getAllPost() {
-  const data = await request('get', POST_URL + '/posts', null);
+export function getAllPost() {
+  const data = request('get', POST_URL + '/posts', null);
   var postlist = [];
   var i;
   for (i = 0; i < data.length; i++) {
     postlist.push(Object.values(data[i]));
   }
+  console.log('getallpost');
   return {
     type: types.GET_ALL_POSTS,
     payload: postlist,

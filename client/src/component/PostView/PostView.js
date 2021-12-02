@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { request } from '../../utils/axios';
+import QueryString from 'qs';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -30,7 +31,9 @@ const PostView = ({ match }) => {
   const _postList = useSelector(state => state.user.postList);
   const [_reducerpostList , setRPL] = useState([..._postList]);
   const { no } = match.params;
-  const history = useHistory();
+  const parentcomponent = Object.values(QueryString.parse(location.search));
+  const goBackURL = parentcomponent + '/2';
+  const _history = useHistory();
   const dispatch = useDispatch();
   const data = _reducerpostList.find((element) => {
     return element[1] == no
@@ -64,11 +67,13 @@ const PostView = ({ match }) => {
     }
     dispatch(editPost(body));
     console.log(body);
-    history.push('/postMain/1');
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   };
 
   const toPostList = () => {
-    history.push('/postMain/1');
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   };
 
   const deletePost = () => {
@@ -76,7 +81,8 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    history.push('/postMain/1');
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   }
 
   const clickLike = () => {
@@ -124,6 +130,7 @@ const PostView = ({ match }) => {
     socket.on('unlike-rcv', item => {
       setActive(false);
     });
+    console.log('query : ' + Object.values(QueryString.parse(location.search))); 
   }, [active]);
  
   return (
