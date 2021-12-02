@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { BodyContainer, SingleCommentContainer, WriterContainer,
-     ContentContainer, HoverContainer, HoverContent, ProfileContent
-    } from './styled';
+     ContentContainer, DateContainer, HoverContainer, HoverContent, 
+     ProfileContent, CommentFuncContainer} from './styled';
 
 function SingleComment({ comment, postNO}) {
     const test = useSelector(state => state.user.userList);
@@ -51,8 +51,10 @@ function SingleComment({ comment, postNO}) {
                             </ProfileContent>
                         </HoverContent>
                     </HoverContainer>
-                    
-                    <button onClick={deleteComment}>삭제</button>
+                    <CommentFuncContainer>       
+                        <DateContainer>{comment.created_date}</DateContainer>
+                        <button onClick={deleteComment}>삭제</button>
+                    </CommentFuncContainer>
                 </WriterContainer>
                 <ContentContainer>{comment.content}</ContentContainer>
             </BodyContainer>
@@ -61,3 +63,5 @@ function SingleComment({ comment, postNO}) {
 }
 
 export default SingleComment;
+
+            <BodyContainer>
