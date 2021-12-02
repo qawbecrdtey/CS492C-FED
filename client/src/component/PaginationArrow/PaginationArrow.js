@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // returns JSX of form (<td></td>)
 const PaginationArrow = props => {
-    const { currentPagi, currentPage, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled, parentComponent } = props;
+    const { currentPage, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled, parentComponent } = props;
     if(enabled === false) return (<td hover={type}><p>{symbol}</p></td>);
     
     //const startIndex = currentPagi * pagePerPagi + 1;
@@ -13,10 +13,10 @@ const PaginationArrow = props => {
             return 1;
         }
         else if(t === 'prev') {
-            return currentPagi - 1;
+            return Math.floor((currentPage - 2) / pagePerPagi) + 1
         }
         else if(t === 'next') {
-            return currentPagi + 1;
+            return Math.floor(currentPage / pagePerPagi) + 1;
         }
         else if(t === 'last') {
             return totalPagiCount;
@@ -34,6 +34,10 @@ const PaginationArrow = props => {
         if(type === 'last') return (gotoPagi - 1) * pagePerPagi + 1;
         else return null;
     })();
+    console.log(`currentPage = ${currentPage}`);
+    console.log(`pagePerPagi = ${pagePerPagi}`);
+    console.log(`gotoPagi = ${gotoPagi}`);
+    console.log(`pageNo = ${pageNo}`);
 
     const clicked = () => {
         setCurrentPage(pageNo);
