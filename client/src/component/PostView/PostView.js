@@ -13,7 +13,7 @@ import {
   TitleContainer, 
   UnderTitleContainer,
   LikeButton,
- } from './styled';
+} from './styled';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';

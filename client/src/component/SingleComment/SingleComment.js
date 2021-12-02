@@ -63,5 +63,3 @@ function SingleComment({ comment, postNO}) {
 }
 
 export default SingleComment;
-
-            <BodyContainer>
