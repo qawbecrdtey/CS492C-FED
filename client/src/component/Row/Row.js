@@ -5,8 +5,9 @@ import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4080/');
  
 // eslint-disable-next-line react/prop-types
-const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked }) => {
+const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked, parentcomponent }) => {
   const [checked, setChecked] = useState(false);
+  const querystring = '?parent=';
 
   const handleClick = () => {
     setChecked(!checked);
@@ -31,10 +32,10 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
   }, [window.location.href]);
   return (
     <tr className="common-table-row">
-      {mypage ? null : <td><Checkbox checked={checked} onClick={handleClick} /></td>}
+      {mypage ? null : <td><Checkbox checked={checked} onChange={handleClick} /></td>}
       <td>{postNO}</td>
       <td>
-        <Link to={`/postView/${postNO}`} onClick={clickpost}>{title}({no_comments})</Link>
+        <Link to={`/postView/${postNO}${querystring}${parentcomponent}`} onClick={clickpost}>{title}({no_comments})</Link>
       </td>
       <td>{likes}</td>
       {!mypage||userID ? <td>{userID}</td> : null}

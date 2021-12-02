@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { BodyContainer, SingleCommentContainer, WriterContainer,
@@ -26,10 +26,9 @@ function SingleComment({ comment, postNO}) {
         window.location.replace(`/postView/${postNO}`);
     }
 
-    useEffect(() => {
-        console.log(comment);
-    }, []);
-
+    // useEffect(() => {
+    //     console.log(comment);
+    // }, []);
 
     return (
         <SingleCommentContainer>

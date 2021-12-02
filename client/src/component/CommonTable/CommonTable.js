@@ -46,7 +46,7 @@ const CommonTable = ({ headersName, getElement, getChecked, children }) => {
               return (
                 <TableHeaderColumn key={index} >
                   {index==0 
-                  ? <Checkbox checked={checked} onClick={handleClick} />
+                  ? <Checkbox checked={checked} onChange={handleClick} />
                   : item ? <HeaderItem onClick={handleClick2}>{ item }</HeaderItem> : null}
                 </TableHeaderColumn>
               )

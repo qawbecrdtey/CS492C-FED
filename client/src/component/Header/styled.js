@@ -52,7 +52,7 @@ export const UserInfo = styled.div`
     font-size: 0.9rem;
 `;
 
-export const BtnContainer = styled.button`
+export const BtnContainer = styled.div`
     width: 50%;
     height: 100%;
     display: flex;

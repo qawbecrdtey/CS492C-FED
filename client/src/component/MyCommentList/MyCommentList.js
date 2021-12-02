@@ -9,6 +9,7 @@ const POST_URL = '/api/post';
 // eslint-disable-next-line react/prop-types
 const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
   const _postList = useSelector(state => state.user.postList);
+  const thiscomponent = '/myPage/myComments';
   const _loginUser = useSelector(state => state.user.loginUser);
   const [reducer_commentlist, setRCL] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,7 +56,7 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
                   }
               })
               return (
-                <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true}/>
+                <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
               )
           }) : null
         }
