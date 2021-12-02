@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../../component/Header';
 import * as Showdown from "showdown";
-import { GroundContainer, HeaderContainer } from '../PostMain/styled';
+import { GroundContainer } from '../PostMain/styled';
 import { InputContainer } from './styled';
 import { request } from '../../utils/axios';
 import { EditorContainer, BottomContainer } from './styled';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerPost, updatePostNum, getAllPost } from '../../actions/actions';
+import { getAllPost } from '../../actions/actions';
 import MDEditor from '@uiw/react-md-editor';
 import axios from 'axios';
 const POST_URL = '/api/post';
