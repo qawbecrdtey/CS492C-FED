@@ -30,17 +30,21 @@ const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
   const [_reducerpostList , setRPL] = useState([..._postList]);
+  const [loading, setLoading] = useState(true);
   const { no } = match.params;
+  console.log('no : ' + no);
   const parentcomponent = Object.values(QueryString.parse(location.search));
-  const goBackURL = parentcomponent + '/2';
+  const goBackURL = parentcomponent + '/1';
   const _history = useHistory();
   const dispatch = useDispatch();
   const data = _reducerpostList.find((element) => {
     return element[1] == no
   });
-  const [title, setTitle] = useState(data[2]);
+  // const [title, setTitle] = useState(data[2]);
+  const [title, setTitle] = useState('');
   const [edit, setEdit] = useState(false);
-  const [content, setContent] = useState(data[8]);
+  // const [content, setContent] = useState(data[8]);
+  const [content, setContent] = useState('');
   const [active, setActive] = useState(false);
 
   const clickEdit = () => {
@@ -120,6 +124,7 @@ const PostView = ({ match }) => {
     } else {
       setActive(false);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -136,49 +141,57 @@ const PostView = ({ match }) => {
   return (
     <MainContainer>
       <Header />
-      <PostHeaderContainer>
-        { edit ? 
-          <TitleContainer>
-            <InputContainer 
-                placeholder="제목을 입력하세요"
-                onChange={writeTitle}
-                value={title}
-            /> 
-          </TitleContainer>
-          : <TitleContainer>{data[2]}</TitleContainer>}
-        <UnderTitleContainer>
-          <InfoContainer>postNO : {data[1]}</InfoContainer>
-          <InfoContainer>writer: {data[5]}</InfoContainer>
-          <InfoContainer>{data[6]}</InfoContainer>
-          <InfoContainer>views: {data[7]}</InfoContainer>
-          {edit ?<button onClick={editContent}>등록</button>
-          : <button onClick={clickEdit}>수정</button>}
-          {edit ? <button onClick={cancle}>취소</button> : null}
-          {!edit ? <button onClick={deletePost}>삭제</button> : null}
-        </UnderTitleContainer>
-      </PostHeaderContainer>
-      <ContentContainer>
-        {edit ? 
-        <MDEditor
-          height={400}
-          value={content}
-          onChange={setContent}
-        /> : <MDEditor.Markdown source={data[8]} />}
-      </ContentContainer>
-      <ReactContainer>
-        <InfoContainer>likes : {data[4]}</InfoContainer>
-        <InfoContainer>no_comments: {data[3]}</InfoContainer>
-        <LikeButton 
-          onClick={clickLike}
-          active={active}
-        >
-          like
-        </LikeButton>
-        <button onClick={toPostList}>목록으로</button>
-      </ReactContainer>
-      <CommentContainer>
-        <Comment postNO={data[1]}/>
-      </CommentContainer>
+      {loading ? null : 
+        <PostHeaderContainer>
+          { edit ? 
+            <TitleContainer>
+              <InputContainer 
+                  placeholder="제목을 입력하세요"
+                  onChange={writeTitle}
+                  value={title}
+              /> 
+            </TitleContainer>
+            : <TitleContainer>{data[2]}</TitleContainer>}
+          <UnderTitleContainer>
+            <InfoContainer>postNO : {data[1]}</InfoContainer>
+            <InfoContainer>writer: {data[5]}</InfoContainer>
+            <InfoContainer>{data[6]}</InfoContainer>
+            <InfoContainer>views: {data[7]}</InfoContainer>
+            {edit ?<button onClick={editContent}>등록</button>
+            : <button onClick={clickEdit}>수정</button>}
+            {edit ? <button onClick={cancle}>취소</button> : null}
+            {!edit ? <button onClick={deletePost}>삭제</button> : null}
+          </UnderTitleContainer>
+        </PostHeaderContainer>
+      }
+      {loading ? null : 
+        <ContentContainer>
+          {edit ? 
+          <MDEditor
+            height={400}
+            value={content}
+            onChange={setContent}
+          /> : <MDEditor.Markdown source={data[8]} />}
+        </ContentContainer>
+      }
+      {loading ? null : 
+        <ReactContainer>
+          <InfoContainer>likes : {data[4]}</InfoContainer>
+          <InfoContainer>no_comments: {data[3]}</InfoContainer>
+          <LikeButton 
+            onClick={clickLike}
+            active={active}
+          >
+            like
+          </LikeButton>
+          <button onClick={toPostList}>목록으로</button>
+        </ReactContainer>
+      }
+      {loading? null : 
+        <CommentContainer>
+          <Comment postNO={data[1]}/>
+        </CommentContainer>
+      }
     </MainContainer>
   )
 }

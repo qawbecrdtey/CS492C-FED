@@ -25,6 +25,7 @@ export function getAllPost() {
     postlist.push(Object.values(data[i]));
   }
   console.log('getallpost');
+  console.log('postlist length : ' + postlist.length);
   return {
     type: types.GET_ALL_POSTS,
     payload: postlist,
