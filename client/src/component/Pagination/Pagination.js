@@ -26,19 +26,19 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
         (totalPageCount - (currentPagi - 1) * pagePerPagination)
       : (pagePerPagination));
 
-    const pagiFirstEnabled = (currentPagi > 1);
-    const pagiPrevEnabled = (currentPage > 1);
-    const pagiNextEnabled = (currentPage < totalPageCount);
-    const pagiLastEnabled = (currentPagi < totalPagiCount);
+    const pagiDoubleLeftEnabled = (currentPagi > 1);
+    const pagiSingleLeftEnabled = (currentPage > 1);
+    const pagiSingleRightEnabled = (currentPage < totalPageCount);
+    const pagiDoubleRightEnabled = (currentPagi < totalPagiCount);
 
     useEffect(() => {
         dispatch(getAllPost());
     }, []);
     // symbol   : type
-    // <<       : first
-    // <        : prev
-    // >        : next
-    // >>       : last
+    // <<       : DoubleLeft
+    // <        : SingleLeft
+    // >        : SingleRight
+    // >>       : DoubleRight
     return (
         <GContainer>
             <table>
@@ -50,8 +50,8 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='<<' type='first'
-                            enabled={pagiFirstEnabled}
+                            symbol='<<' type='DoubleLeft'
+                            enabled={pagiDoubleLeftEnabled}
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
@@ -59,8 +59,8 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='<' type='prev'
-                            enabled={pagiPrevEnabled}
+                            symbol='<' type='SingleLeft'
+                            enabled={pagiSingleLeftEnabled}
                             parentComponent={parentComponent} />
                         <PaginationPageList
                             currentPage={currentPage}
@@ -74,8 +74,8 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='>' type='next'
-                            enabled={pagiNextEnabled}
+                            symbol='>' type='SingleRight'
+                            enabled={pagiSingleRightEnabled}
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
@@ -83,8 +83,8 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='>>' type='last'
-                            enabled={pagiLastEnabled}
+                            symbol='>>' type='DoubleRight'
+                            enabled={pagiDoubleRightEnabled}
                             parentComponent={parentComponent} />
                     </tr>
                 </tbody>
