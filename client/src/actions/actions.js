@@ -153,3 +153,10 @@ export function setPostPerPage(no) {
     payload: no,
   };
 }
+
+export function updateCurrentPage(newPage) {
+  return {
+    type: types.SET_CURRENT_PAGE,
+    payload: newPage,
+  };
+}

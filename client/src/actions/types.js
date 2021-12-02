@@ -12,6 +12,7 @@ const types = {
     GET_MY_LIKED_POSTS: 'GET_MY_LIKED_POSTS',
     GET_PAGINATION_INFO: 'GET_PAGINATION_INFO',
     SET_POST_PER_PAGE: 'SET_POST_PER_PAGE',
+    SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
   };
   
   export default types;

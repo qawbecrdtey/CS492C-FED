@@ -34,10 +34,6 @@ const PaginationArrow = props => {
         if(type === 'last') return (gotoPagi - 1) * pagePerPagi + 1;
         else return null;
     })();
-    console.log(`currentPage = ${currentPage}`);
-    console.log(`pagePerPagi = ${pagePerPagi}`);
-    console.log(`gotoPagi = ${gotoPagi}`);
-    console.log(`pageNo = ${pageNo}`);
 
     const clicked = () => {
         setCurrentPage(pageNo);

@@ -34,11 +34,12 @@ function Comments(props) {
                     if (response.data.success) {
                         console.log(response.data.result)
                         setComment([])
+                        window.location.replace(`/postView/${postNO}`);
                     } else {
                         alert('Failed to save Comment')
                     }
-            })
-            window.location.replace(`/postView/${postNO}`);
+                }
+            );
         }
     }
 
