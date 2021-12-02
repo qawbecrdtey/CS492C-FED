@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom';
 
 // returns JSX of form (<td></td>)
 const PaginationArrow = props => {
-    const { currentPage, setCurrentPage, pagePerPagi, totalPagiCount, symbol, type, enabled, parentComponent } = props;
+    const { currentPagi, currentPage, setCurrentPage, pagePerPagi, symbol, type, enabled, parentComponent } = props;
     if(enabled === false) return (<td hover={type}><p>{symbol}</p></td>);
     
     //const startIndex = currentPagi * pagePerPagi + 1;
     const getGotoPagi = (t) => {
-        if(t === 'first') {
-            return 1;
+        if(t === 'DoubleLeft') {
+            return currentPagi - 1;
         }
-        else if(t === 'prev') {
+        else if(t === 'SingleLeft') {
             return Math.floor((currentPage - 2) / pagePerPagi) + 1
         }
-        else if(t === 'next') {
+        else if(t === 'SingleRight') {
             return Math.floor(currentPage / pagePerPagi) + 1;
         }
-        else if(t === 'last') {
-            return totalPagiCount;
+        else if(t === 'DoubleRight') {
+            return currentPagi + 1;
         }
         else {
             console.error(`Wrong type: ${type}`);
@@ -27,11 +27,12 @@ const PaginationArrow = props => {
         }
     };
     const gotoPagi = getGotoPagi(type);
+    console.log(`gotoPagi = ${gotoPagi}`);
     const pageNo = (() => {
-        if(type === 'first') return gotoPagi * pagePerPagi;
-        if(type === 'prev') return currentPage - 1;
-        if(type === 'next') return currentPage + 1;
-        if(type === 'last') return (gotoPagi - 1) * pagePerPagi + 1;
+        if(type === 'DoubleLeft') return gotoPagi * pagePerPagi;
+        if(type === 'SingleLeft') return currentPage - 1;
+        if(type === 'SingleRight') return currentPage + 1;
+        if(type === 'DoubleRight') return (gotoPagi - 1) * pagePerPagi + 1;
         else return null;
     })();
 
