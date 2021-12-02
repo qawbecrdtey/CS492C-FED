@@ -9,7 +9,8 @@ const initialstate = {
   myPostList: [],
   myLikeList: [],
   myCommentList: [],
-  postPerPage: 0,
+  postPerPage: 20,
+  currentPage: 1,
 };
 
 export default function (state = initialstate, action) {
@@ -38,7 +39,9 @@ export default function (state = initialstate, action) {
       return {...state } // TODO: Get currentPage, articlePerPage, and totalPageCount.
     case types.SET_POST_PER_PAGE:
       return {...state, postPerPage: action.payload}
-      default:
+    case types.SET_CURRENT_PAGE:
+      return {...state, currentPage: action.payload}
+    default:
       return state;
   }
 }

@@ -18,15 +18,32 @@ const Join = () => {
     const writePW = e => {
         setPW(e.target.value);
     };
+    const [Email, setEmail] = useState('')
+    const writeEmail = e => {
+        setEmail(e.target.value);
+    };
+    const [Age, setAge] = useState('')
+    const writeAge = e => {
+        setAge(e.target.value);
+    };
+    const [PhoneNum, setPhoneNum] = useState('')
+    const writePhoneNum = e => {
+        setPhoneNum(e.target.value);
+    };
+    
     const register = () => {
         let body = {
             userID: ID,
-            password: PW
+            password: PW,
+            email: Email,
+            age: Age,
+            phoneNum: PhoneNum
           };
         var isinlist = false;
         _userList.forEach(user => {
           if (user[1] === ID) {
             dispatch(modifyUser(body));
+            alert('다른 ID 사용');
             history.push('/');
             isinlist = true;
             return;
@@ -54,6 +71,19 @@ const Join = () => {
             placeholder="password"
             type="password"
             onChange={writePW}
+          />
+          <Input
+            placeholder="email"
+            type="email"
+            onChange={writeEmail}
+          />
+          <Input
+            placeholder="age"
+            onChange={writeAge}
+          />
+          <Input
+            placeholder="phone numeber"
+            onChange={writePhoneNum}
           />
           <button onClick={register}>Register</button>
          </JoinContainer>
