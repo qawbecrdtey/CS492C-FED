@@ -8,7 +8,8 @@ const POST_URL = '/api/post';
  
 // eslint-disable-next-line react/prop-types
 const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
-  const _postList = useSelector(state => state.user.postList);
+  // const _postList = useSelector(state => state.user.postList);
+  const [_postList, setPL] = useState([]);
   const thiscomponent = '/myPage/myComments';
   const _loginUser = useSelector(state => state.user.loginUser);
   const [reducer_commentlist, setRCL] = useState([]);
@@ -27,14 +28,22 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
   }
 
   async function loadComments () {
+    const postdata = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<postdata.length; i++) {
+      postlist.push(Object.values(postdata[i]));
+    }
+    setPL(postlist);
+
     let body = {
         userID: _loginUser['userID']
     }
     const data = await request('post', POST_URL + '/mycomments', body);
     var commentlist = [];
-    var i;
-    for (i=0; i<data.length; i++) {
-      commentlist.push(Object.values(data[i]));
+    var j;
+    for (j=0; j<data.length; j++) {
+      commentlist.push(Object.values(data[j]));
     }
     setRCL(commentlist);
     setLoading(true);  
