@@ -36,7 +36,7 @@ export default function (state = initialstate, action) {
     case types.GET_MY_LIKED_POSTS:
       return {...state, myLikeList: action.payload}
     case types.GET_PAGINATION_INFO:
-      return {...state } // TODO: Get currentPage, articlePerPage, and totalPageCount.
+      return {...state }
     case types.SET_POST_PER_PAGE:
       return {...state, postPerPage: action.payload}
     case types.SET_CURRENT_PAGE:

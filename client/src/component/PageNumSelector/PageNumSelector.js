@@ -11,7 +11,7 @@ import {
   TextContainer, 
 } from './styled';
 import Pagination from '../Pagination/Pagination';
-import { setPostPerPage } from '../../actions/actions';
+import { setPostPerPage, updateCurrentPage } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../PostList';
 import Triangle from '../Triangle';
@@ -41,8 +41,10 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
 
         if (targetId === "item_name") {
           dispatch(setPostPerPage(parseInt(e.target.parentElement.innerText)));
+          dispatch(updateCurrentPage(1));
         } else if (targetId === "item") {
           dispatch(setPostPerPage(parseInt(e.target.innerText)));
+          dispatch(updateCurrentPage(1));
         }
 
         setIsActive((prev) => !prev);
