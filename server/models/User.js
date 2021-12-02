@@ -4,10 +4,27 @@ const userSchema = mongoose.Schema({
   userID: {
     type: String,
     maxlength: 20,
+    required: true,
   },
   password: {
     type: String,
     maxlength: 30,
+    required: true,
+  },
+  email: {
+    type: String,
+    maxlength: 30,
+    required: true,
+  },
+  age: {
+    type: String,
+    maxlength: 30,
+    required: true,
+  },
+  phoneNum: {
+    type: String,
+    maxlength: 20,
+    required: true,
   },
 });
 
