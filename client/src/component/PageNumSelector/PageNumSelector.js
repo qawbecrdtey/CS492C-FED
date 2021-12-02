@@ -40,17 +40,9 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
         const targetId = e.target.id;
 
         if (targetId === "item_name") {
-<<<<<<< HEAD
           dispatch(setPostPerPage(parseInt(e.target.parentElement.innerText)));
         } else if (targetId === "item") {
           dispatch(setPostPerPage(parseInt(e.target.innerText)));
-=======
-          setItem(e.target.parentElement.innerText);
-          // dispatch(setPostPerPage(parseInt(e.target.parentElement.innerText)));
-        } else if (targetId === "item") {
-          setItem(e.target.innerText);
-          // dispatch(setPostPerPage(parseInt(e.target.innerText)));
->>>>>>> e2861d8a157faf2ebc8f179ae3fe92b71d5ae63e
         }
 
         setIsActive((prev) => !prev);
