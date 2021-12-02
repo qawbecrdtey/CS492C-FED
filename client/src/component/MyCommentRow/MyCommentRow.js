@@ -15,8 +15,6 @@ const MyCommentRow = ({ comment }) => {
     }
     socket.emit('post-click-snd', item);
   }
-  console.log(_postList)
-  console.log(_postNO)
   const thispost = _postList.find((element) => {
       if (element[1] === _postNO) {
         // console.log(element[1]);

@@ -54,6 +54,7 @@ function Comments(props) {
                 alert('Failed to get video Info')
             }
         })
+        console.log(user);
       },[]);
     
     return (
