@@ -11,8 +11,8 @@ import {
   TextContainer, 
 } from './styled';
 import Pagination from '../Pagination/Pagination';
-// import { setPostPerPage } from '../../actions/actions';
-import { /*useDispatch, */useSelector } from 'react-redux';
+import { setPostPerPage } from '../../actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../PostList';
 import Triangle from '../Triangle';
 import MyPostList from '../MyPostList';
@@ -22,8 +22,8 @@ import MyCommentList from '../MyCommentList';
 // eslint-disable-next-line react/prop-types
 const PageNumSelector = ({ pageNO, parentComponent }) => {
     const [isActive, setIsActive] = useState(false);
-    const [item, setItem] = useState(20);
-    // const dispatch = useDispatch();
+    //const [item, setItem] = useState(20);
+    const dispatch = useDispatch();
     const _postlist = useSelector(state => state.user.postList);
     const postPerPage = useSelector(state => state.user.postPerPage);
     const [_postCount, setPostCount] = useState(_postlist.length);

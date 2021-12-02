@@ -29,16 +29,18 @@ function Comments(props) {
                 writer: userID,
             }
 
-        axios.post('/api/comment/saveComment', variables)
-            .then(response => {
-                if (response.data.success) {
-                    console.log(response.data.result)
-                    setComment([])
-                    window.location.replace(`/postView/${postNO}`);
-                } else {
-                    alert('Failed to save Comment')
+            axios.post('/api/comment/saveComment', variables)
+                .then(response => {
+                    if (response.data.success) {
+                        console.log(response.data.result)
+                        setComment([])
+                        window.location.replace(`/postView/${postNO}`);
+                    } else {
+                        alert('Failed to save Comment')
+                    }
                 }
-        })
+            );
+        }
     }
 
     useEffect(()=>{
