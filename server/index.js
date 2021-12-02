@@ -60,6 +60,10 @@ app.post('/api/post/register', async (req, res) => {
       return res.json({ success: false, err });
     }
   });
+  var currentPostsInfo = mongoose.model('CurrentPosts');
+  currentPostsInfo.findOneAndUpdate({}, { $inc: { current_top_post_num: 1, num_of_total_posts: 1 } }, (err) => {
+    if (err) return res.json({ success: false, err });
+  });
   post.save(async (err) => {
     if (err) {
       console.log(err);
@@ -286,22 +290,22 @@ io.on('connection', (socket) => {
       });
     });
   });
-  socket.on('registerpost-snd', (item) => {
-    console.log('registerpost socket');
-    var postList = mongoose.model('Post');
-    const post = new Post(item);
-    if (post.postNO === '') {
-      console.log('err : postNO is empty while registering the post');
-    }
-    postList.findOne({ postNO: post.postNO }, function (err, samePost) {
-      if (err) console.log(err);
-      if (samePost != null) console.log('err : same postNO');
-    });
-    post.save((err) => {
-      if (err) console.log(err);
-      console.log('save post');
-    });
-  });
+  // socket.on('registerpost-snd', (item) => {
+  //   console.log('registerpost socket');
+  //   var postList = mongoose.model('Post');
+  //   const post = new Post(item);
+  //   if (post.postNO === '') {
+  //     console.log('err : postNO is empty while registering the post');
+  //   }
+  //   postList.findOne({ postNO: post.postNO }, function (err, samePost) {
+  //     if (err) console.log(err);
+  //     if (samePost != null) console.log('err : same postNO');
+  //   });
+  //   post.save((err) => {
+  //     if (err) console.log(err);
+  //     console.log('save post');
+  //   });
+  // });
 });
 
 httpServer.listen(4080);
