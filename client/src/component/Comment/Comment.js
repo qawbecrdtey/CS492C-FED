@@ -21,12 +21,13 @@ function Comments(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if (Comment != '') {
 
-        const variables = {
-            content: Comment,
-            postNO: postNO,
-            writer: userID,
-        }
+            const variables = {
+                content: Comment,
+                postNO: postNO,
+                writer: userID,
+            }
 
         axios.post('/api/comment/saveComment', variables)
             .then(response => {
@@ -48,7 +49,6 @@ function Comments(props) {
         axios.post('/api/comment/getComments', variables)
         .then(response => {
             if (response.data.success) {
-                console.log('response.data.comments',response.data)
                 setCommentLists(response.data.comments)
             } else {
                 alert('Failed to get video Info')

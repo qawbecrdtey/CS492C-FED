@@ -25,6 +25,10 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
   useEffect(() => {
     setChecked(isAllChecked);
   }, [isAllChecked]);
+
+  useEffect(() => {
+    setChecked(false);
+  }, [window.location.href]);
   return (
     <tr className="common-table-row">
       {mypage ? null : <td><Checkbox checked={checked} onClick={handleClick} /></td>}
