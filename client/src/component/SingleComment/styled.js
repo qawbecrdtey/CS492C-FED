@@ -25,6 +25,7 @@ export const WriterContainer = styled.div`
     // background: #dd00dd;
     font-weight: bold;
     margin-bottom: 7px;
+    justify-content: space-between;
 `;
 
 export const ContentContainer = styled.div`
@@ -61,3 +62,11 @@ export const ProfileContent = styled.div`
   display: flex;
 `;
 
+export const DateContainer = styled.div`
+`;
+
+export const CommentFuncContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+`;
