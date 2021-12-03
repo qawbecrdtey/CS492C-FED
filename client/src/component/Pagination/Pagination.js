@@ -16,10 +16,6 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     console.log(`postCount = ${postCount}`);
     console.log(`currentPage = ${currentPage}`);
 
-    if(postCount < currentPage * articlePerPage || currentPage < 1) {
-        setCurrentPage(1);
-    }
-
     const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
