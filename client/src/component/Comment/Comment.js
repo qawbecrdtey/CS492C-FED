@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import { Input } from 'antd';
 import axios from 'axios';
+import moment from 'moment';
 import { useSelector } from 'react-redux';
 import SingleComment from '../../component/SingleComment/SingleComment';
-import { CommentContainer, RepliesContainer, SubmitButton } from './styled';
+import { CommentContainer, RepliesContainer, CommentListsContainer, SubmitButton } from './styled';
 const { TextArea } = Input;
 
 function Comments(props) {
@@ -14,6 +15,7 @@ function Comments(props) {
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
     const postNO = props.postNO
+    const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
 
     const handleClick = (e) => {
         setComment(e.currentTarget.value)
@@ -27,6 +29,7 @@ function Comments(props) {
                 content: Comment,
                 postNO: postNO,
                 writer: userID,
+                created_date: created_date,
             }
 
             axios.post('/api/comment/saveComment', variables)
@@ -60,26 +63,28 @@ function Comments(props) {
     
     return (
         <CommentContainer>
-            <RepliesContainer>Replies</RepliesContainer>
+            <RepliesContainer>댓글</RepliesContainer>
             {/* Root Comment Form */}
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <TextArea
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleClick}
                     value={Comment}
-                    placeholder="write some comments"
+                    placeholder="댓글 입력"
                 />
                 <br />
                 <SubmitButton style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</SubmitButton>
             </form>
             {/* Comment Lists  */}
-            {CommentLists.map((comment) => (
-                <SingleComment 
-                    key={comment._id} 
-                    comment={comment}
-                    postNO={postNO}
-                />
-            ))}
+            <CommentListsContainer>
+                {CommentLists.map((comment) => (
+                    <SingleComment 
+                        key={comment._id} 
+                        comment={comment}
+                        postNO={postNO}
+                    />
+                ))}
+            </CommentListsContainer>
         </CommentContainer>
     )
 }
