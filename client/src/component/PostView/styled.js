@@ -26,6 +26,8 @@ export const TitleContainer = styled.div`
     justify-content: flex-start;
     padding-left: 20px;
     align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
 `;
 
 export const UnderTitleContainer = styled.div`
@@ -43,16 +45,20 @@ export const InfoContainer = styled.div`
     padding: 8px;
 `;
 
-export const ContentContainer = styled.div`
+export const ContentOutContainer = styled.div`
     width: 80vw;
     height: 60%;
+    min-height: 400px;
     // display: flex;
     justify-content: center;
-    border-top: 0.1rem solid grey;
     align-content: stretch;
     align-items: stretch;
-    padding-left: 8px;
     word-break: break-all;
+    border-top: 0.1rem solid grey;
+`;
+
+export const ContentContainer = styled.div`
+    padding: 8px;
 `;
 
 export const CommentContainer = styled.div`

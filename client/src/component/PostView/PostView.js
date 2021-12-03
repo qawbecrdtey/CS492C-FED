@@ -6,7 +6,8 @@ import QueryString from 'qs';
 import moment from 'moment';
 import { 
   CommentContainer, 
-  ContentContainer, 
+  ContentOutContainer, 
+  ContentContainer,
   InfoContainer, 
   MainContainer, 
   PostHeaderContainer, 
@@ -170,14 +171,16 @@ const PostView = ({ match }) => {
         </PostHeaderContainer>
       }
       {loading ? null : 
-        <ContentContainer>
+        <ContentOutContainer>
+          <ContentContainer>
           {edit ? 
           <MDEditor
             height={400}
             value={content}
             onChange={setContent}
           /> : <MDEditor.Markdown source={data[8]} />}
-        </ContentContainer>
+          </ContentContainer>
+        </ContentOutContainer>
       }
       {loading ? null : 
         <ReactContainer>
