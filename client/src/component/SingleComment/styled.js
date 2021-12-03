@@ -5,8 +5,6 @@ export const SingleCommentContainer = styled.div`
     height: auto;
     display: flex;
     border-radius: 10px;
-    // flex-direction: row;
-    padding: 4px;
     margin-top: 4px;
     background: rgba(255, 159, 180, 0.4);
 `;
@@ -15,6 +13,7 @@ export const BodyContainer = styled.div`
     width: 100%;
     height: auto;
     flex-direction: row;
+    margin: 8px;
     // background: #dddddd;
 `;
 

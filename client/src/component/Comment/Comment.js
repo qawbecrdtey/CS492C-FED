@@ -75,7 +75,7 @@ function Comments(props) {
                     placeholder="댓글 입력"
                 />
                 <br />
-                <SubmitButton style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</SubmitButton>
+                <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
             </form>
             {/* Comment Lists  */}
             <CommentListsContainer>

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../../utils/axios';
 import QueryString from 'qs';
+import moment from 'moment';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -64,7 +65,7 @@ const PostView = ({ match }) => {
   };
   const editContent = () => {
     if (content != '' && title != '') {
-      const created_date = new Date();
+      const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
       let body = {
           postNO : data[1],
           title: title,

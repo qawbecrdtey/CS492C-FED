@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     overflow-y: scroll;
     justify-content: center;
@@ -11,16 +11,15 @@ export const MainContainer = styled.div`
 `;
 
 export const PostHeaderContainer = styled.div`
-    width: 100%;
+    width: 100vw;
     height: 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 0.1rem solid grey;
 `;
 
 export const TitleContainer = styled.div`
-    width: 80%; 
+    width: 80vw; 
     height: 50%;
     display: flex;
     font-size: 2rem;
@@ -30,7 +29,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const UnderTitleContainer = styled.div`
-    width: 80%;
+    width: 80vw;
     height: 50%;
     display: flex;
     justify-content: flex-start;
@@ -45,17 +44,19 @@ export const InfoContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-    width: 80%;
+    width: 80vw;
     height: 60%;
     // display: flex;
     justify-content: center;
     border-top: 0.1rem solid grey;
     align-content: stretch;
     align-items: stretch;
+    padding-left: 8px;
+    word-break: break-all;
 `;
 
 export const CommentContainer = styled.div`
-    width: 80%;
+    width: 80vw;
     height: 27%;
     overflow-y: visible;
     border-top: 0.1rem solid grey;
@@ -63,7 +64,7 @@ export const CommentContainer = styled.div`
 
 export const InputContainer = styled.input`
     display: flex;
-    width: 50%;
+    width: 50vw;
     height: 80%;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -84,12 +85,14 @@ export const InputContainer = styled.input`
 `;
 
 export const ReactContainer = styled.div`
-    width: 80%;
+    width: 80vw;
     height: 5%;
     display: flex;
     flex-direction: row;
     jusfify-content: flex-start;
     border-top: 0.1rem solid grey;
+    padding-top: 4px;
+    padding-bottom: 4px;
 `;
 
 export const LikeButton = styled.button`
@@ -103,6 +106,8 @@ export const LikeButton = styled.button`
     border: 0.1rem solid grey;
     border-radius: 20%;
     opacity: 0.4
+    margin-left: 4px;
+    margin-right:4px;
     ${({ active }) =>
     active && `opacity: 1;`}
 `;
