@@ -28,8 +28,8 @@ function SingleComment({ comment, postNO}) {
 
     const userProfile = test.filter(e => (e[1]==comment.writer));
     useEffect(() => {
-        console.log(comment);
-        console.log(test);
+        // console.log(comment);
+        // console.log(test);
     }, []);
     
 
