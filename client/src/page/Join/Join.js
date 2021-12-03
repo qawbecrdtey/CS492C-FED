@@ -32,6 +32,11 @@ const Join = () => {
     };
     
     const register = () => {
+        if (ID.length > 15) {
+          alert("ID가 최대길이를 초과했습니다");
+          return;
+        }
+
         let body = {
             userID: ID,
             password: PW,
