@@ -59,6 +59,7 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
       <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
         {
           loading ? render_commentList.map((char, index) => {
+              console.log(char)
               const _postNO = char[3];
               const thispost = _postList.find((element) => {
                 console.log(element[1]);
