@@ -37,7 +37,6 @@ const PostWrite = () => {
         axios.get(POST_URL + '/currentposts', null)
             .then(_data => {
                 const rcv_data = Object.values(_data);
-                console.log(rcv_data[0].num_of_total_posts);
                 const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
                 let body = {
                     postNO: rcv_data[0].num_of_total_posts + 1,
@@ -61,7 +60,16 @@ const PostWrite = () => {
     }
 
     const saveContent = () => {
-        if (content != '' && title != '') pre_saveContent();
+        if (content != '' && title != '') {
+            console.log(title.length);
+            if (content.length >= 10000) {
+                alert('내용 길이는 10000byte 이하여야 합니다');
+            } else if (title.length >= 50) {
+                alert('제목 길이는 50byte 이하여야 합니다')
+            } else {
+                pre_saveContent();
+            }
+        }
     }
     const toPostList = () => {
         history.push('/postMain/1');

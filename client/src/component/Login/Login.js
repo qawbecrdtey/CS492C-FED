@@ -39,9 +39,9 @@ const Login = () => {
         });
 
         if (!isinlist) {
-            alert("wrong information");
             setID('');
             setPW('');
+            alert("wrong information");
         }
         console.log(_userList);
     };
@@ -55,11 +55,13 @@ const Login = () => {
           <Input
             placeholder="ID"
             onChange={writeID}
+            value={ID}
           />
           <Input
             placeholder="password"
             type="password"
             onChange={writePW}
+            value={PW}
           />
           <button onClick={login}>Sign in</button>
           <button onClick={join}>Join</button>

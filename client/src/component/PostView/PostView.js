@@ -66,21 +66,27 @@ const PostView = ({ match }) => {
   };
   const editContent = () => {
     if (content != '' && title != '') {
-      const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
-      let body = {
-          postNO : data[1],
-          title: title,
-          no_comments: data[3],
-          likes: data[4],
-          userID: data[5],
-          created_date: created_date,
-          view: data[7],
-          content: content,
-          likeUsers: data[9],
+      if (content.length >= 10000) {
+        alert('내용 길이는 10000byte 이하여야 합니다');
+      } else if (title.length >= 50) {
+        alert('제목 길이는 50byte 이하여야 합니다');
+      } else {
+        const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
+        let body = {
+            postNO : data[1],
+            title: title,
+            no_comments: data[3],
+            likes: data[4],
+            userID: data[5],
+            created_date: created_date,
+            view: data[7],
+            content: content,
+            likeUsers: data[9],
+        }
+        dispatch(editPost(body));
+        console.log(body);
+        _history.push(goBackURL);
       }
-      dispatch(editPost(body));
-      console.log(body);
-      _history.push(goBackURL);
     }
   };
 

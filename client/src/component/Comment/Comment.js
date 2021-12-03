@@ -25,25 +25,27 @@ function Comments(props) {
     const onSubmit = (e) => {
         e.preventDefault();
         if (Comment != '') {
-
-            const variables = {
-                content: Comment,
-                postNO: postNO,
-                writer: userID,
-                created_date: created_date,
-            }
-
-            axios.post('/api/comment/saveComment', variables)
-                .then(response => {
-                    if (response.data.success) {
-                        console.log(response.data.result)
-                        setComment([])
-                        window.location.replace(window.location.href);
-                    } else {
-                        alert('Failed to save Comment')
-                    }
+            if (Comment.length >= 1000) {
+                alert('댓글 길이는 1000byte 이하여야 합니다')
+            } else {
+                const variables = {
+                    content: Comment,
+                    postNO: postNO,
+                    writer: userID,
+                    created_date: created_date,
                 }
-            );
+                axios.post('/api/comment/saveComment', variables)
+                    .then(response => {
+                        if (response.data.success) {
+                            console.log(response.data.result)
+                            setComment([])
+                            window.location.replace(window.location.href);
+                        } else {
+                            alert('Failed to save Comment')
+                        }
+                    }
+                );
+            }
         }
     }
 

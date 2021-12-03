@@ -10,7 +10,7 @@ const Header = () => {
     const _loginUser = useSelector(state => state.user.loginUser);
     const backtoMain = () => {
         dispatch(updateCurrentPage(1));
-        history.push('/postMain/1');
+        window.location.replace('/postMain/1');
     }
     const goMyPage = () => {
         dispatch(updateCurrentPage(1));
