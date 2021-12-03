@@ -49,7 +49,21 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
           dispatch(setPostPerPage(parseInt(e.target.innerText)));
           dispatch(updateCurrentPage(1));
         }
-        history.push('/postMain/1');
+        history.push(`/${(() => {
+          if(parentComponent === 'PostMain') {
+            return 'postMain';
+          }
+          if(parentComponent === 'MyPagePost') {
+            return 'myPage/myPosts';
+          }
+          if(parentComponent === 'MyPageLike') {
+            return 'myPage/myLikes';
+          }
+          if(parentComponent === 'MyPageComment') {
+            return 'myPage/myComments';
+          }
+          else return '';
+        })()}/1`);
 
         setIsActive((prev) => !prev);
     }, []);
