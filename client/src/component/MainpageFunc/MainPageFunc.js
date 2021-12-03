@@ -13,8 +13,6 @@ const MainPageFunc = ({ removelist }) => {
     const movetowriter = () => {
         history.push('/postWrite');
     }
-    console.log(removelist);
-    
     const dispatch = useDispatch();
 
     const removeposts = () => {

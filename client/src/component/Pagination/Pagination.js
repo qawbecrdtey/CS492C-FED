@@ -12,10 +12,6 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     const setCurrentPage = (idx) => {
         dispatch(updateCurrentPage(idx));
     };
-
-    console.log(`postCount = ${postCount}`);
-    console.log(`currentPage = ${currentPage}`);
-
     const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
