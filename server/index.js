@@ -283,10 +283,12 @@ io.on('connection', (socket) => {
       var postList = mongoose.model('Post');
       var commentList = mongoose.model('Comment');
       postList.findOneAndDelete({ postNO: postNO }, (err) => {
+        console.log('delete post no : ' + postNO);
         if (err) return res.json({ success: false, err });
       });
       commentList.findOneAndDelete({ postNO: postNO }, (err) => {
-        if (err) res.json({ success: false, err });
+        console.log('delete comment post no : ' + postNO);
+        if (err) return res.json({ success: false, err });
       });
     });
   });

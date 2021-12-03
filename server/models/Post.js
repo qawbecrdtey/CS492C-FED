@@ -21,7 +21,7 @@ const postSchema = mongoose.Schema({
     required: true,
   },
   created_date: {
-    type: Date,
+    type: String,
     default: Date.now,
   },
   views: {
