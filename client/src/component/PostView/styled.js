@@ -111,7 +111,7 @@ export const LikeButton = styled.button`
     font-size: 1rem;
     border: 0.1rem solid grey;
     border-radius: 20%;
-    opacity: 0.4
+    opacity: 0.4;
     margin-left: 4px;
     margin-right:4px;
     ${({ active }) =>

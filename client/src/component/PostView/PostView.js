@@ -132,8 +132,12 @@ const PostView = ({ match }) => {
       }
     })
     if (islike == _loginUser['userID']) {
+      console.log('islike : ' + islike);
+      console.log('_loginUser[userID] : ' + _loginUser['userID']);
       setActive(true);
     } else {
+      console.log('islike : ' + islike);
+      console.log('_loginUser[userID] : ' + _loginUser['userID']);
       setActive(false);
     }
     setLoading(false);

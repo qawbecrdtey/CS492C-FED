@@ -13,12 +13,13 @@ import {
 import Pagination from '../Pagination/Pagination';
 import { setPostPerPage, updateCurrentPage } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import PostList from '../PostList';
 import Triangle from '../Triangle';
 import MyPostList from '../MyPostList';
 import MyLikeList from '../MyLikeList';
 import MyCommentList from '../MyCommentList';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 // eslint-disable-next-line react/prop-types
 const PageNumSelector = ({ pageNO, parentComponent }) => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { TableContainer, TableHeaderColumn, HeaderItem } from './styled';
 const Checkbox = props => <input type="checkbox" {...props} />;
  
-const CommonTable = ({ headersName, getElement, getChecked, children }) => {
+const CommonTable = ({ headersName, getElement, getChecked, children, mypage }) => {
   const [sortFlag, setSortFlag] = useState([true, false, false, false, false, false]);
   const [checked, setChecked] = useState(false);
 
@@ -36,6 +36,8 @@ const CommonTable = ({ headersName, getElement, getChecked, children }) => {
     setChecked(false);
     getChecked(false);
   }, [window.location.href]);
+
+  console.log(mypage);
  
   return (
     <TableContainer>
@@ -45,7 +47,7 @@ const CommonTable = ({ headersName, getElement, getChecked, children }) => {
             headersName.map((item, index) => {
               return (
                 <TableHeaderColumn key={index} >
-                  {index==0 
+                  {index==0 && !mypage
                   ? <Checkbox checked={checked} onChange={handleClick} />
                   : item ? <HeaderItem onClick={handleClick2}>{ item }</HeaderItem> : null}
                 </TableHeaderColumn>
