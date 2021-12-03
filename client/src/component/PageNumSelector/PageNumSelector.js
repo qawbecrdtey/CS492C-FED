@@ -51,19 +51,11 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
           dispatch(updateCurrentPage(1));
         }
         history.push(`/${(() => {
-          if(parentComponent === 'PostMain') {
-            return 'postMain';
-          }
-          if(parentComponent === 'MyPagePost') {
-            return 'myPage/myPosts';
-          }
-          if(parentComponent === 'MyPageLike') {
-            return 'myPage/myLikes';
-          }
-          if(parentComponent === 'MyPageComment') {
-            return 'myPage/myComments';
-          }
-          else return '';
+          if(parentComponent === 'PostMain') return 'postMain';
+          if(parentComponent === 'MyPagePost') return 'myPage/myPosts';
+          if(parentComponent === 'MyPageLike') return 'myPage/myLikes';
+          if(parentComponent === 'MyPageComment') return 'myPage/myComments';
+          return '';
         })()}/1`);
 
         setIsActive((prev) => !prev);
