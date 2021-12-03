@@ -46,6 +46,8 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
           dispatch(setPostPerPage(parseInt(e.target.innerText)));
           dispatch(updateCurrentPage(1));
         }
+        
+        window.location.replace(`/postMain/1`);
 
         setIsActive((prev) => !prev);
     }, []);
