@@ -61,7 +61,7 @@ const PostWrite = () => {
     }
 
     const saveContent = () => {
-        pre_saveContent();
+        if (content != '' && title != '') pre_saveContent();
     }
     const toPostList = () => {
         history.push('/postMain/1');
