@@ -9,7 +9,7 @@ const Join = () => {
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
     const _userList = useSelector(state => state.user.userList);
-
+    console.log(_userList.length)
     const [ID, setID] = useState('')
     const writeID = e => {
         setID(e.target.value);
@@ -40,11 +40,19 @@ const Join = () => {
             phoneNum: PhoneNum
           };
         var isinlist = false;
+
+        for (var key in body) { 
+          if (body[key] === '') {
+            alert("정보를 채워주세요");
+            return;
+          }
+        }
+
         _userList.forEach(user => {
           if (user[1] === ID) {
             dispatch(modifyUser(body));
-            alert('다른 ID 사용');
-            history.push('/');
+            alert("이미 존재하는 ID입니다");
+            history.push('/join');
             isinlist = true;
             return;
           }
@@ -52,6 +60,7 @@ const Join = () => {
 
         if (!isinlist) {
           dispatch(registerUser(body));
+          console.log(body);
           history.push('/');
         }
     }
