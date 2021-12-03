@@ -9,7 +9,7 @@ const PaginationPageList = props => {
     let arr = [];
 
     while(i < size) {
-        arr.push(<PaginationIndex currentPage={currentPage} setCurrentPage={setCurrentPage} pageNo={start + i} parentComponent={parentComponent}/>);
+        arr.push(<PaginationIndex key={i} currentPage={currentPage} setCurrentPage={setCurrentPage} pageNo={start + i} parentComponent={parentComponent}/>);
         i++;
     }
     return (<>{arr}</>);

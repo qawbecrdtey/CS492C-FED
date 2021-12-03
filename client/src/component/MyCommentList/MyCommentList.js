@@ -1,43 +1,76 @@
-import React, { useEffect } from 'react';
+// /* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
-import { getMyComments } from '../../actions/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ListContainer } from './styled';
-import MyCommentRow from '../MyCommentRow';
+import { request } from '../../utils/axios';
+import Row from '../Row';
+const POST_URL = '/api/post';
  
 // eslint-disable-next-line react/prop-types
 const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
-  const dispatch = useDispatch();
-  const _myCommentList = useSelector(state => state.user.myCommentList);
+  // const _postList = useSelector(state => state.user.postList);
+  const [_postList, setPL] = useState([]);
+  const thiscomponent = '/myPage/myComments';
   const _loginUser = useSelector(state => state.user.loginUser);
-  getPostCount(_myCommentList.length);
-
-
+  const [reducer_commentlist, setRCL] = useState([]);
+  const [loading, setLoading] = useState(false);
+  getPostCount(reducer_commentlist.length);
+  
   const startIndex = (pageNO - 1) * postPerPage;
   const endIndex = pageNO * postPerPage;
 
-  const render_postList = _myCommentList.slice(startIndex, endIndex);
+  const render_commentList = reducer_commentlist.slice(startIndex, endIndex);
 
   const getElement = () => {
   }
 
   const getChecked = () => {
-    
   }
 
-  useEffect(() => {
+  async function loadComments () {
+    const postdata = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<postdata.length; i++) {
+      postlist.push(Object.values(postdata[i]));
+    }
+    setPL(postlist);
+
     let body = {
         userID: _loginUser['userID']
     }
-    dispatch(getMyComments(body));
-  }, [ ])
+    const data = await request('post', POST_URL + '/mycomments', body);
+    var commentlist = [];
+    var j;
+    for (j=0; j<data.length; j++) {
+      commentlist.push(Object.values(data[j]));
+    }
+    setRCL(commentlist);
+    setLoading(true);  
+  }
+
+  useEffect(() => {
+    loadComments();
+  }, []);
+
   return (
     <ListContainer>
       <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
         {
-          render_postList ? render_postList.map((char, index) => {
+          loading ? render_commentList.map((char, index) => {
+              console.log(char)
+              const _postNO = char[3];
+              const thispost = _postList.find((element) => {
+                console.log(element[1]);
+                console.log(_postNO);
+                  if (element[1] === _postNO) {
+                    return true;
+                  }
+              })
+              console.log(thispost);
               return (
-                <MyCommentRow key={index} comment={char}/>
+                <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
               )
           }) : null
         }

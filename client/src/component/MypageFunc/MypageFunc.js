@@ -8,9 +8,9 @@ const MypageFunc = () => {
     const pathName = useLocation().pathname;
 
     const menus = [
-        { name: '내가 쓴 글', path: '/myPage/myPosts/1'},
-        { name: '내가 좋아요 누른 글', path: '/myPage/myLikes/1'},
-        { name: '내가 쓴 댓글', path: '/myPage/myComments/1'},
+        { name: '내가 쓴 글', path: '/myPage/myPosts/1', type: 'myPosts'},
+        { name: '내가 좋아요 누른 글', path: '/myPage/myLikes/1', type: 'myLikes'},
+        { name: '내가 쓴 댓글', path: '/myPage/myComments/1', type: 'myComments'},
     ];
     return (
         <MypageFuncContainer>
@@ -19,7 +19,7 @@ const MypageFunc = () => {
                     <Link to={menu.path} key={index}>
                         <MypageMenuItem
                             menu={menu}
-                            isActive={pathName === menu.path ? true : false}
+                            isActive={pathName.includes(menu.type) ? true : false}
                         /> 
                     </Link>
                 )

@@ -8,6 +8,7 @@ import { ListContainer } from './styled';
  
 const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
   const dispatch = useDispatch();
+  const thiscomponent = '/myPage/myPosts';
   const _mypostList = useSelector(state => state.user.myPostList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const [sortCondition, setSortCondition] = useState({
@@ -60,7 +61,7 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
         {
           render_postList ? render_postList.map((char, index) => {
             return (
-              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={null} created_date={char[6]} views={char[7]} mypage={true}/>
+              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={null} created_date={char[6]} views={char[7]} mypage={true} parentcomponent={thiscomponent}/>
             )
           }) : null
         }

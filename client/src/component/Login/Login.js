@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { LoginContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, userLogined } from '../../actions/actions';
+import { getAllUser, setPostPerPage, updateCurrentPage, userLogined } from '../../actions/actions';
 
 const Login = () => {
     const _userList = useSelector(state => state.user.userList);
@@ -30,6 +30,8 @@ const Login = () => {
                 userID: ID,
                 password: PW,
             }));
+            dispatch(updateCurrentPage(1));
+            dispatch(setPostPerPage(20));
             history.push('./postMain/1');
             isinlist = true;
             return;

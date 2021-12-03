@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
 import { request } from '../../utils/axios';
-import { getAllPost, getCurrentPostsNumInfo } from '../../actions/actions';
+import { getAllPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   FunctionContainer, 
@@ -20,12 +20,17 @@ import {
  } from './styled';
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
 import Triangle from '../Triangle';
+const POST_URL = '/api/post';
 
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount }) => {
+  const thiscomponent = '/postMain';
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
+  // const [_postList , setPL] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [allCheck, setAllCheck] = useState(false);
+  // const [searched_postList, setSP] = useState([..._postList]);
   const [searched_postList, setSP] = useState([..._postList]);
   const [sortCondition, setSortCondition] = useState({
     element: '글번호',
@@ -157,19 +162,25 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
     }
   }
 
-  const printRemoveList = () => {
-    console.log(removeList);
+  async function loadPosts () {
+    const data = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<data.length; i++) {
+      postlist.push(Object.values(data[i]));
+    }
+    setSP(postlist);
+    setLoading(false);    
   }
 
   useEffect(() => {
     dispatch(getAllPost());
-    dispatch(getCurrentPostsNumInfo());
+    loadPosts();
   }, []);
 
   return (
     <ListContainer>
       <FunctionContainer>
-        <button onClick={printRemoveList}>print checked</button>
         <SearchContainer>
           <SearchTextContainer>검색분류</SearchTextContainer>
           <DropDownMenu>
@@ -189,15 +200,17 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         </SearchContainer>
         <MainPageFunc removelist={removeList}/>
       </FunctionContainer>
-      <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
-        {
-          render_postList ? render_postList.map((char, index) => {
-            return (
-              <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck}/>
-            )
-          }) : ''
-        }
-      </CommonTable>
+      {loading ? null :
+        <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
+          {
+            render_postList ? render_postList.map((char, index) => {
+              return (
+                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck} parentcomponent={thiscomponent}/>
+              )
+            }) : ''
+          }
+        </CommonTable>
+      }
     </ListContainer>
   )
 }

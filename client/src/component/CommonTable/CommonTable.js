@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TableContainer, TableHeaderColumn, HeaderItem } from './styled';
 const Checkbox = props => <input type="checkbox" {...props} />;
  
@@ -31,6 +31,11 @@ const CommonTable = ({ headersName, getElement, getChecked, children }) => {
       sortFlag: sortFlag,
     });
   }
+
+  useEffect(() => {
+    setChecked(false);
+    getChecked(false);
+  }, [window.location.href]);
  
   return (
     <TableContainer>
@@ -41,7 +46,7 @@ const CommonTable = ({ headersName, getElement, getChecked, children }) => {
               return (
                 <TableHeaderColumn key={index} >
                   {index==0 
-                  ? <Checkbox checked={checked} onClick={handleClick} />
+                  ? <Checkbox checked={checked} onChange={handleClick} />
                   : item ? <HeaderItem onClick={handleClick2}>{ item }</HeaderItem> : null}
                 </TableHeaderColumn>
               )

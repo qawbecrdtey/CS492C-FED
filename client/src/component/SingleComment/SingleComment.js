@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { BodyContainer, SingleCommentContainer, WriterContainer,
-     ContentContainer, HoverContainer, HoverContent, ProfileContent
-    } from './styled';
+     ContentContainer, DateContainer, HoverContainer, HoverContent, 
+     ProfileContent, CommentFuncContainer} from './styled';
 
-function SingleComment({ key, comment, postNO}) {
-    const test = useSelector(state => state.user);
+function SingleComment({ comment, postNO}) {
+    const test = useSelector(state => state.user.userList);
     const deleteComment = (e) => {
         e.preventDefault();
         
         const variables = {
-            _id: key,
             postNO: postNO,
         }
 
@@ -24,9 +23,15 @@ function SingleComment({ key, comment, postNO}) {
                     alert('Failed to delete Comment')
                 }
         })
-        window.location.replace(`/postView/${postNO}`);
+        window.location.replace(window.location.href);
     }
 
+    const userProfile = test.filter(e => (e[1]==comment.writer));
+    useEffect(() => {
+        console.log(comment);
+        console.log(test);
+    }, []);
+    
 
     return (
         <SingleCommentContainer>
@@ -36,17 +41,20 @@ function SingleComment({ key, comment, postNO}) {
                         {comment.writer}
                         <HoverContent className="profilecard">
                             <ProfileContent>
-                                작성한 게시물 수: {test.myPostList.length}개
+                                이메일: {userProfile[0][3]}
                             </ProfileContent>
                             <ProfileContent>
-                                작성한 댓글 수: {test.myCommentList.length}개
+                                나이: {userProfile[0][4]}
                             </ProfileContent>
                             <ProfileContent>
-                                좋아요 누른 수 : {test.myLikeList.length}개
+                                전화번호: {userProfile[0][5]}
                             </ProfileContent>
                         </HoverContent>
                     </HoverContainer>
-                    <button onClick={deleteComment}>삭제</button>
+                    <CommentFuncContainer>       
+                        <DateContainer>{comment.created_date}</DateContainer>
+                        <button onClick={deleteComment}>삭제</button>
+                    </CommentFuncContainer>
                 </WriterContainer>
                 <ContentContainer>{comment.content}</ContentContainer>
             </BodyContainer>

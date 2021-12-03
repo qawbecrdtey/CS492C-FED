@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { request } from '../../utils/axios';
+import QueryString from 'qs';
 import { 
   CommentContainer, 
   ContentContainer, 
@@ -12,7 +13,7 @@ import {
   TitleContainer, 
   UnderTitleContainer,
   LikeButton,
- } from './styled';
+} from './styled';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header';
 import MDEditor from '@uiw/react-md-editor';
@@ -28,18 +29,23 @@ const socket = io.connect('http://localhost:4080/');
 const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
+  const pastPageNumber = useSelector(state => state.user.currentPage);
+  const [_reducerpostList , setRPL] = useState([..._postList]);
+  const [loading, setLoading] = useState(true);
   const { no } = match.params;
-  const history = useHistory();
+  console.log('no : ' + no);
+  const parentcomponent = Object.values(QueryString.parse(location.search));
+  const goBackURL = parentcomponent + '/' + pastPageNumber;
+  const _history = useHistory();
   const dispatch = useDispatch();
-  const _likedPostList = useSelector(state => state.user.likedPostList);
-  const data = _postList.find((element) => {
+  const data = _reducerpostList.find((element) => {
     return element[1] == no
   });
-  const [title, setTitle] = useState(data[2]);
+  const [title, setTitle] = useState('');
   const [edit, setEdit] = useState(false);
-  const [content, setContent] = useState(data[8]);
+  const [content, setContent] = useState('');
   const [active, setActive] = useState(false);
-  
+
   const clickEdit = () => {
     setEdit(true);
   };
@@ -64,12 +70,13 @@ const PostView = ({ match }) => {
     }
     dispatch(editPost(body));
     console.log(body);
-    history.push('/postMain/1');
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   };
 
   const toPostList = () => {
-    // history.push('/postMain/1');
-    history.goBack();
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   };
 
   const deletePost = () => {
@@ -77,7 +84,8 @@ const PostView = ({ match }) => {
       postNO : data[1],
     }
     request('post', POST_URL + '/deletePost', body)
-    window.location.replace('/postMain/1');
+    // _history.push('/postMain/1');
+    _history.push(goBackURL);
   }
 
   const clickLike = () => {
@@ -94,8 +102,18 @@ const PostView = ({ match }) => {
     }
   };
 
-  useEffect(() => {
-    const islike = data[9].find((element) => {
+  async function loadPosts () {
+    const data = await request('get', POST_URL + '/posts', null);
+    var postlist = [];
+    var i;
+    for (i=0; i<data.length; i++) {
+      postlist.push(Object.values(data[i]));
+    }
+    setRPL(postlist);
+    const received_data = postlist.find((element) => {
+      return element[1] == no
+    });    
+    const islike = received_data[9].find((element) => {
       if(element === _loginUser['userID']) {
         return true;
       }
@@ -105,61 +123,74 @@ const PostView = ({ match }) => {
     } else {
       setActive(false);
     }
-    console.log('liked users : ' + data[9]);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    loadPosts();
     socket.on('like-rcv', item => {
       setActive(true);
     });
     socket.on('unlike-rcv', item => {
       setActive(false);
     });
-  }, []);
+    console.log('query : ' + Object.values(QueryString.parse(location.search))); 
+  }, [active]);
  
   return (
     <MainContainer>
       <Header />
-      <PostHeaderContainer>
-        { edit ? 
-          <TitleContainer>
-            <InputContainer 
-                placeholder="제목을 입력하세요"
-                onChange={writeTitle}
-                value={title}
-            /> 
-          </TitleContainer>
-          : <TitleContainer>{data[2]}</TitleContainer>}
-        <UnderTitleContainer>
-          <InfoContainer>postNO : {data[1]}</InfoContainer>
-          <InfoContainer>writer: {data[5]}</InfoContainer>
-          <InfoContainer>{data[6]}</InfoContainer>
-          <InfoContainer>views: {data[7]}</InfoContainer>
-          {edit ?<button onClick={editContent}>등록</button>
-          : <button onClick={clickEdit}>수정</button>}
-          {edit ? <button onClick={cancle}>취소</button> : null}
-          {!edit ? <button onClick={deletePost}>삭제</button> : null}
-        </UnderTitleContainer>
-      </PostHeaderContainer>
-      <ContentContainer>
-        {edit ? 
-        <MDEditor
-          height={400}
-          value={content}
-          onChange={setContent}
-        /> : <MDEditor.Markdown source={data[8]} />}
-      </ContentContainer>
-      <ReactContainer>
-        <InfoContainer>likes : {data[4]}</InfoContainer>
-        <InfoContainer>no_comments: {data[3]}</InfoContainer>
-        <LikeButton 
-          onClick={clickLike}
-          active={active}
-        >
-          like
-        </LikeButton>
-        <button onClick={toPostList}>목록으로</button>
-      </ReactContainer>
-      <CommentContainer>
-        <Comment postNO={data[1]}/>
-      </CommentContainer>
+      {loading ? null : 
+        <PostHeaderContainer>
+          { edit ? 
+            <TitleContainer>
+              <InputContainer 
+                  placeholder="제목을 입력하세요"
+                  onChange={writeTitle}
+                  value={title}
+              /> 
+            </TitleContainer>
+            : <TitleContainer>{data[2]}</TitleContainer>}
+          <UnderTitleContainer>
+            <InfoContainer>postNO : {data[1]}</InfoContainer>
+            <InfoContainer>writer: {data[5]}</InfoContainer>
+            <InfoContainer>{data[6]}</InfoContainer>
+            <InfoContainer>views: {data[7]}</InfoContainer>
+            {edit ?<button onClick={editContent}>등록</button>
+            : <button onClick={clickEdit}>수정</button>}
+            {edit ? <button onClick={cancle}>취소</button> : null}
+            {!edit ? <button onClick={deletePost}>삭제</button> : null}
+          </UnderTitleContainer>
+        </PostHeaderContainer>
+      }
+      {loading ? null : 
+        <ContentContainer>
+          {edit ? 
+          <MDEditor
+            height={400}
+            value={content}
+            onChange={setContent}
+          /> : <MDEditor.Markdown source={data[8]} />}
+        </ContentContainer>
+      }
+      {loading ? null : 
+        <ReactContainer>
+          <InfoContainer>likes : {data[4]}</InfoContainer>
+          <InfoContainer>no_comments: {data[3]}</InfoContainer>
+          <LikeButton 
+            onClick={clickLike}
+            active={active}
+          >
+            like
+          </LikeButton>
+          <button onClick={toPostList}>목록으로</button>
+        </ReactContainer>
+      }
+      {loading? null : 
+        <CommentContainer>
+          <Comment postNO={data[1]}/>
+        </CommentContainer>
+      }
     </MainContainer>
   )
 }

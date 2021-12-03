@@ -17,13 +17,15 @@ export async function getAllUser() {
   };
 }
 
-export async function getAllPost() {
-  const data = await request('get', POST_URL + '/posts', null);
+export function getAllPost() {
+  const data = request('get', POST_URL + '/posts', null);
   var postlist = [];
   var i;
   for (i = 0; i < data.length; i++) {
     postlist.push(Object.values(data[i]));
   }
+  // console.log('getallpost');
+  // console.log('postlist length : ' + postlist.length);
   return {
     type: types.GET_ALL_POSTS,
     payload: postlist,
@@ -56,19 +58,6 @@ export async function getMyLikedPosts(dataToSubmit) {
   };
 }
 
-export async function getMyComments(dataToSubmit) {
-  const data = await request('post', POST_URL + '/mycomments', dataToSubmit);
-  var mycommentlist = [];
-  var i;
-  for (i = 0; i < data.length; i++) {
-    mycommentlist.push(Object.values(data[i]));
-  }
-  return {
-    type: types.GET_MY_COMMENTS,
-    payload: mycommentlist,
-  };
-}
-
 export function registerUser(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");
@@ -98,7 +87,7 @@ export function modifyUser(dataToSubmit) {
   };
 }
 
-export function registerPost(dataToSubmit) {
+export async function registerPost(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
     console.log("userID is none");
     return {
@@ -106,10 +95,16 @@ export function registerPost(dataToSubmit) {
       payload: '',
     };
   }
-  request('post', POST_URL + '/register', dataToSubmit);
+  const data = await request('post', POST_URL + '/register', dataToSubmit);
+  var postlist = [];
+  var i;
+  for (i = 0; i < data.length; i++) {
+    postlist.push(Object.values(data[i]));
+  }
+  console.log('register and got postlist');
   return {
     type: types.REGISTER_POST,
-    payload: '',
+    payload: postlist,
   };
 }
 
@@ -128,15 +123,15 @@ export function userLogined(userdata) {
   };
 }
 
-export async function getCurrentPostsNumInfo() {
-  const _data = await request('get', POST_URL + '/currentposts', null);
-  const data = Object.values(_data);
-  return {
-    type: types.GET_CURRENT_POSTS_NUM_INFO,
-    payload1: data[0],
-    payload2: data[1],
-  };
-}
+// export async function getCurrentPostsNumInfo() {
+//   const _data = await request('get', POST_URL + '/currentposts', null);
+//   const data = Object.values(_data);
+//   return {
+//     type: types.GET_CURRENT_POSTS_NUM_INFO,
+//     payload1: data[0],
+//     payload2: data[1],
+//   };
+// }
 
 export function updatePostNum(dataToSubmit) {
   if (dataToSubmit['num_of_total_posts'] == '' || dataToSubmit['current_top_post_num'] == '') {
@@ -158,5 +153,12 @@ export function setPostPerPage(no) {
   return {
     type: types.SET_POST_PER_PAGE,
     payload: no,
+  };
+}
+
+export function updateCurrentPage(newPage) {
+  return {
+    type: types.SET_CURRENT_PAGE,
+    payload: newPage,
   };
 }

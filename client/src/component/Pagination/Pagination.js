@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PaginationPageList from '../PaginationPageList';
 import PaginationArrow from '../PaginationArrow';
-import { getAllPost } from '../../actions/actions';
-import { useDispatch } from 'react-redux';
+import { getAllPost, updateCurrentPage } from '../../actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import { GContainer } from './styled';
 
 // eslint-disable-next-line react/prop-types
 const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
     const dispatch = useDispatch();
+    const currentPage = useSelector(state => state.user.currentPage);
+    const setCurrentPage = (idx) => {
+        dispatch(updateCurrentPage(idx));
+    };
     const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
@@ -24,19 +26,19 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
         (totalPageCount - (currentPagi - 1) * pagePerPagination)
       : (pagePerPagination));
 
-    const pagiFirstEnabled = (currentPagi > 1);
-    const pagiPrevEnabled = (currentPagi > 1);
-    const pagiNextEnabled = (currentPagi < totalPagiCount);
-    const pagiLastEnabled = (currentPagi < totalPagiCount);
+    const pagiDoubleLeftEnabled = (currentPagi > 1);
+    const pagiSingleLeftEnabled = (currentPage > 1);
+    const pagiSingleRightEnabled = (currentPage < totalPageCount);
+    const pagiDoubleRightEnabled = (currentPagi < totalPagiCount);
 
     useEffect(() => {
         dispatch(getAllPost());
     }, []);
     // symbol   : type
-    // <<       : first
-    // <        : prev
-    // >        : next
-    // >>       : last
+    // <<       : DoubleLeft
+    // <        : SingleLeft
+    // >        : SingleRight
+    // >>       : DoubleRight
     return (
         <GContainer>
             <table>
@@ -44,19 +46,21 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                     <tr>
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='<<' type='first'
-                            enabled={pagiFirstEnabled}
+                            symbol='<<' type='DoubleLeft'
+                            enabled={pagiDoubleLeftEnabled}
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='<' type='prev'
-                            enabled={pagiPrevEnabled}
+                            symbol='<' type='SingleLeft'
+                            enabled={pagiSingleLeftEnabled}
                             parentComponent={parentComponent} />
                         <PaginationPageList
                             currentPage={currentPage}
@@ -66,19 +70,21 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='>' type='next'
-                            enabled={pagiNextEnabled}
+                            symbol='>' type='SingleRight'
+                            enabled={pagiSingleRightEnabled}
                             parentComponent={parentComponent} />
                         <PaginationArrow
                             currentPagi={currentPagi}
+                            currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                             pagePerPagi={pagePerPagination}
                             totalPagiCount={totalPagiCount}
-                            symbol='>>' type='last'
-                            enabled={pagiLastEnabled}
+                            symbol='>>' type='DoubleRight'
+                            enabled={pagiDoubleRightEnabled}
                             parentComponent={parentComponent} />
                     </tr>
                 </tbody>

@@ -6,8 +6,8 @@ export const SingleCommentContainer = styled.div`
     display: flex;
     border-radius: 10px;
     // flex-direction: row;
-    border-bottom: 0.1rem solid grey;
-    margin: 5px;
+    padding: 4px;
+    margin-top: 4px;
     background: rgba(255, 159, 180, 0.4);
 `;
 
@@ -25,6 +25,7 @@ export const WriterContainer = styled.div`
     // background: #dd00dd;
     font-weight: bold;
     margin-bottom: 7px;
+    justify-content: space-between;
 `;
 
 export const ContentContainer = styled.div`
@@ -61,3 +62,12 @@ export const ProfileContent = styled.div`
   display: flex;
 `;
 
+export const DateContainer = styled.div`
+  margin-right: 4px;
+`;
+
+export const CommentFuncContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+`;
