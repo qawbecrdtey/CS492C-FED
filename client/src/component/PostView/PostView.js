@@ -29,21 +29,20 @@ const socket = io.connect('http://localhost:4080/');
 const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
+  const pastPageNumber = useSelector(state => state.user.currentPage);
   const [_reducerpostList , setRPL] = useState([..._postList]);
   const [loading, setLoading] = useState(true);
   const { no } = match.params;
   console.log('no : ' + no);
   const parentcomponent = Object.values(QueryString.parse(location.search));
-  const goBackURL = parentcomponent + '/1';
+  const goBackURL = parentcomponent + '/' + pastPageNumber;
   const _history = useHistory();
   const dispatch = useDispatch();
   const data = _reducerpostList.find((element) => {
     return element[1] == no
   });
-  // const [title, setTitle] = useState(data[2]);
   const [title, setTitle] = useState('');
   const [edit, setEdit] = useState(false);
-  // const [content, setContent] = useState(data[8]);
   const [content, setContent] = useState('');
   const [active, setActive] = useState(false);
 
