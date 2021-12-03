@@ -12,19 +12,24 @@ const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     const setCurrentPage = (idx) => {
         dispatch(updateCurrentPage(idx));
     };
+
+    console.log(`postCount = ${postCount}`);
+    console.log(`currentPage = ${currentPage}`);
+
     const totalPostNumber = postCount;
 
     const pagePerPagination = 10;
 
-    const startIndex = Math.floor((currentPage - 1) / pagePerPagination) * pagePerPagination + 1;
+    const startIndex = ((totalPostNumber === 0) ? 1 : (Math.floor((currentPage - 1) / pagePerPagination) * pagePerPagination + 1));
 
-    const totalPageCount = Math.floor((totalPostNumber - 1) / articlePerPage) + 1;
-    const totalPagiCount = Math.floor((totalPageCount - 1) / pagePerPagination) + 1;
+    const totalPageCount = ((totalPostNumber === 0) ? 1 : (Math.floor((totalPostNumber - 1) / articlePerPage) + 1));
+    const totalPagiCount = ((totalPostNumber === 0) ? 1 : (Math.floor((totalPageCount - 1) / pagePerPagination) + 1));
 
-    const currentPagi = Math.floor((currentPage - 1) / pagePerPagination) + 1;
-    const pageCountInCurrentPagination = (currentPagi === totalPagiCount ?
-        (totalPageCount - (currentPagi - 1) * pagePerPagination)
-      : (pagePerPagination));
+    const currentPagi = ((totalPostNumber === 0) ? 1 : (Math.floor((currentPage - 1) / pagePerPagination) + 1));
+    const pageCountInCurrentPagination = ((totalPostNumber === 0) ? 1 :
+        ((currentPagi === totalPagiCount ?
+            (totalPageCount - (currentPagi - 1) * pagePerPagination)
+          : (pagePerPagination))));
 
     const pagiDoubleLeftEnabled = (currentPagi > 1);
     const pagiSingleLeftEnabled = (currentPage > 1);

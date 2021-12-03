@@ -2,16 +2,18 @@ import React from 'react';
 import { Text, HeaderContainer, Btn, BtnContainer, UserInfo } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogined } from '../../actions/actions';
+import { updateCurrentPage, userLogined } from '../../actions/actions';
 
 const Header = () => {
     const history = useHistory();
-    const _loginUser = useSelector(state => state.user.loginUser);
     const dispatch = useDispatch();
+    const _loginUser = useSelector(state => state.user.loginUser);
     const backtoMain = () => {
+        dispatch(updateCurrentPage(1));
         history.push('/postMain/1');
     }
     const goMyPage = () => {
+        dispatch(updateCurrentPage(1));
         history.push('/myPage/myPosts/1');
     }
     const logout = () => {

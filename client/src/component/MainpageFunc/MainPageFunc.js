@@ -1,8 +1,10 @@
 import React from 'react';
 import { Btn, FunctionContainer } from './styled';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import io from 'socket.io-client';
+import { updateCurrentPage } from '../../actions/actions';
 const socket = io.connect('http://localhost:4080/');
 
 // eslint-disable-next-line react/prop-types
@@ -11,7 +13,12 @@ const MainPageFunc = ({ removelist }) => {
     const movetowriter = () => {
         history.push('/postWrite');
     }
+    console.log(removelist);
+    
+    const dispatch = useDispatch();
+
     const removeposts = () => {
+      dispatch(updateCurrentPage(1));
       socket.emit('remove-snd', { removelist });
       console.log('removelist : ' + removelist);
       window.location.replace(`/postMain/1`);
