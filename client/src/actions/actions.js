@@ -17,8 +17,8 @@ export async function getAllUser() {
   };
 }
 
-export function getAllPost() {
-  const data = request('get', POST_URL + '/posts', null);
+export async function getAllPost() {
+  const data = await request('get', POST_URL + '/posts', null);
   var postlist = [];
   var i;
   for (i = 0; i < data.length; i++) {

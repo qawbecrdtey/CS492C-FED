@@ -27,10 +27,8 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
   const thiscomponent = '/postMain';
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
-  // const [_postList , setPL] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allCheck, setAllCheck] = useState(false);
-  // const [searched_postList, setSP] = useState([..._postList]);
   const [searched_postList, setSP] = useState([..._postList]);
   const [sortCondition, setSortCondition] = useState({
     element: '글번호',
@@ -92,13 +90,13 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
 
   const search = () => {
     if (queryItem == '작성자') {
-      setSP(searched_postList.filter(item => item[5] == query));
+      setSP(_postList.filter(item => item[5] == query));
     } else if (queryItem == '제목') {
-      setSP(searched_postList.filter(item => {
+      setSP(_postList.filter(item => {
         return item[2].includes(query);
       }));
     } else if (queryItem == '내용') {
-      setSP(searched_postList.filter(item => {
+      setSP(_postList.filter(item => {
         return item[8].includes(query);
       }));
     } else if (queryItem == '전체') {
@@ -106,7 +104,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         queryString: query,
       };
       request('post', '/api/querycomment', body).then(response => {
-        setSP(searched_postList.filter(item => {
+        setSP(_postList.filter(item => {
           if (item[2].includes(query) || item[5].includes(query) || item[8].includes(query)) return true;
           var i;
           for (i = 0; i < response.length; i++) {
@@ -122,7 +120,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         queryString: query,
       };
       request('post', '/api/querycomment', body).then(response => {
-        setSP(searched_postList.filter(item => {
+        setSP(_postList.filter(item => {
           var i;
           for (i = 0; i < response.length; i++) {
             if (item[1] == response[i].postNO) {
