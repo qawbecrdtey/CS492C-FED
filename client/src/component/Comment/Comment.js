@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { Input } from 'antd';
@@ -37,7 +38,7 @@ function Comments(props) {
                     if (response.data.success) {
                         console.log(response.data.result)
                         setComment([])
-                        window.location.replace(`/postView/${postNO}`);
+                        window.location.replace(window.location.href);
                     } else {
                         alert('Failed to save Comment')
                     }
