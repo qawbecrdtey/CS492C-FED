@@ -13,6 +13,7 @@ import {
 import Pagination from '../Pagination/Pagination';
 import { setPostPerPage, updateCurrentPage } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import PostList from '../PostList';
 import Triangle from '../Triangle';
 import MyPostList from '../MyPostList';
@@ -29,7 +30,7 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
     const postPerPage = useSelector(state => state.user.postPerPage);
     const [_postCount, setPostCount] = useState(_postlist.length);
 
-    // const history = useHistory();
+    const history = useHistory();
 
     const getPostCount = (no) => {
       setPostCount(no);

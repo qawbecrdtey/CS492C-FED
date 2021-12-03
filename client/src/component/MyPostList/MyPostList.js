@@ -57,7 +57,7 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
   }, [ ])
   return (
     <ListContainer>
-      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked}>
+      <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked} mypage={true}>
         {
           render_postList ? render_postList.map((char, index) => {
             return (
