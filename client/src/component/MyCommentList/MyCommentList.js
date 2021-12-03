@@ -1,3 +1,4 @@
+// /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import { useSelector } from 'react-redux';
@@ -60,10 +61,13 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
           loading ? render_commentList.map((char, index) => {
               const _postNO = char[3];
               const thispost = _postList.find((element) => {
+                console.log(element[1]);
+                console.log(_postNO);
                   if (element[1] === _postNO) {
                     return true;
                   }
               })
+              console.log(thispost);
               return (
                 <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
               )

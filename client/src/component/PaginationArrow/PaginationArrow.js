@@ -27,7 +27,7 @@ const PaginationArrow = props => {
         }
     };
     const gotoPagi = getGotoPagi(type);
-    console.log(`gotoPagi = ${gotoPagi}`);
+    // console.log(`gotoPagi = ${gotoPagi}`);
     const pageNo = (() => {
         if(type === 'DoubleLeft') return gotoPagi * pagePerPagi;
         if(type === 'SingleLeft') return currentPage - 1;
