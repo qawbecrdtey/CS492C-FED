@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPost } from '../../actions/actions';
 import MDEditor from '@uiw/react-md-editor';
 import axios from 'axios';
+import moment from 'moment';
+
 const POST_URL = '/api/post';
 
 const converter = new Showdown.Converter({
@@ -38,7 +40,7 @@ const PostWrite = () => {
             .then(_data => {
                 const rcv_data = Object.values(_data);
                 console.log(rcv_data[0].num_of_total_posts);
-                const created_date = new Date();
+                const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
                 let body = {
                     postNO: rcv_data[0].num_of_total_posts + 1,
                     title: title,
