@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
   userID: {
     type: String,
-    maxlength: 20,
+    maxlength: 15,
     required: true,
   },
   password: {
