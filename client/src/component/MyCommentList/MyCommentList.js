@@ -60,7 +60,7 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
         {
           loading ? render_commentList.map((char, index) => {
               console.log(char)
-              const _postNO = char[3];
+              const _postNO = char[4];
               const thispost = _postList.find((element) => {
                 console.log(element[1]);
                 console.log(_postNO);
