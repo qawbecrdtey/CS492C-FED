@@ -92,13 +92,13 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
 
   const search = () => {
     if (queryItem == '작성자') {
-      setSP(_postList.filter(item => item[5] == query));
+      setSP(searched_postList.filter(item => item[5] == query));
     } else if (queryItem == '제목') {
-      setSP(_postList.filter(item => {
+      setSP(searched_postList.filter(item => {
         return item[2].includes(query);
       }));
     } else if (queryItem == '내용') {
-      setSP(_postList.filter(item => {
+      setSP(searched_postList.filter(item => {
         return item[8].includes(query);
       }));
     } else if (queryItem == '전체') {
@@ -106,7 +106,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         queryString: query,
       };
       request('post', '/api/querycomment', body).then(response => {
-        setSP(_postList.filter(item => {
+        setSP(searched_postList.filter(item => {
           if (item[2].includes(query) || item[5].includes(query) || item[8].includes(query)) return true;
           var i;
           for (i = 0; i < response.length; i++) {
@@ -122,7 +122,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         queryString: query,
       };
       request('post', '/api/querycomment', body).then(response => {
-        setSP(_postList.filter(item => {
+        setSP(searched_postList.filter(item => {
           var i;
           for (i = 0; i < response.length; i++) {
             if (item[1] == response[i].postNO) {
