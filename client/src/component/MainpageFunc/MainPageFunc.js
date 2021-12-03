@@ -11,6 +11,7 @@ const MainPageFunc = ({ removelist }) => {
     const movetowriter = () => {
         history.push('/postWrite');
     }
+
     const removeposts = () => {
       socket.emit('remove-snd', { removelist });
       console.log('removelist : ' + removelist);

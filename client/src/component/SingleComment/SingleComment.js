@@ -23,7 +23,7 @@ function SingleComment({ comment, postNO}) {
                     alert('Failed to delete Comment')
                 }
         })
-        window.location.replace(`/postView/${postNO}`);
+        window.location.replace(window.location.href);
     }
 
     const userProfile = test.filter(e => (e[1]==comment.writer));

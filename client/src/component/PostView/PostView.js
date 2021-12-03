@@ -79,12 +79,14 @@ const PostView = ({ match }) => {
     _history.push(goBackURL);
   };
 
+
   const deletePost = () => {
-    let body = {
-      postNO : data[1],
-    }
-    request('post', POST_URL + '/deletePost', body)
-    // _history.push('/postMain/1');
+    // let body = {
+    //   postNO : data[1],
+    // }
+    // request('post', POST_URL + '/deletePost', body)
+    let removelist = [data[1]];
+    socket.emit('remove-snd', { removelist });
     _history.push(goBackURL);
   }
 
