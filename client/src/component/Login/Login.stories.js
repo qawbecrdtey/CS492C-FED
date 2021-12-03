@@ -3,7 +3,7 @@ import Login from './Login';
 import { decorators } from '../../../.storybook/preview';
 
 export default {
-    title : 'login component',
+    title : 'Login component',
     component: Login,
     decorators: decorators,
 };
