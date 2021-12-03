@@ -38,13 +38,20 @@ const PostView = ({ match }) => {
   const goBackURL = parentcomponent + '/' + pastPageNumber;
   const _history = useHistory();
   const dispatch = useDispatch();
-  const data = _reducerpostList.find((element) => {
-    return element[1] == no
-  });
   const [title, setTitle] = useState('');
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState('');
   const [active, setActive] = useState(false);
+  const data = _reducerpostList.find((element) => {
+    return element[1] == no
+  });
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data[2]);
+      setContent(data[[8]]);
+    }
+  },[data]);
 
   const clickEdit = () => {
     setEdit(true);
@@ -56,35 +63,31 @@ const PostView = ({ match }) => {
     setTitle(e.target.value);
   };
   const editContent = () => {
-    const created_date = new Date();
-    let body = {
-        postNO : data[1],
-        title: title,
-        no_comments: data[3],
-        likes: data[4],
-        userID: data[5],
-        created_date: created_date,
-        view: data[7],
-        content: content,
-        likeUsers: data[9],
+    if (content != '' && title != '') {
+      const created_date = new Date();
+      let body = {
+          postNO : data[1],
+          title: title,
+          no_comments: data[3],
+          likes: data[4],
+          userID: data[5],
+          created_date: created_date,
+          view: data[7],
+          content: content,
+          likeUsers: data[9],
+      }
+      dispatch(editPost(body));
+      console.log(body);
+      _history.push(goBackURL);
     }
-    dispatch(editPost(body));
-    console.log(body);
-    // _history.push('/postMain/1');
-    _history.push(goBackURL);
   };
 
   const toPostList = () => {
-    // _history.push('/postMain/1');
     _history.push(goBackURL);
   };
 
 
   const deletePost = () => {
-    // let body = {
-    //   postNO : data[1],
-    // }
-    // request('post', POST_URL + '/deletePost', body)
     let removelist = [data[1]];
     socket.emit('remove-snd', { removelist });
     _history.push(goBackURL);
