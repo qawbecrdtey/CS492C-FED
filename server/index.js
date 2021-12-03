@@ -214,19 +214,19 @@ app.post('/api/post/updatepostnum', async (req, res) => {
   });
 });
 
-app.post('/api/post/deletePost', async (req, res) => {
-  res.set('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  console.log('deletepost');
-  var postList = mongoose.model('Post');
-  var commentList = mongoose.model('Comment');
-  postList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
-    if (err) res.json({ success: false, err });
-  });
-  commentList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
-    if (err) res.json({ success: false, err });
-  });
-});
+// app.post('/api/post/deletePost', async (req, res) => {
+//   res.set('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Origin', req.headers.origin);
+//   console.log('deletepost');
+//   var postList = mongoose.model('Post');
+//   var commentList = mongoose.model('Comment');
+//   postList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
+//     if (err) res.json({ success: false, err });
+//   });
+//   commentList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
+//     if (err) res.json({ success: false, err });
+//   });
+// });
 
 app.post('/api/querycomment', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
@@ -286,7 +286,8 @@ io.on('connection', (socket) => {
         console.log('delete post no : ' + postNO);
         if (err) return res.json({ success: false, err });
       });
-      commentList.findOneAndDelete({ postNO: postNO }, (err) => {
+      // commentList.findOneAndDelete({ postNO: postNO }, (err) => {
+      commentList.deleteMany({ postNO: postNO }, (err) => {
         console.log('delete comment post no : ' + postNO);
         if (err) return res.json({ success: false, err });
       });
