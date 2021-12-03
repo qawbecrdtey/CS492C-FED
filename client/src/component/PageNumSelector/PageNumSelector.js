@@ -18,6 +18,7 @@ import Triangle from '../Triangle';
 import MyPostList from '../MyPostList';
 import MyLikeList from '../MyLikeList';
 import MyCommentList from '../MyCommentList';
+import { useHistory } from 'react-router';
 
 // eslint-disable-next-line react/prop-types
 const PageNumSelector = ({ pageNO, parentComponent }) => {
@@ -27,6 +28,8 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
     const _postlist = useSelector(state => state.user.postList);
     const postPerPage = useSelector(state => state.user.postPerPage);
     const [_postCount, setPostCount] = useState(_postlist.length);
+
+    const history = useHistory();
 
     const getPostCount = (no) => {
       setPostCount(no);
@@ -46,8 +49,7 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
           dispatch(setPostPerPage(parseInt(e.target.innerText)));
           dispatch(updateCurrentPage(1));
         }
-        
-        window.location.replace(`/postMain/1`);
+        history.push('/postMain/1');
 
         setIsActive((prev) => !prev);
     }, []);
