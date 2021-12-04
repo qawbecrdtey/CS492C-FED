@@ -1,9 +1,37 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
+import { Provider } from 'react-redux';
 import SingleComment from './SingleComment';
+
+const store = {
+    getState: () => {
+        return {
+            user : 
+            {
+                userList : [
+                    [ 'something',
+                    'dain', 
+                    '1234', 
+                    'A', 
+                    '24', 
+                    '010' ]
+                ]
+            }
+        };
+    },
+    subscribe: () => {},
+    dispatch: action('dispatch')
+};
+
+const withReduxMockStore = (story) => (
+    <Provider store={store}>{story()}</Provider>
+)
+
 
 export default {
     title : 'SingleComment component',
     component: SingleComment,
+    decorators: [withReduxMockStore]
 };
 
 const SingleCommentComponent = args => <SingleComment {...args}/>;

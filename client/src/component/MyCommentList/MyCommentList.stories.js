@@ -12,8 +12,8 @@ const MyCommentListComponent = args => <MyCommentList {...args}/>;
 const getPostCount = () => {
 }
 
-export const postperpage20 = MyCommentListComponent.bind({});
-postperpage20.args = {
+export const Default = MyCommentListComponent.bind({});
+Default.args = {
     pageNO: 1,
     postPerPage: 20,
     getPostCount: getPostCount,
