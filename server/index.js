@@ -28,6 +28,7 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:6006' }));
 app.use('/api/comment', require('./routes/comment'));
 
 app.listen(port, () => {
@@ -214,20 +215,6 @@ app.post('/api/post/updatepostnum', async (req, res) => {
   });
 });
 
-// app.post('/api/post/deletePost', async (req, res) => {
-//   res.set('Access-Control-Allow-Credentials', 'true');
-//   res.header('Access-Control-Allow-Origin', req.headers.origin);
-//   console.log('deletepost');
-//   var postList = mongoose.model('Post');
-//   var commentList = mongoose.model('Comment');
-//   postList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
-//     if (err) res.json({ success: false, err });
-//   });
-//   commentList.findOneAndDelete({ postNO: req.body.postNO }, (err) => {
-//     if (err) res.json({ success: false, err });
-//   });
-// });
-
 app.post('/api/querycomment', async (req, res) => {
   res.set('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -293,22 +280,6 @@ io.on('connection', (socket) => {
       });
     });
   });
-  // socket.on('registerpost-snd', (item) => {
-  //   console.log('registerpost socket');
-  //   var postList = mongoose.model('Post');
-  //   const post = new Post(item);
-  //   if (post.postNO === '') {
-  //     console.log('err : postNO is empty while registering the post');
-  //   }
-  //   postList.findOne({ postNO: post.postNO }, function (err, samePost) {
-  //     if (err) console.log(err);
-  //     if (samePost != null) console.log('err : same postNO');
-  //   });
-  //   post.save((err) => {
-  //     if (err) console.log(err);
-  //     console.log('save post');
-  //   });
-  // });
 });
 
 httpServer.listen(4080);
