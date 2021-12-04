@@ -24,6 +24,7 @@ function Comments(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log('submit');
         if (Comment != '') {
             if (Comment.length >= 1000) {
                 alert('댓글 길이는 1000byte 이하여야 합니다')
@@ -51,18 +52,17 @@ function Comments(props) {
 
     useEffect(()=>{
         const variables = {
-            content: Comment,
             postNO: postNO,
         }
         axios.post('/api/comment/getComments', variables)
-        .then(response => {
-            if (response.data.success) {
-                setCommentLists(response.data.comments)
-            } else {
-                alert('Failed to get video Info')
-            }
-        })
-        console.log(user);
+            .then(response => {
+                console.log(Object.values(response));
+                if (response.data.success) {
+                    setCommentLists(response.data.comments)
+                } else {
+                    alert('Failed to get video Info')
+                }
+            })
       },[]);
     
     return (

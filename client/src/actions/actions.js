@@ -24,8 +24,6 @@ export async function getAllPost() {
   for (i = 0; i < data.length; i++) {
     postlist.push(Object.values(data[i]));
   }
-  // console.log('getallpost');
-  // console.log('postlist length : ' + postlist.length);
   return {
     type: types.GET_ALL_POSTS,
     payload: postlist,
@@ -122,16 +120,6 @@ export function userLogined(userdata) {
     payload: userdata,
   };
 }
-
-// export async function getCurrentPostsNumInfo() {
-//   const _data = await request('get', POST_URL + '/currentposts', null);
-//   const data = Object.values(_data);
-//   return {
-//     type: types.GET_CURRENT_POSTS_NUM_INFO,
-//     payload1: data[0],
-//     payload2: data[1],
-//   };
-// }
 
 export function updatePostNum(dataToSubmit) {
   if (dataToSubmit['num_of_total_posts'] == '' || dataToSubmit['current_top_post_num'] == '') {

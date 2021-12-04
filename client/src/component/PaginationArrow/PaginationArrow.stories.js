@@ -7,21 +7,51 @@ export default {
     component: PaginationArrow,
 };
 
-// export const PaginationArrowComponent = () => <PaginationArrow />;
 const PaginationArrowComponent = args => <PaginationArrow {...args}/>;
 
-// const [currentPage, setCurrentPage] = useState(1);
 const setCurrentPage = () => {
+};
 
-}
-
-export const Page1 = PaginationArrowComponent.bind({});
-Page1.args = {
+export const LeftDoubleArrow = PaginationArrowComponent.bind({});
+LeftDoubleArrow.args = {
     currentPagi: 1,
     setCurrentPage: setCurrentPage,
     pagePerPagi: 10,
     totalPagiCount: 20,
     symbol: '<<',
+    type: 'first',
+    enabled: true,
+    parentComponent: 'PostMain',
+}
+export const RightDoubleArrow = PaginationArrowComponent.bind({});
+RightDoubleArrow.args = {
+    currentPagi: 1,
+    setCurrentPage: setCurrentPage,
+    pagePerPagi: 10,
+    totalPagiCount: 20,
+    symbol: '>>',
+    type: 'first',
+    enabled: true,
+    parentComponent: 'PostMain',
+}
+export const LeftArrow = PaginationArrowComponent.bind({});
+LeftArrow.args = {
+    currentPagi: 1,
+    setCurrentPage: setCurrentPage,
+    pagePerPagi: 10,
+    totalPagiCount: 20,
+    symbol: '<',
+    type: 'first',
+    enabled: true,
+    parentComponent: 'PostMain',
+}
+export const RightArrow = PaginationArrowComponent.bind({});
+RightArrow.args = {
+    currentPagi: 1,
+    setCurrentPage: setCurrentPage,
+    pagePerPagi: 10,
+    totalPagiCount: 20,
+    symbol: '>',
     type: 'first',
     enabled: true,
     parentComponent: 'PostMain',
