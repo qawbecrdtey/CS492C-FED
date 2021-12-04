@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/react,storybookjs
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,storybookjs
 
@@ -10,6 +9,7 @@ logs
 **/*.back.*
 
 node_modules
+client/node_modules
 bower_components
 
 *.sublime*
@@ -19,6 +19,7 @@ thumb
 sketch
 
 **/package-lock.json
+**/yarn.lock
 
 ### StorybookJs ###
 # gitignore template for the Storybook, UI guide for front apps
