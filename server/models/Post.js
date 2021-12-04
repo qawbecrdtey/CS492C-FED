@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
+    maxlength: 50,
   },
   no_comments: {
     type: Number,
@@ -17,7 +18,7 @@ const postSchema = mongoose.Schema({
   },
   userID: {
     type: String,
-    maxlength: 50,
+    maxlength: 15,
     required: true,
   },
   created_date: {
@@ -28,6 +29,7 @@ const postSchema = mongoose.Schema({
   },
   content: {
     type: String,
+    maxlength: 10000,
   },
   likeUsers: {
     type: [String],
