@@ -5,7 +5,7 @@
 
 First, clone the repository.
 ```bash
-git clone 
+git clone https://github.com/yuminyumin/CS492C-FED.git
 cd CS492C-FED
 ```
 
@@ -36,7 +36,7 @@ To run the command separately, you should follow the instructions below.
 
 First, clone the repository.
 ```bash
-git clone 
+git clone https://github.com/yuminyumin/CS492C-FED.git
 cd CS492C-FED
 ```
 
