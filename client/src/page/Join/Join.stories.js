@@ -1,14 +1,21 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
-import Pagination from './Pagination';
+import Join from './Join';
 
 const store = {
     getState: () => {
         return {
             user : 
             {
-                currentPage: 1,
+                userList : [
+                    [ 'something',
+                    'dain', 
+                    '1234', 
+                    'A', 
+                    '24', 
+                    '010' ]
+                ]
             }
         };
     },
@@ -20,21 +27,17 @@ const withReduxMockStore = (story) => (
     <Provider store={store}>{story()}</Provider>
 )
 
+
 export default {
-    title : 'Pagination component',
-    component: Pagination,
+    title : 'Join component',
+    component: Join,
     decorators: [withReduxMockStore]
 };
 
-const PaginationComponent = args => <Pagination {...args}/>;
+const JoinComponent = args => <Join {...args}/>;
 
-export const Default = PaginationComponent.bind({});
-Default.args = {
-    articlePerPage: 20,
-    postCount: 150,
-    parentComponent: 'PostMain',
-}
+export const Default = JoinComponent.bind({});
 
-PaginationComponent.story = {
-    name: 'Pagination',
+JoinComponent.story = {
+    name: 'Join',
 };

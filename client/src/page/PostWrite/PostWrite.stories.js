@@ -1,14 +1,18 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
-import Pagination from './Pagination';
+import PostWrite from './PostWrite';
+
 
 const store = {
     getState: () => {
         return {
             user : 
             {
-                currentPage: 1,
+                loginUser: {
+                    userID: 'dain',
+                    password: '123444',
+                },
             }
         };
     },
@@ -20,21 +24,26 @@ const withReduxMockStore = (story) => (
     <Provider store={store}>{story()}</Provider>
 )
 
+
 export default {
-    title : 'Pagination component',
-    component: Pagination,
+    title : 'PostWrite component',
+    component: PostWrite,
     decorators: [withReduxMockStore]
 };
 
-const PaginationComponent = args => <Pagination {...args}/>;
+const PostWriteComponent = args => <PostWrite {...args}/>;
 
-export const Default = PaginationComponent.bind({});
-Default.args = {
-    articlePerPage: 20,
-    postCount: 150,
-    parentComponent: 'PostMain',
+const match_1 = {
+    params: {
+        pageNO: 1,
+    },
 }
 
-PaginationComponent.story = {
-    name: 'Pagination',
+export const Default = PostWriteComponent.bind({});
+Default.args = {
+    match: match_1,
+}
+
+PostWriteComponent.story = {
+    name: 'PostWrite',
 };
