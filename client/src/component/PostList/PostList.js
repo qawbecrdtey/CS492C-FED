@@ -33,6 +33,13 @@ import PropTypes from 'prop-types';
  *    함수를 통해 해당 페이지에 게시물 테이블을 렌더링합니다.
  *  - MainPageFunc은 체크박스를 통해 결정된 삭제 대상 postNO의 list인
  *    removeList state를 인자로 넘겨주어 해당 컴포넌트 내의 삭제 버튼 클릭시 삭제할 수 있도록 합니다.
+ *  - Actions
+ *       - 검색 : 선택된 검색분류와 검색어로 검색 결과를 렌더링해줍니다.
+ *       - 글쓰기 : 글쓰기 페이지로 이동합니다.
+ *       - 삭제 : 체크된 게시글들이 삭제됩니다.
+ *       - 전체 체크박스 : 페이지에 있는 게시글이 전체선택/해제됩니다.
+ *       - 개별 체크박스 : 게시글마다 체크가 가능하고, 체크된 게시글을 추후에 삭제할 수 있습니다.
+ *       - 제목 클릭 : 해당 게시글 상세보기 페이지로 이동합니다.
  */
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickCheck, isStory, onSearch, onWrite, onDelete, onSortColumn }) => {

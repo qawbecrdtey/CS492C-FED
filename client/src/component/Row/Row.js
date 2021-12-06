@@ -10,6 +10,9 @@ import PropTypes from 'prop-types';
 
 /**
  * - 메인 페이지에서 각 게시물 목록의 정보로 구성됩니다.
+ * - Actions 
+ *      - Checkbox : 게시글에 해당되는 체크박스에 체크 후 상위 컴포넌트에 있는 삭제 버튼을 누르면 해당 게시글이 삭제됩니다.
+ *      - 제목 : 클릭 시 해당 게시글 상세보기 페이지로 이동합니다.
  */
 
 // eslint-disable-next-line react/prop-types

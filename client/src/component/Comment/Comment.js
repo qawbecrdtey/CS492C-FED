@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
  * - Input Box, Submit Button, 여러 개의 SingleComment로 구성되어 있습니다.   
  * - Input Box에 댓글 내용을 입력한 뒤 Submit Button을 누르면 댓글의 정보가 DB에 입력됩니다.   
  * - DB에 저장된 댓글을 가져와 페이지를 다시 렌더링합니다.
+ * - 스토리북 상에서는 DB와 통신할 때 댓글을 가져오는 부분에 문제가 있어 렌더링되지 않습니다. 상세한 기능은 리액트 앱으로 확인할 수 있습니다.
  * - Actions
  *      - Submit: Submit 버튼을 누르면 onSubmit을 호출하여 Input box의 내용을 서버에 전달합니다.
  */

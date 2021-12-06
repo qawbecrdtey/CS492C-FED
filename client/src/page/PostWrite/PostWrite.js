@@ -26,6 +26,12 @@ const POST_URL = '/api/post';
  * - 작성 버튼을 누르면 서버에서 postNO를 받아온 후 데이터를 서버로 다시 보내줍니다.   
  * - 제목이나 내용 중 하나라도 비어 있거나 길이 제한을 넘을 경우 작성되지 않고 경고창이 노출됩니다.
  * - 게시물 작성 시 마크다운 에디터가 제공되며 프리뷰도 제공됩니다.
+ * - Actions
+ *      - 목록으로 : 목록으로 이동하면서 dispatch로 redux store의 currentpage를 1로 초기화해줍니다.
+ *      - MyPage : 마이페이지로 이동하면서 dispatch로 redux store의 currentpage를 1로 초기화해줍니다.
+ *      - Logout : 로그인 페이지로 이동하면서 dispatch로 redux store의 loginUser를 초기화해줍니다.
+ *      - 등록 : 게시물을 등록하고 게시물 목록으로 돌아갑니다.
+ *      - 취소 : 게시물 작성을 취소하고 게시물 목록으로 돌아갑니다.
  */
 const PostWrite = ({ isStory, onWrite, onCancel }) => {
     const [content, setContent] = useState('');
