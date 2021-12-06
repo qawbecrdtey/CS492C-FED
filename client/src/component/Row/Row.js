@@ -6,7 +6,12 @@ const Checkbox = props => <input type="checkbox" {...props} />;
 import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4080/');
 import { HoverContainer, HoverContent, ProfileContent } from './styled';
- 
+import PropTypes from 'prop-types';
+
+/**
+ * - 메인 페이지에서 각 게시물 목록의 정보로 구성됩니다.
+ */
+
 // eslint-disable-next-line react/prop-types
 const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked, parentcomponent }) => {
   const [checked, setChecked] = useState(false);
@@ -65,5 +70,59 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
     </tr>
   )
 }
- 
+
+Row.propTypes = {
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  postNO: PropTypes.number,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  title: PropTypes.string,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  no_comments: PropTypes.number,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  likes: PropTypes.number,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  userID: PropTypes.string,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  created_date: PropTypes.string,
+  /**
+   * 각 column에 노출하기 위해 받아오는 정보입니다.
+   */
+  views: PropTypes.number,
+  /**
+   * 사용되는 게시판의 종류를 상위 컴포넌트에서 받아옵니다.
+   */
+  mypage: PropTypes.bool,
+  /**
+   * 콜백함수로 checkbox 선택시 상위 컴포넌트에 이 row의 postNO를 전달해주는 함수입니다.   
+   * 체크박스를 통해 게시글 삭제를 할 때 사용됩니다.
+   */
+  add: PropTypes.func,
+  /**
+   * 콜백함수로 checkbox 선택시 상위 컴포넌트에 이 row의 postNO를 전달해주는 함수입니다.   
+   * 체크박스를 통해 게시글 삭제를 할 때 사용됩니다. 
+   */
+  del: PropTypes.func,
+  /**
+   * 상위 컴포넌트에서 받아와서 체크 및 체크 해제를 하는데 사용됩니다.
+   */
+  isAllChecked: PropTypes.bool,
+  /**
+   * 사용되는 게시판의 종류를 상위 컴포넌트에서 받아옵니다.
+   */
+  parentcomponent: PropTypes.string,
+    
+};
+
 export default Row;

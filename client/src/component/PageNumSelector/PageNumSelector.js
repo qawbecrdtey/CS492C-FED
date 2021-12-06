@@ -19,6 +19,12 @@ import Triangle from '../Triangle';
 import MyPostList from '../MyPostList';
 import MyLikeList from '../MyLikeList';
 import MyCommentList from '../MyCommentList';
+import PropTypes from 'prop-types';
+
+/**  
+ * - 페이지당 게시물 개수를 결정하기 위한 PostList의 상위 컴포넌트입니다.    
+ * - DropdownMenu에서 선택된 Item을 바탕으로 postPerPage값을 PostList와 Pagination 컴포넌트에 props로써 전달합니다.
+ */
 
 // eslint-disable-next-line react/prop-types
 const PageNumSelector = ({ pageNO, parentComponent, onClickDropDownMenu }) => {
@@ -96,4 +102,16 @@ const PageNumSelector = ({ pageNO, parentComponent, onClickDropDownMenu }) => {
     );
   };
   
+  PageNumSelector.propTypes = {
+  /**
+   * 현재 페이지 정보입니다.
+   */
+   pageNO: PropTypes.number,
+  /**
+   * 상위 컴포넌트의 종류이자 게시판 종류입니다.   
+   * PostList/MyPostList/MyCommentList/MyLikeList 중 하나를 렌더링합니다.
+   */
+   parentComponent: PropTypes.string,
+};
+
   export default PageNumSelector;

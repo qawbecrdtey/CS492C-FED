@@ -4,6 +4,13 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, getAllUser } from '../../actions/actions';
 
+/**
+ * - page 항목에 포함된 컴포넌트입니다.
+ * - userID, password, email, age, phoneNum 정보를 입력하고 
+     register버튼을 누르면 서버로 정보를 전송하여 등록되게 합니다.
+ * - userID가 15글자를 초과하는 경우, 서버의 userList에 userID와 중복된 값이 있는
+     경우, 정보 중 하나라도 비어 있는 경우 등록이 되지 않고 경고창이 노출됩니다.
+ */
 const Join = () => {
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars

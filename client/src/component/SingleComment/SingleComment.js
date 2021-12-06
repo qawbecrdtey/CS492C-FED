@@ -6,9 +6,11 @@ import { useSelector } from 'react-redux';
 import { BodyContainer, SingleCommentContainer, WriterContainer,
      ContentContainer, DateContainer, HoverContainer, HoverContent, 
      ProfileContent, CommentFuncContainer} from './styled';
+import PropTypes from 'prop-types';
 
 /**
- * [SingleComment 컴포넌트] 작성자의 이름에 마우스를 hover할 경우, 프로필 카드가 노출됩니다.
+ * - 작성자의 이름에 마우스를 hover할 경우, 프로필 카드가 노출됩니다.   
+ * - 삭제 버튼을 click하면 DB에서 해당 댓글을 삭제하고 페이지를 다시 렌더링합니다.
  */
 function SingleComment({ comment, postNO}) {
     const test = useSelector(state => state.user.userList);
@@ -66,5 +68,20 @@ function SingleComment({ comment, postNO}) {
         </SingleCommentContainer>
     )
 }
+
+SingleComment.propTypes = {
+    /**
+     * Comment에서 map을 사용할 때 필요한 변수입니다.
+     */
+    key: PropTypes.number,
+    /**
+     * Comment로부터 댓글의 정보를 props로 받습니다.
+     */
+    comment: PropTypes.object,
+    /**
+     * Comment에서 게시물 번호를 props로 받습니다.
+     */
+    postNO: PropTypes.number,
+  };
 
 export default SingleComment;

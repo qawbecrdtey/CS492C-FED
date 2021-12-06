@@ -7,6 +7,13 @@ import { getMyPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListContainer } from './styled';
  
+/**
+ * - Row에 thiscomponent 변수를 전달하여 상세보기에서 목록 전환 시
+     url 생성에 사용할 수 있도록 합니다.
+ * - PostList와 유사한 구조를 가지며, 검색 기능이 제외되고 정렬 기능만 있습니다.
+ * - reducer를 사용하여 서버에서 내가 쓴 글을 userID를 이용하여 불러와서
+     sort과정을 거쳐 렌더링 합니다.
+ */
 const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
   const dispatch = useDispatch();
   const thiscomponent = '/myPage/myPosts';

@@ -6,6 +6,13 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser, setPostPerPage, updateCurrentPage, userLogined } from '../../actions/actions';
 
+/**
+ * - userID와 password를 입력한 후 로그인 버튼을 눌러서 로그인합니다.
+ * - 서버에서 userList를 불러와서 사용자가 입력한 userID와 password가 
+ *   일치하는 정보가 있을 경우 로그인되게 합니다.
+ * - 로그인이 성공한 경우 postMain 페이지로 이동합니다.
+ * - register버튼을 누르면 가입 페이지(Join 컴포넌트)로 이동합니다.
+ */
 const Login = ({ onSignin, onJoin, isStory }) => {
     const _userList = useSelector(state => state.user.userList);
     const history = useHistory();

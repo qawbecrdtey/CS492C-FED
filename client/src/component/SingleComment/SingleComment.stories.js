@@ -9,6 +9,7 @@ const store = {
             user : 
             {
                 userList: [
+                    ["_id",'Writer', 'Password', 'Email', 'Age', 'Phone number'],
                     ["619bacaa929ca700ee96d13a",'dain', '1234', 'dain@naver.com', '24', '01012344321'],
                     ["619bacaa929ca7011196d13a",'yumin', '1234', 'yumin@naver.com', '23', '01012311321'],
                     ["619bacaa929ca7011196d13a",'asdf', '1234', 'asdf@naver.com', '24', '01011311321'],

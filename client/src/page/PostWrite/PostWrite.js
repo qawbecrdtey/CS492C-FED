@@ -15,6 +15,17 @@ import axios from 'axios';
 import moment from 'moment';
 const POST_URL = '/api/post';
 
+/**
+ * - page 항목에 포함된 컴포넌트이며 게시물 작성 시 노출됩니다.      
+ * - react-md-editor로 마크다운 문법이 적용되게 하였습니다.   
+ * - moment.js로 작성 시간을 저장하여 렌더링하였습니다.   
+ * - 게시물 번호의 경우 등록 버튼을 누르는 순간 DB에 저장된 
+     가장 큰 postNO에서 1을 더한 값을 사용합니다.   
+ * - 작성자의 정보는 redux store에서 불러옵니다.   
+ * - 작성 버튼을 누르면 서버에서 postNO를 받아온 후 데이터를 서버로 다시 보내줍니다.   
+ * - 제목이나 내용 중 하나라도 비어 있거나 길이 제한을 넘을 경우 작성되지 않고 경고창이 노출됩니다.
+ * - 게시물 작성 시 마크다운 에디터가 제공되며 프리뷰도 제공됩니다.
+ */
 const PostWrite = () => {
     const [content, setContent] = useState('');
     const history = useHistory();
