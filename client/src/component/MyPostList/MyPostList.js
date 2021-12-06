@@ -13,6 +13,8 @@ import { ListContainer } from './styled';
  * - PostList와 유사한 구조를 가지며, 검색 기능이 제외되고 정렬 기능만 있습니다.
  * - reducer를 사용하여 서버에서 내가 쓴 글을 userID를 이용하여 불러와서
      sort과정을 거쳐 렌더링 합니다.
+ * - Actions
+ *    - 제목: 게시물 제목을 클릭하면 해당 게시물의 상세보기 페이지로 이동합니다.
  */
 const MyPostList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const dispatch = useDispatch();

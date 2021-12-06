@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
  * - Input Box, Submit Button, 여러 개의 SingleComment로 구성되어 있습니다.   
  * - Input Box에 댓글 내용을 입력한 뒤 Submit Button을 누르면 댓글의 정보가 DB에 입력됩니다.   
  * - DB에 저장된 댓글을 가져와 페이지를 다시 렌더링합니다.
+ * - Actions
+ *      - Submit: Submit 버튼을 누르면 onSubmit을 호출하여 Input box의 내용을 서버에 전달합니다.
  */
 function Comments({ postNO, _onSubmit, isStory }) {
     const user = useSelector(state => state.user.loginUser)

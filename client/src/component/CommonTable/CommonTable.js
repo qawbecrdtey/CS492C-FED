@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 /**
  * - postMain 및 MyPage에서 사용됩니다.
+ * - Actions
+ *    - Checkbox: Checkbox를 누르면 해당 게시물의 checked 변수가 설정됩니다.
+ *    - Text Element: Text를 누르면 해당 Text를 기준으로 게시물 목록이 정렬됩니다.
  */
  
 const CommonTable = ({ headersName, getElement, getChecked, children, mypage, onClickCheckbox, isStory, onSortColumn }) => {

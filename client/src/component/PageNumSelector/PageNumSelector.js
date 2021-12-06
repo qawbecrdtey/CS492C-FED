@@ -23,7 +23,9 @@ import PropTypes from 'prop-types';
 
 /**  
  * - 페이지당 게시물 개수를 결정하기 위한 PostList의 상위 컴포넌트입니다.    
- * - DropdownMenu에서 선택된 Item을 바탕으로 postPerPage값을 PostList와 Pagination 컴포넌트에 props로써 전달합니다.
+ * - Actions
+ *    - DropDownMenu: DropdownMenu에서 선택된 Item을 바탕으로 
+ *      postPerPage값을 PostList와 Pagination 컴포넌트에 props로써 전달합니다.
  */
 
 // eslint-disable-next-line react/prop-types
