@@ -15,6 +15,9 @@ import {
   TitleContainer, 
   UnderTitleContainer,
   LikeButton,
+  HoverContainer, 
+  HoverContent, 
+  ProfileContent
 } from './styled';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header';
@@ -32,6 +35,7 @@ const PostView = ({ match }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
   const pastPageNumber = useSelector(state => state.user.currentPage);
+  const test = useSelector(state => state.user.userList);
   const [_reducerpostList , setRPL] = useState([..._postList]);
   const [loading, setLoading] = useState(true);
   const { no } = match.params;
@@ -170,7 +174,22 @@ const PostView = ({ match }) => {
             : <TitleContainer>{data[2]}</TitleContainer>}
           <UnderTitleContainer>
             <InfoContainer>postNO : {data[1]}</InfoContainer>
-            <InfoContainer>writer: {data[5]}</InfoContainer>
+            <InfoContainer>
+              <HoverContainer>
+                writer: {data[5]}
+                <HoverContent className="profilecard">
+                    <ProfileContent>
+                        이메일: {test.filter(e => (e[1]==data[5]))[0][3]}
+                    </ProfileContent>
+                    <ProfileContent>
+                        나이: {test.filter(e => (e[1]==data[5]))[0][4]}
+                    </ProfileContent>
+                    <ProfileContent>
+                        전화번호: {test.filter(e => (e[1]==data[5]))[0][5]}
+                    </ProfileContent>
+                </HoverContent>
+              </HoverContainer>
+            </InfoContainer>
             <InfoContainer>{data[6]}</InfoContainer>
             <InfoContainer>views: {data[7]}</InfoContainer>
             {edit ?<button onClick={editContent}>등록</button>

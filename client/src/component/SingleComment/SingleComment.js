@@ -27,6 +27,7 @@ function SingleComment({ comment, postNO}) {
     }
 
     const userProfile = test.filter(e => (e[1]==comment.writer));
+    console.log(userProfile)
     useEffect(() => {
         // console.log(comment);
         // console.log(test);
