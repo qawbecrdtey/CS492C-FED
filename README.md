@@ -30,7 +30,7 @@ If there is any need to run `npm install`, try
 bash install.sh
 ```
 
-## Step-by-step instructions
+## Detailed instructions
 
 To run the command separately, you should follow the instructions below.
 
