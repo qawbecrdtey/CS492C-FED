@@ -3,7 +3,6 @@ import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import PostWrite from './PostWrite';
 
-
 const store = {
     getState: () => {
         return {
@@ -23,7 +22,6 @@ const store = {
 const withReduxMockStore = (story) => (
     <Provider store={store}>{story()}</Provider>
 )
-
 
 export default {
     title : 'PostWrite component',
