@@ -8,7 +8,7 @@ import Row from '../Row';
 const POST_URL = '/api/post';
  
 // eslint-disable-next-line react/prop-types
-const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
+const MyCommentList = ({ pageNO, postPerPage, getPostCount, storybookSpecific }) => {
   const [_postList, setPL] = useState([]);
   const thiscomponent = '/myPage/myComments';
   const _loginUser = useSelector(state => state.user.loginUser);
@@ -50,7 +50,9 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
   }
 
   useEffect(() => {
-    loadComments();
+    if(storybookSpecific !== true) {
+      loadComments();
+    }
   }, []);
 
   return (
