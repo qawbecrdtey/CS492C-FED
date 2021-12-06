@@ -7,7 +7,7 @@ import { getMyPost } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListContainer } from './styled';
  
-const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
+const MyPostList = ({ pageNO, postPerPage, getPostCount, storybookSpecific }) => {
   const dispatch = useDispatch();
   const thiscomponent = '/myPage/myPosts';
   const _mypostList = useSelector(state => state.user.myPostList);
@@ -54,7 +54,11 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
     let body = {
         userID: _loginUser['userID']
     }
-    dispatch(getMyPost(body));
+    console.log(`body = ${body}`);
+    console.log(body);
+    if(storybookSpecific !== true) {
+      dispatch(getMyPost(body));
+    }
   }, [ ])
   return (
     <ListContainer>
