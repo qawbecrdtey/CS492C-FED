@@ -23,7 +23,7 @@ import Triangle from '../Triangle';
 const POST_URL = '/api/post';
 
 // eslint-disable-next-line react/prop-types
-const PostList = ({ pageNO, postPerPage, getPostCount }) => {
+const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickCheck, isStory, onSearch, onWrite, onDelete, onSortColumn }) => {
   const thiscomponent = '/postMain';
   const dispatch = useDispatch();
   const _postList = useSelector(state => state.user.postList);
@@ -90,7 +90,7 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
 
   const search = () => {
     if (queryItem == '작성자') {
-      setSP(_postList.filter(item => item[5] == query));
+      setSP(_postList.filter(item => item[5].includes(query)));
     } else if (queryItem == '제목') {
       setSP(_postList.filter(item => {
         return item[2].includes(query);
@@ -116,20 +116,24 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
         }))
       });
     } else if (queryItem == '댓글') {
-      let body = {
-        queryString: query,
-      };
-      request('post', '/api/querycomment', body).then(response => {
-        setSP(_postList.filter(item => {
-          var i;
-          for (i = 0; i < response.length; i++) {
-            if (item[1] == response[i].postNO) {
-              return true;
+      if (query != '') {
+        let body = {
+          queryString: query,
+        };
+        request('post', '/api/querycomment', body).then(response => {
+          setSP(_postList.filter(item => {
+            var i;
+            for (i = 0; i < response.length; i++) {
+              if (item[1] == response[i].postNO) {
+                return true;
+              }
             }
-          }
-          return false;
-        }))
-      });
+            return false;
+          }))
+        });
+      } else {
+        setSP(_postList);
+      }
     }
     setActive(false);
   }
@@ -194,16 +198,17 @@ const PostList = ({ pageNO, postPerPage, getPostCount }) => {
           </DropDownMenu>
           <SearchTextContainer>검색어</SearchTextContainer>
           <Input onChange={onSetQuery}/>
-          <SearchButton onClick={search}>검색</SearchButton>
+          {isStory ? <SearchButton onClick={onSearch}>검색</SearchButton>
+           : <SearchButton onClick={search}>검색</SearchButton>}
         </SearchContainer>
-        <MainPageFunc removelist={removeList}/>
+        <MainPageFunc removelist={removeList} isStory={isStory} onWrite={onWrite} onDelete={onDelete}/>
       </FunctionContainer>
       {loading ? null :
-        <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked} mypage={false}>
+        <CommonTable headersName={['','글번호', '제목(댓글수)','좋아요','작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked} mypage={false} onClickCheckbox={onClickCheckbox} isStory={isStory} onSortColumn={onSortColumn}>
           {
             render_postList ? render_postList.map((char, index) => {
               return (
-                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck} parentcomponent={thiscomponent}/>
+                <Row key={index} postNO={char[1]} title={char[2]} no_comments={char[3]} likes={char[4]} userID={char[5]} created_date={char[6]} views={char[7]} mypage={false} add={addRemove} del={delRemove} isAllChecked={allCheck} parentcomponent={thiscomponent} onClickCheck={onClickCheck}/>
               )
             }) : ''
           }

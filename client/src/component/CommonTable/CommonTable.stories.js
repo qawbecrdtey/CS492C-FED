@@ -32,6 +32,8 @@ export const CommonTableComponent = () => {
             getChecked={_getChecked}
             myPage={false}
             onClickCheckbox={action('onClickCheckbox')}
+            isStory={true}
+            onSortColumn={action('onSortColumn')}
         />
     )
 };

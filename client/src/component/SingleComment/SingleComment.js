@@ -7,7 +7,7 @@ import { BodyContainer, SingleCommentContainer, WriterContainer,
      ContentContainer, DateContainer, HoverContainer, HoverContent, 
      ProfileContent, CommentFuncContainer} from './styled';
 
-function SingleComment({ comment, postNO}) {
+function SingleComment({ comment, postNO, isStory, onDelete }) {
     const test = useSelector(state => state.user.userList);
     const deleteComment = (e) => {
         e.preventDefault();
@@ -28,13 +28,7 @@ function SingleComment({ comment, postNO}) {
     }
 
     const userProfile = test.filter(e => (e[1]==comment.writer));
-    console.log(userProfile)
-    useEffect(() => {
-        // console.log(comment);
-        // console.log(test);
-    }, []);
     
-
     return (
         <SingleCommentContainer>
             <BodyContainer>
@@ -55,7 +49,8 @@ function SingleComment({ comment, postNO}) {
                     </HoverContainer>
                     <CommentFuncContainer>       
                         <DateContainer>{comment.created_date}</DateContainer>
-                        <button onClick={deleteComment}>삭제</button>
+                        {isStory ? <button onClick={onDelete}>삭제</button> :
+                        <button onClick={deleteComment}>삭제</button>}
                     </CommentFuncContainer>
                 </WriterContainer>
                 <ContentContainer>{comment.content}</ContentContainer>

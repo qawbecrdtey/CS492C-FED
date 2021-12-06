@@ -48,6 +48,8 @@ Default.args = {
     key: 1,
     comment: comment,
     postNO: 1,
+    isStory: true,
+    onDelete: action('onDelete')
 }
 
 SingleCommentComponent.story = {

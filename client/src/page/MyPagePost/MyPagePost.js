@@ -5,15 +5,29 @@ import { GroundContainer} from '../PostMain/styled';
 import MypageFunc from '../../component/MypageFunc/MypageFunc';
 import PageNumSelector from '../../component/PageNumSelector';
 
-const MyPagePost = ({ match }) => {
+const MyPagePost = ({ match, isStory, onClickBoard, onClickPostList, onClickMyPage, onClickLogout, onClickDropDownMenu, onClickMenu }) => {
     const thiscomponent = 'MyPagePost';
     const { pageNO } = match.params;
     
     return (
         <GroundContainer>
-            <Header mypage={true} />
-            <MypageFunc />
-            <PageNumSelector pageNO={pageNO} parentComponent={thiscomponent}/>
+            <Header 
+                mypage={true} 
+                isStory={isStory}
+                onClickBoard={onClickBoard}
+                onClickPost={onClickPostList}
+                onClickMyPage={onClickMyPage}
+                onClickLogout={onClickLogout}
+            />
+            <MypageFunc 
+                onClickMenu={onClickMenu}
+            />
+            <PageNumSelector 
+                isStory={isStory}
+                pageNO={pageNO} 
+                parentComponent={thiscomponent}
+                onClickDropDownMenu={onClickDropDownMenu}
+            />
         </GroundContainer>
     )
 };

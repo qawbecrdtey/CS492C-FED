@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import Landing from './Landing';
 
 export default {
@@ -6,9 +7,15 @@ export default {
     component: Landing,
 };
 
-const LandingComponent = args => <Landing {...args}/>;
-
-export const Default = LandingComponent.bind({});
+export const LandingComponent = () => {
+    return (
+        <Landing 
+            onSignin={action('onSignin')}
+            onJoin={action('onJoin')}
+            isStory={true}
+        />
+    )
+}
 
 LandingComponent.story = {
     name: 'Landing',
