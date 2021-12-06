@@ -39,7 +39,7 @@ export default {
 };
 
 // export const MyCommentListComponent = () => <MyCommentList />;
-const MyCommentListComponent = args => <MyCommentList {...args} storybookSpecific={true}/>;
+const MyCommentListComponent = args => <MyCommentList {...args} isStory={true}/>;
 
 const getPostCount = () => {
 }

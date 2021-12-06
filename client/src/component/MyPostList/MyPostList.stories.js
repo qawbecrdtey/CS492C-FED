@@ -35,7 +35,7 @@ export default {
 };
 
 // export const MyPostListComponent = () => <MyPostList />;
-const MyPostListComponent = args => <MyPostList {...args} storybookSpecific={true} />;
+const MyPostListComponent = args => <MyPostList {...args} isStory={true} />;
 
 const getPostCount = () => {
 }

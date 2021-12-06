@@ -24,7 +24,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
 
     const onSubmit = (e) => {
         if(isStory === true) return _onSubmit(e);
-
         else {
             e.preventDefault();
             console.log('submit');

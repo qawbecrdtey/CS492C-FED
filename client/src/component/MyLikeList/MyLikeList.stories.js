@@ -42,7 +42,7 @@ export default {
 };
 
 // export const MyLikeListComponent = () => <MyLikeList />;
-const MyLikeListComponent = args => <MyLikeList {...args} storybookSpecific={true} />;
+const MyLikeListComponent = args => <MyLikeList {...args} isStory={true} />;
 
 const getPostCount = () => {
 }
