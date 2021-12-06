@@ -40,7 +40,7 @@ git clone https://github.com/yuminyumin/CS492C-FED.git
 cd CS492C-FED
 ```
 
-Then you should set up the server.
+Then set up the server.
 ```bash
 cd server
 npm install
@@ -48,7 +48,7 @@ npm audit fix
 cd ..
 ```
 
-Then you should set up the client.
+Finally, set up the client.
 ```bash
 cd client
 npm install
