@@ -9,6 +9,10 @@ import SingleComment from '../../component/SingleComment/SingleComment';
 import { CommentContainer, RepliesContainer, CommentListsContainer, SubmitButton } from './styled';
 const { TextArea } = Input;
 
+/**
+ * - [Comment 컴포넌트] Input Box, Submit Button, 여러 개의 SingleComment로 구성되어 있습니다.
+ * - Input Box에 댓글 내용을 입력한 뒤 Submit Button을 누르면 SingleComment 컴포넌트가 생성됩니다.
+ */
 function Comments({ postNO, _onSubmit, isStory }) {
     const user = useSelector(state => state.user.loginUser)
 

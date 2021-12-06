@@ -7,6 +7,9 @@ import { BodyContainer, SingleCommentContainer, WriterContainer,
      ContentContainer, DateContainer, HoverContainer, HoverContent, 
      ProfileContent, CommentFuncContainer} from './styled';
 
+/**
+ * [SingleComment 컴포넌트] 작성자의 이름에 마우스를 hover할 경우, 프로필 카드가 노출됩니다.
+ */
 function SingleComment({ comment, postNO}) {
     const test = useSelector(state => state.user.userList);
     const deleteComment = (e) => {
