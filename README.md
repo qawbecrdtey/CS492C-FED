@@ -60,3 +60,11 @@ Now you should start both the server and the client.
 ```bash
 bash (cd server; npm start) & (cd client; npm start) && fg
 ```
+
+## How to Run Storybook
+Run as follows.
+```bash
+cd client
+npm run storybook
+```
+
