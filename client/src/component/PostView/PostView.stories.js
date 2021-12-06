@@ -20,7 +20,7 @@ const store = {
         };
     },
     subscribe: () => {},
-    dispatch: action('dispatch')
+    dispatch: action('editPost')
 };
 
 const withReduxMockStore = (story) => (

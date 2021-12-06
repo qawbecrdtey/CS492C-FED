@@ -13,15 +13,7 @@ import { getAllPost } from '../../actions/actions';
 import MDEditor from '@uiw/react-md-editor';
 import axios from 'axios';
 import moment from 'moment';
-
 const POST_URL = '/api/post';
-
-// const converter = new Showdown.Converter({
-//     tables: true,
-//     simplifiedAutoLink: true,
-//     strikethrough: true,
-//     tasklists: true
-// });
 
 const PostWrite = () => {
     const [content, setContent] = useState('');
