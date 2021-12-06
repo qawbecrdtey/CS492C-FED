@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser, setPostPerPage, updateCurrentPage, userLogined } from '../../actions/actions';
 
-const Login = ({ onSignin, onJoin }) => {
+const Login = ({ onSignin, onJoin, isStory }) => {
     const _userList = useSelector(state => state.user.userList);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -64,8 +64,10 @@ const Login = ({ onSignin, onJoin }) => {
             onChange={writePW}
             value={PW}
           />
-          <button onClick={login,onSignin} >Sign in</button>
-          <button onClick={join, onJoin} onChange={onJoin}>Join</button>
+          {isStory ? <button onClick={onSignin} >Sign in</button> :
+          <button onClick={login} >Sign in</button>}
+          {isStory ? <button onClick={onJoin} onChange={onJoin}>Join</button> : 
+          <button onClick={join} onChange={onJoin}>Join</button>}
          </LoginContainer>
      )
  }

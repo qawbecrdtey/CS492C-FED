@@ -10,6 +10,7 @@ export default {
 export const MainPageFuncComponent = () => {
     return (
         <MainPageFunc 
+            isStory={true}
             onWrite={action('onWrite')}
             onDelete={action('onDelete')}
         />

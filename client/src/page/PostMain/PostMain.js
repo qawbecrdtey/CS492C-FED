@@ -10,7 +10,7 @@ const PostMain = ({ match }) => {
   const { pageNO } = match.params;
   return (
     <GroundContainer>
-      <Header />
+      <Header isStory={false}/>
       <PageNumSelector pageNO={pageNO} parentComponent={thiscomponent}/>
     </GroundContainer>
   )

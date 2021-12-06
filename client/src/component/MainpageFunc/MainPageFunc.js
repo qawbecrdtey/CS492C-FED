@@ -8,7 +8,7 @@ import { updateCurrentPage } from '../../actions/actions';
 const socket = io.connect('http://localhost:4080/');
 
 // eslint-disable-next-line react/prop-types
-const MainPageFunc = ({ removelist, onWrite, onDelete }) => {
+const MainPageFunc = ({ removelist, onWrite, onDelete, isStory }) => {
     const history = useHistory();
     const movetowriter = () => {
         history.push('/postWrite');
@@ -23,8 +23,10 @@ const MainPageFunc = ({ removelist, onWrite, onDelete }) => {
     }
     return (
       <FunctionContainer>
-        <Btn onClick={movetowriter, onWrite}>글쓰기</Btn>
-        <Btn onClick={removeposts, onDelete}>삭제하기</Btn>
+        {isStory ? <Btn onClick={onWrite}>글쓰기</Btn> : 
+        <Btn onClick={movetowriter}>글쓰기</Btn>}
+        {isStory ? <Btn onClick={onDelete}>삭제하기</Btn> :
+        <Btn onClick={removeposts}>삭제하기</Btn>}
       </FunctionContainer>
     )
 }
