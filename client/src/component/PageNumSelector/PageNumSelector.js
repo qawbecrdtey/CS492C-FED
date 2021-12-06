@@ -21,7 +21,7 @@ import MyLikeList from '../MyLikeList';
 import MyCommentList from '../MyCommentList';
 
 // eslint-disable-next-line react/prop-types
-const PageNumSelector = ({ pageNO, parentComponent }) => {
+const PageNumSelector = ({ pageNO, parentComponent, onClickDropDownMenu }) => {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const _postlist = useSelector(state => state.user.postList);
@@ -83,7 +83,7 @@ const PageNumSelector = ({ pageNO, parentComponent }) => {
               </DropdownItemContainer>
             ))}
           </DropdownMenu>
-          <DropdownBody onClick={onActiveToggle}>
+          <DropdownBody onClick={onActiveToggle, onClickDropDownMenu}>
             <Triangle />
             <ItemName>{postPerPage}</ItemName>
           </DropdownBody>

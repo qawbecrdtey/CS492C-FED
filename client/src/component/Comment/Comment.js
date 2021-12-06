@@ -9,13 +9,13 @@ import SingleComment from '../../component/SingleComment/SingleComment';
 import { CommentContainer, RepliesContainer, CommentListsContainer, SubmitButton } from './styled';
 const { TextArea } = Input;
 
-function Comments(props) {
+function Comments({ postNO, _onSubmit, isStory }) {
     const user = useSelector(state => state.user.loginUser)
 
     const [Comment, setComment] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
-    const postNO = props.postNO
+    // const postNO = props.postNO
     const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
 
     const handleClick = (e) => {
@@ -77,7 +77,8 @@ function Comments(props) {
                     placeholder="댓글 입력"
                 />
                 <br />
-                <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
+                {isStory ? <SubmitButton onClick={_onSubmit}>Submit</SubmitButton> : 
+                <SubmitButton onClick={onSubmit}>Submit</SubmitButton>}
             </form>
             {/* Comment Lists  */}
             <CommentListsContainer>

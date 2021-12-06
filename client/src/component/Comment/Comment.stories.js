@@ -29,10 +29,14 @@ export default {
     decorators: [withReduxMockStore]
 };
 
-const CommentComponent = args => <Comment {...args} />;
-
-export const Default = CommentComponent.bind({});
-Default.args = {
+export const CommentComponent = () => {
+    return (
+        <Comment 
+            postNO={245}
+            isStory={true}
+            _onSubmit={action('onSubmit')}
+        />
+    )
 }
 
 CommentComponent.story = {

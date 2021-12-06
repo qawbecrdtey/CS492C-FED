@@ -39,6 +39,7 @@ export const LoginComponent = () => {
         <Login 
             onSignin={action('onSignin')}
             onJoin={action('onJoin')}
+            isStory={true}
         />
     )
 }
