@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { MypageFuncContainer } from './styled';
 import { useLocation, Link } from 'react-router-dom';
 import MypageMenuItem from '../MypageMenuItem';
 
-const MypageFunc = () => {
+const MypageFunc = ({ onClickMenu }) => {
 
     const pathName = useLocation().pathname;
 
@@ -16,7 +17,7 @@ const MypageFunc = () => {
         <MypageFuncContainer>
             {menus.map((menu, index) => {
                 return (
-                    <Link to={menu.path} key={index}>
+                    <Link to={menu.path} key={index} onClick={onClickMenu}>
                         <MypageMenuItem
                             menu={menu}
                             isActive={pathName.includes(menu.type) ? true : false}

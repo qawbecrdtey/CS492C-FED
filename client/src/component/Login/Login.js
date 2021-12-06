@@ -1,18 +1,20 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import { LoginContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser, setPostPerPage, updateCurrentPage, userLogined } from '../../actions/actions';
 
-const Login = () => {
+const Login = ({ onSignin, onJoin }) => {
     const _userList = useSelector(state => state.user.userList);
-    const state = useSelector(state => state.user);
     const history = useHistory();
     const dispatch = useDispatch();
     const [ID, setID] = useState('')
     const writeID = e => {
         setID(e.target.value);
     }
+    console.log(_userList);
     const [PW, setPW] = useState('')
     const writePW = e => {
         setPW(e.target.value);
@@ -20,7 +22,6 @@ const Login = () => {
 
     useEffect(() => {
         dispatch(getAllUser());
-        console.log(state);
     },[]);
     const login = () => {
         var isinlist = false;
@@ -63,8 +64,8 @@ const Login = () => {
             onChange={writePW}
             value={PW}
           />
-          <button onClick={login}>Sign in</button>
-          <button onClick={join}>Join</button>
+          <button onClick={login,onSignin} >Sign in</button>
+          <button onClick={join, onJoin} onChange={onJoin}>Join</button>
          </LoginContainer>
      )
  }
