@@ -20,7 +20,11 @@ const store = {
                     ["619bacaa929ca7011196d13a",'dain2', '1234', 'asdf@naver.com', '24', '01011311321'],
                     ["619bacaa929ca7011196d13a",'haha', '1234', 'asdf@naver.com', '24', '01011311321'],
                     ["619bacaa929ca7011196d13a",'유민', '1234', 'asdf@naver.com', '24', '01011311321'],
-                ]
+                ],
+                myCommentList : [
+                    ["619bacaa929ca700ee96d13a",248,'fdasa',2,3,'asdf','2021년 12월 04일 16시 38분',10,'내용1',['dain','dain2']],
+                    ["619bacaa929ca700ee96d13a",252,'asdf',4,5,'dain','2021년 12월 02일 8시 12분',15,'내용2',['dain','dain2']]
+                ],
             }
         };
     },
@@ -39,7 +43,7 @@ export default {
 };
 
 // export const MyCommentListComponent = () => <MyCommentList />;
-const MyCommentListComponent = args => <MyCommentList {...args}/>;
+const MyCommentListComponent = args => <MyCommentList {...args} isStory={true}/>;
 
 const getPostCount = () => {
 }
@@ -49,6 +53,7 @@ Default.args = {
     pageNO: 1,
     postPerPage: 20,
     getPostCount: getPostCount,
+    isStory: true,
 }
 
 MyCommentListComponent.story = {

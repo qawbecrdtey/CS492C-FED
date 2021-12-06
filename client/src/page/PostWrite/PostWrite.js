@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from '../../component/Header';
@@ -26,7 +27,7 @@ const POST_URL = '/api/post';
  * - 제목이나 내용 중 하나라도 비어 있거나 길이 제한을 넘을 경우 작성되지 않고 경고창이 노출됩니다.
  * - 게시물 작성 시 마크다운 에디터가 제공되며 프리뷰도 제공됩니다.
  */
-const PostWrite = () => {
+const PostWrite = ({ isStory, onWrite, onCancel }) => {
     const [content, setContent] = useState('');
     const history = useHistory();
     const [title, setTitle] = useState('');
@@ -92,8 +93,10 @@ const PostWrite = () => {
                 />
             </EditorContainer>
             <BottomContainer>
-                <button onClick={saveContent}>등록</button>
-                <button onClick={toPostList}>취소</button>
+                {isStory ? <button onClick={onWrite}>등록</button> :
+                <button onClick={saveContent}>등록</button>}
+                {isStory ? <button onClick={onCancel}>취소</button> :
+                <button onClick={toPostList}>취소</button>}
             </BottomContainer>
         </GroundContainer>
 

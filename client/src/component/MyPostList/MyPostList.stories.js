@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import MyPostList from './MyPostList';
+import StoryRouter from 'storybook-react-router';
 
 const store = {
     getState: () => {
@@ -31,11 +32,11 @@ const withReduxMockStore = (story) => (
 export default {
     title : 'MyPostList component',
     component: MyPostList,
-    decorators: [withReduxMockStore]
+    decorators: [withReduxMockStore, StoryRouter()]
 };
 
 // export const MyPostListComponent = () => <MyPostList />;
-const MyPostListComponent = args => <MyPostList {...args}/>;
+const MyPostListComponent = args => <MyPostList {...args} isStory={true} />;
 
 const getPostCount = () => {
 }

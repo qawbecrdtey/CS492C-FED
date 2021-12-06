@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import PostView from './PostView';
+import StoryRouter from 'storybook-react-router';
 
 const store = {
     getState: () => {
@@ -38,7 +39,7 @@ const withReduxMockStore = (story) => (
 export default {
     title : 'PostView component',
     component: PostView,
-    decorators: [withReduxMockStore],
+    decorators: [withReduxMockStore, StoryRouter()],
 };
 
 const PostViewComponent = args => <PostView {...args}/>;
@@ -63,16 +64,40 @@ const match_244 = {
 export const Default = PostViewComponent.bind({});
 Default.args = {
     match: match_100,
+    isStory: true,
+    onDelete: action('onDelete'),
+    onSubmit: action('onSubmit'),
+    onLike: action('onLike'),
+    onClickBoard: action('onClickBoard'),
+    onClickPostList: action('onClickPostList'),
+    onClickMyPage: action('onClickMyPage'),
+    onClickLogout: action('onClickLogout'),
 }
 
 export const Post200 = PostViewComponent.bind({});
 Post200.args = {
     match: match_200,
+    isStory: true,
+    onDelete: action('onDelete'),
+    onSubmit: action('onSubmit'),
+    onLike: action('onLike'),
+    onClickBoard: action('onClickBoard'),
+    onClickPostList: action('onClickPostList'),
+    onClickMyPage: action('onClickMyPage'),
+    onClickLogout: action('onClickLogout'),
 }
 
 export const Post244 = PostViewComponent.bind({});
 Post244.args = {
     match: match_244,
+    isStory: true,
+    onDelete: action('onDelete'),
+    onSubmit: action('onSubmit'),
+    onLike: action('onLike'),
+    onClickBoard: action('onClickBoard'),
+    onClickPostList: action('onClickPostList'),
+    onClickMyPage: action('onClickMyPage'),
+    onClickLogout: action('onClickLogout'),
 }
 
 PostViewComponent.story = {

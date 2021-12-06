@@ -14,7 +14,7 @@ import { ListContainer } from './styled';
  * - reducer를 사용하여 서버에서 내가 쓴 글을 userID를 이용하여 불러와서
      sort과정을 거쳐 렌더링 합니다.
  */
-const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
+const MyPostList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const dispatch = useDispatch();
   const thiscomponent = '/myPage/myPosts';
   const _mypostList = useSelector(state => state.user.myPostList);
@@ -61,7 +61,11 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount }) => {
     let body = {
         userID: _loginUser['userID']
     }
-    dispatch(getMyPost(body));
+    console.log(`body = ${body}`);
+    console.log(body);
+    if(isStory !== true) {
+      dispatch(getMyPost(body));
+    }
   }, [ ])
   return (
     <ListContainer>

@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 /**
  * - postMain 및 MyPage에서 사용됩니다.
  */
-const CommonTable = ({ headersName, getElement, getChecked, children, mypage, onClickCheckbox }) => {
+ 
+const CommonTable = ({ headersName, getElement, getChecked, children, mypage, onClickCheckbox, isStory, onSortColumn }) => {
   const [sortFlag, setSortFlag] = useState([true, false, false, false, false, false]);
   const [checked, setChecked] = useState(false);
 
@@ -53,7 +54,9 @@ const CommonTable = ({ headersName, getElement, getChecked, children, mypage, on
                 <TableHeaderColumn key={index} >
                   {index==0 && !mypage
                   ? <Checkbox checked={checked} onChange={handleClick} onClick={onClickCheckbox} /> 
-                  : item ? <HeaderItem onClick={handleClick2}>{ item }</HeaderItem> : null}
+                  : !item ? null : 
+                    isStory ? <HeaderItem onClick={onSortColumn}>{ item }</HeaderItem>
+                          : <HeaderItem onClick={handleClick2}>{ item }</HeaderItem>}
                 </TableHeaderColumn>
               )
             })

@@ -34,7 +34,14 @@ export default {
     decorators: [withReduxMockStore]
 };
 
-const JoinComponent = args => <Join {...args}/>;
+const JoinComponent = () => {
+    return (
+        <Join  
+            isStory={true}
+            onRegister={action('onRegister')}
+        />
+    )
+};
 
 export const Default = JoinComponent.bind({});
 

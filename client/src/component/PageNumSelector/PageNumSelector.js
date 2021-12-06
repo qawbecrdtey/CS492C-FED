@@ -27,7 +27,7 @@ import PropTypes from 'prop-types';
  */
 
 // eslint-disable-next-line react/prop-types
-const PageNumSelector = ({ pageNO, parentComponent, onClickDropDownMenu }) => {
+const PageNumSelector = ({ pageNO, parentComponent, isStory, onClickDropDownMenu }) => {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const _postlist = useSelector(state => state.user.postList);
@@ -83,13 +83,17 @@ const PageNumSelector = ({ pageNO, parentComponent, onClickDropDownMenu }) => {
         <TextContainer>post/page</TextContainer>
         <DropdownContainer>
           <DropdownMenu isActive={isActive}>
-            {dropdownItems.map((item) => (
+            {isStory ? dropdownItems.map((item) => (
+              <DropdownItemContainer id="item" key={item.id} onClick={onClickDropDownMenu}>
+                <ItemName id="item_name" >{item.name}</ItemName>
+              </DropdownItemContainer>
+            )) : dropdownItems.map((item) => (
               <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
-                <ItemName id="item_name">{item.name}</ItemName>
+                <ItemName id="item_name" >{item.name}</ItemName>
               </DropdownItemContainer>
             ))}
           </DropdownMenu>
-          <DropdownBody onClick={onActiveToggle, onClickDropDownMenu}>
+          <DropdownBody onClick={onActiveToggle}>
             <Triangle />
             <ItemName>{postPerPage}</ItemName>
           </DropdownBody>

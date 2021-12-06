@@ -31,15 +31,11 @@ export default {
 
 const PostWriteComponent = args => <PostWrite {...args}/>;
 
-const match_1 = {
-    params: {
-        pageNO: 1,
-    },
-}
-
 export const Default = PostWriteComponent.bind({});
 Default.args = {
-    match: match_1,
+    isStory: true,
+    onWrite: action('onWrite'),
+    onCancel: action('onCancel')
 }
 
 PostWriteComponent.story = {

@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import PostList from './PostList';
+import StoryRouter from 'storybook-react-router';
 
 const store = {
     getState: () => {
@@ -33,7 +34,7 @@ const withReduxMockStore = (story) => (
 export default {
     title : 'PostList component',
     component: PostList,
-    decorators: [withReduxMockStore]
+    decorators: [withReduxMockStore, StoryRouter()]
 };
 
 const PostListComponent = args => <PostList {...args}/>;
@@ -46,7 +47,14 @@ export const Default = PostListComponent.bind({});
 Default.args = {
     pageNO: 1,
     postPerPage: 20,
+    isStory: true,
     getPostCount: getPostCount,
+    onClickCheckbox: action('onClickCheckbox'),
+    onClickCheck: action('onClickCheck'),
+    onSearch: action('onSearch'),
+    onWrite: action('onWrite'),
+    onDelete: action('onDelete'),
+    onSortColumn: action('onSortColumn')
 }
 
 PostListComponent.story = {

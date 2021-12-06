@@ -76,6 +76,8 @@ Second.args = {
     key: 1,
     comment: comment_second,
     postNO: 1,
+    isStory: true,
+    onDelete: action('onDelete')
 }
 
 SingleCommentComponent.story = {

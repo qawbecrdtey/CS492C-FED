@@ -12,7 +12,8 @@ import PropTypes from 'prop-types';
  * - 작성자의 이름에 마우스를 hover할 경우, 프로필 카드가 노출됩니다.   
  * - 삭제 버튼을 click하면 DB에서 해당 댓글을 삭제하고 페이지를 다시 렌더링합니다.
  */
-function SingleComment({ comment, postNO}) {
+function SingleComment({ comment, postNO, isStory, onDelete }) {
+
     const test = useSelector(state => state.user.userList);
     const deleteComment = (e) => {
         e.preventDefault();
@@ -33,13 +34,7 @@ function SingleComment({ comment, postNO}) {
     }
 
     const userProfile = test.filter(e => (e[1]==comment.writer));
-    console.log(userProfile)
-    useEffect(() => {
-        // console.log(comment);
-        // console.log(test);
-    }, []);
     
-
     return (
         <SingleCommentContainer>
             <BodyContainer>
@@ -60,7 +55,8 @@ function SingleComment({ comment, postNO}) {
                     </HoverContainer>
                     <CommentFuncContainer>       
                         <DateContainer>{comment.created_date}</DateContainer>
-                        <button onClick={deleteComment}>삭제</button>
+                        {isStory ? <button onClick={onDelete}>삭제</button> :
+                        <button onClick={deleteComment}>삭제</button>}
                     </CommentFuncContainer>
                 </WriterContainer>
                 <ContentContainer>{comment.content}</ContentContainer>

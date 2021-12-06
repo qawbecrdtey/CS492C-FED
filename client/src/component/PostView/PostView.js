@@ -17,7 +17,8 @@ import {
   LikeButton,
   HoverContainer, 
   HoverContent, 
-  ProfileContent
+  ProfileContent,
+  ToListBtn
 } from './styled';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from '../Header';
@@ -26,6 +27,7 @@ import { useHistory } from 'react-router';
 import { InputContainer } from './styled';
 import { editPost } from '../../actions/actions';
 import Comment from '../../component/Comment/Comment';
+import { Link } from 'react-router-dom';
 const POST_URL = '/api/post';
 
 import io from 'socket.io-client';
@@ -48,7 +50,8 @@ const socket = io.connect('http://localhost:4080/');
      소켓통신으로 구현하여 버튼 클릭 시 해당 postNO와 userID를 서버에 전송하여 해당 postNO를
      가진 게시글의 likeUsers에 userID를 추가하거나 삭제하도록 합니다.
  */
-const PostView = ({ match }) => {
+ 
+const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, onClickPostList, onClickMyPage, onClickLogout }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const _postList = useSelector(state => state.user.postList);
   const pastPageNumber = useSelector(state => state.user.currentPage);
@@ -111,11 +114,6 @@ const PostView = ({ match }) => {
     }
   };
 
-  const toPostList = () => {
-    _history.push(goBackURL);
-  };
-
-
   const deletePost = () => {
     let removelist = [data[1]];
     socket.emit('remove-snd', { removelist });
@@ -177,7 +175,14 @@ const PostView = ({ match }) => {
  
   return (
     <MainContainer>
-      <Header />
+      <Header 
+          mypage={true} 
+          isStory={isStory}
+          onClickBoard={onClickBoard}
+          onClickPost={onClickPostList}
+          onClickMyPage={onClickMyPage}
+          onClickLogout={onClickLogout}
+      />
       {loading ? null : 
         <PostHeaderContainer>
           { edit ? 
@@ -212,7 +217,9 @@ const PostView = ({ match }) => {
             {edit ?<button onClick={editContent}>등록</button>
             : <button onClick={clickEdit}>수정</button>}
             {edit ? <button onClick={cancle}>취소</button> : null}
-            {!edit ? <button onClick={deletePost}>삭제</button> : null}
+            {edit ? null : 
+            isStory ? <button onClick={onDelete}>삭제</button>
+              : <button onClick={deletePost}>삭제</button>}
           </UnderTitleContainer>
         </PostHeaderContainer>
       }
@@ -232,18 +239,25 @@ const PostView = ({ match }) => {
         <ReactContainer>
           <InfoContainer>likes : {data[4]}</InfoContainer>
           <InfoContainer>no_comments: {data[3]}</InfoContainer>
-          <LikeButton 
+          {isStory ? <LikeButton 
+            onClick={onLike}
+            active={active}
+          >
+            like
+          </LikeButton> : <LikeButton 
             onClick={clickLike}
             active={active}
           >
             like
-          </LikeButton>
-          <button onClick={toPostList}>목록으로</button>
+          </LikeButton>}
+          <Link to={goBackURL}>
+            <ToListBtn>목록으로</ToListBtn>
+          </Link>
         </ReactContainer>
       }
       {loading? null : 
         <CommentContainer>
-          <Comment postNO={data[1]}/>
+          <Comment postNO={data[1]} isStory={isStory} _onSubmit={onSubmit}/>
         </CommentContainer>
       }
     </MainContainer>

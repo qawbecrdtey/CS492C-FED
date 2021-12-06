@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
@@ -11,7 +12,7 @@ import { registerUser, getAllUser } from '../../actions/actions';
  * - userID가 15글자를 초과하는 경우, 서버의 userList에 userID와 중복된 값이 있는
      경우, 정보 중 하나라도 비어 있는 경우 등록이 되지 않고 경고창이 노출됩니다.
  */
-const Join = () => {
+const Join = ({ isStory, onRegister }) => {
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
@@ -105,7 +106,8 @@ const Join = () => {
             placeholder="phone numeber"
             onChange={writePhoneNum}
           />
-          <button onClick={register}>Register</button>
+          {isStory ? <button onClick={onRegister}>Register</button>
+          : <button onClick={register}>Register</button>}
          </JoinContainer>
         </Container>
      )

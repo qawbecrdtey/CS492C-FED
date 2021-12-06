@@ -29,29 +29,32 @@ function Comments({ postNO, _onSubmit, isStory }) {
     }
 
     const onSubmit = (e) => {
-        e.preventDefault();
-        console.log('submit');
-        if (Comment != '') {
-            if (Comment.length >= 1000) {
-                alert('댓글 길이는 1000byte 이하여야 합니다')
-            } else {
-                const variables = {
-                    content: Comment,
-                    postNO: postNO,
-                    writer: userID,
-                    created_date: created_date,
-                }
-                axios.post('/api/comment/saveComment', variables)
-                    .then(response => {
-                        if (response.data.success) {
-                            console.log(response.data.result)
-                            setComment([])
-                            window.location.replace(window.location.href);
-                        } else {
-                            alert('Failed to save Comment')
-                        }
+        if(isStory === true) return _onSubmit(e);
+        else {
+            e.preventDefault();
+            console.log('submit');
+            if (Comment != '') {
+                if (Comment.length >= 1000) {
+                    alert('댓글 길이는 1000byte 이하여야 합니다')
+                } else {
+                    const variables = {
+                        content: Comment,
+                        postNO: postNO,
+                        writer: userID,
+                        created_date: created_date,
                     }
-                );
+                    axios.post('/api/comment/saveComment', variables)
+                        .then(response => {
+                            if (response.data.success) {
+                                console.log(response.data.result)
+                                setComment([])
+                                window.location.replace(window.location.href);
+                            } else {
+                                alert('Failed to save Comment')
+                            }
+                        }
+                    );
+                }
             }
         }
     }
@@ -60,6 +63,7 @@ function Comments({ postNO, _onSubmit, isStory }) {
         const variables = {
             postNO: postNO,
         }
+        if(isStory !== true) {
         axios.post('/api/comment/getComments', variables)
             .then(response => {
                 console.log(Object.values(response));
@@ -69,7 +73,8 @@ function Comments({ postNO, _onSubmit, isStory }) {
                     alert('Failed to get video Info')
                 }
             })
-      },[]);
+        }
+    },[]);
     
     return (
         <CommentContainer>
@@ -83,8 +88,7 @@ function Comments({ postNO, _onSubmit, isStory }) {
                     placeholder="댓글 입력"
                 />
                 <br />
-                {isStory ? <SubmitButton onClick={_onSubmit}>Submit</SubmitButton> : 
-                <SubmitButton onClick={onSubmit}>Submit</SubmitButton>}
+                <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
             </form>
             {/* Comment Lists  */}
             <CommentListsContainer>
