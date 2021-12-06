@@ -30,8 +30,6 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
   useEffect(() => {
     setChecked(isAllChecked);
   }, [isAllChecked]);
-
-  console.log(test);
   
   useEffect(() => {
     setChecked(false);

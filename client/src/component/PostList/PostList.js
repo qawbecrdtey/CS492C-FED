@@ -90,14 +90,13 @@ const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickC
 
   const search = () => {
     if (queryItem == '작성자') {
-      setSP(_postList.filter(item => item[5] == query));
+      setSP(_postList.filter(item => item[5].includes(query)));
     } else if (queryItem == '제목') {
       setSP(_postList.filter(item => {
         return item[2].includes(query);
       }));
     } else if (queryItem == '내용') {
       setSP(_postList.filter(item => {
-        console.log(item[8]);
         return item[8].includes(query);
       }));
     } else if (queryItem == '전체') {
@@ -117,20 +116,24 @@ const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickC
         }))
       });
     } else if (queryItem == '댓글') {
-      let body = {
-        queryString: query,
-      };
-      request('post', '/api/querycomment', body).then(response => {
-        setSP(_postList.filter(item => {
-          var i;
-          for (i = 0; i < response.length; i++) {
-            if (item[1] == response[i].postNO) {
-              return true;
+      if (query != '') {
+        let body = {
+          queryString: query,
+        };
+        request('post', '/api/querycomment', body).then(response => {
+          setSP(_postList.filter(item => {
+            var i;
+            for (i = 0; i < response.length; i++) {
+              if (item[1] == response[i].postNO) {
+                return true;
+              }
             }
-          }
-          return false;
-        }))
-      });
+            return false;
+          }))
+        });
+      } else {
+        setSP(_postList);
+      }
     }
     setActive(false);
   }
