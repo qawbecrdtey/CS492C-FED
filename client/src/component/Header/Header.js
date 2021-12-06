@@ -5,13 +5,16 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCurrentPage, userLogined } from '../../actions/actions';
 
-/**
- * - Board버튼을 누르면 메인 페이지인 PostMain의 1페이지로 이동합니다.   
+/**  
  * - 마이페이지와 일반 게시물 목록 간 전환을 위해 **MyPage**버튼과 **목록으로**
      버튼이 있으며 MyPage에서는 **목록으로** 버튼이, 일반게시물 목록에서는 **MyPage**
      버튼이 노출됩니다.
- * - 로그아웃 버튼을 클릭하면 로그인 화면으로 전환됩니다. 
  * - 로그인한 유저의 userID가 노출됩니다.
+ * - Actions
+ *    - Board: 버튼을 클릭하면 메인 페이지인 PostMain의 1페이지로 이동합니다. 
+ *    - 목록으로: 버튼을 클릭하면 이전 페이지로 이동합니다.
+ *    - MyPage: 버튼을 클릭하면 MyPage로 이동합니다.
+ *    - Logout: 버튼을 클릭하면 로그인 화면으로 이동합니다. 
  */
 const Header = ({ isStory, onClickBoard, onClickPostList, onClickMyPage, onClickLogout}) => {
     const history = useHistory();

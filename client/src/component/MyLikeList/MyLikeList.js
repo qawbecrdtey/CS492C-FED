@@ -11,6 +11,9 @@ import { ListContainer } from './styled';
  * - MyPostList와 유사한 구조를 가지며, reducer를 이용해 서버에서 
      내가 좋아요 한 글을 불러와 렌더링 합니다.
  * - 정렬, 검색 기능이 없습니다.
+ * - 작성자 이름에 마우스를 hover시 프로필 카드가 popover됩니다.
+ * - Actions
+ *    - 제목: 게시물 제목을 클릭하면 해당 게시물의 상세보기 페이지로 이동합니다.
  */
 
 // eslint-disable-next-line react/prop-types

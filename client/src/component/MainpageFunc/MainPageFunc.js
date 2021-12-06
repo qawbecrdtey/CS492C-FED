@@ -9,9 +9,10 @@ const socket = io.connect('http://localhost:4080/');
 import PropTypes from 'prop-types';
 
 /**
- * - 삭제 버튼 클릭 시 props로 받아온 removelist를 
-     서버에 전달한 후 게시판 목록으로 이동합니다.   
- * - 글쓰기 버튼 클릭 시 게시물 작성 페이지로 이동합니다.
+ * - Actions
+ *    - 글쓰기: 버튼 클릭 시 게시물 작성 페이지로 이동합니다.
+ *    - 삭제하기: 버튼 클릭 시 props로 받아온 removelist를 
+        서버에 전달한 후 게시판 목록으로 이동합니다.
  */
 // eslint-disable-next-line react/prop-types
 const MainPageFunc = ({ removelist, onWrite, onDelete, isStory }) => {

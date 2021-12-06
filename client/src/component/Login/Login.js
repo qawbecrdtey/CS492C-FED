@@ -12,6 +12,10 @@ import { getAllUser, setPostPerPage, updateCurrentPage, userLogined } from '../.
  *   일치하는 정보가 있을 경우 로그인되게 합니다.
  * - 로그인이 성공한 경우 postMain 페이지로 이동합니다.
  * - register버튼을 누르면 가입 페이지(Join 컴포넌트)로 이동합니다.
+ * - Actions
+ *    - Sign in: userID와 password를 입력한 후 버튼을 클릭하면 userID와 password가 
+ *      일치하는 정보가 있을 경우 로그인되게 합니다.
+ *    - Join: register버튼을 누르면 가입 페이지(Join 컴포넌트)로 이동합니다.
  */
 const Login = ({ onSignin, onJoin, isStory }) => {
     const _userList = useSelector(state => state.user.userList);
