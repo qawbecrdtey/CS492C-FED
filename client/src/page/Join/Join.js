@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, getAllUser } from '../../actions/actions';
 
-const Join = () => {
+const Join = ({ isStory, onRegister }) => {
     const history = useHistory();
     // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
@@ -98,7 +99,8 @@ const Join = () => {
             placeholder="phone numeber"
             onChange={writePhoneNum}
           />
-          <button onClick={register}>Register</button>
+          {isStory ? <button onClick={onRegister}>Register</button>
+          : <button onClick={register}>Register</button>}
          </JoinContainer>
         </Container>
      )

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from '../../component/Header';
@@ -15,7 +16,7 @@ import axios from 'axios';
 import moment from 'moment';
 const POST_URL = '/api/post';
 
-const PostWrite = () => {
+const PostWrite = ({ isStory, onWrite, onCancel }) => {
     const [content, setContent] = useState('');
     const history = useHistory();
     const [title, setTitle] = useState('');
@@ -81,8 +82,10 @@ const PostWrite = () => {
                 />
             </EditorContainer>
             <BottomContainer>
-                <button onClick={saveContent}>등록</button>
-                <button onClick={toPostList}>취소</button>
+                {isStory ? <button onClick={onWrite}>등록</button> :
+                <button onClick={saveContent}>등록</button>}
+                {isStory ? <button onClick={onCancel}>취소</button> :
+                <button onClick={toPostList}>취소</button>}
             </BottomContainer>
         </GroundContainer>
 

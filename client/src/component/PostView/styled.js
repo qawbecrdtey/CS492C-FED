@@ -144,3 +144,10 @@ export const HoverContent = styled.div`
 export const ProfileContent = styled.div`
   display: flex;
 `;
+
+export const ToListBtn = styled.button`
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+`;

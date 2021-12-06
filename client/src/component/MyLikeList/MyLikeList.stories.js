@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import MyLikeList from './MyLikeList';
+import StoryRouter from 'storybook-react-router';
 
 const store = {
     getState: () => {
@@ -38,7 +39,7 @@ const withReduxMockStore = (story) => (
 export default {
     title : 'MyLikeList component',
     component: MyLikeList,
-    decorators: [withReduxMockStore]
+    decorators: [withReduxMockStore, StoryRouter()]
 };
 
 // export const MyLikeListComponent = () => <MyLikeList />;

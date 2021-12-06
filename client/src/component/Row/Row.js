@@ -8,7 +8,7 @@ const socket = io.connect('http://localhost:4080/');
 import { HoverContainer, HoverContent, ProfileContent } from './styled';
  
 // eslint-disable-next-line react/prop-types
-const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked, parentcomponent }) => {
+const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked, parentcomponent, onClickCheck }) => {
   const [checked, setChecked] = useState(false);
   const test = useSelector(state => state.user.userList);
   const querystring = '?parent=';
@@ -38,7 +38,8 @@ const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, m
   }, [window.location.href]);
   return (
     <tr className="common-table-row">
-      {mypage ? null : <td><Checkbox checked={checked} onChange={handleClick} /></td>}
+      {mypage ? null : 
+       <td><Checkbox checked={checked} onChange={handleClick} onClick={onClickCheck}/></td>}
       <td>{postNO}</td>
       <td>
         <Link to={`/postView/${postNO}${querystring}${parentcomponent}`} onClick={clickpost}>{title}({no_comments})</Link>

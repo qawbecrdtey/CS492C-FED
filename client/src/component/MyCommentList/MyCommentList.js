@@ -8,11 +8,12 @@ import Row from '../Row';
 const POST_URL = '/api/post';
  
 // eslint-disable-next-line react/prop-types
-const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
+const MyCommentList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const [_postList, setPL] = useState([]);
   const thiscomponent = '/myPage/myComments';
   const _loginUser = useSelector(state => state.user.loginUser);
   const [reducer_commentlist, setRCL] = useState([]);
+  const _myCommentList = useSelector(state => state.user.myCommentList);
   const [loading, setLoading] = useState(false);
   getPostCount(reducer_commentlist.length);
   
@@ -57,8 +58,10 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
     <ListContainer>
       <CommonTable headersName={['글번호', '제목(댓글수)', '좋아요', '작성자', '작성 시간', '조회수']} getElement={getElement} getChecked={getChecked} mypage={true}>
         {
-          loading ? render_commentList.map((char, index) => {
-              const _postNO = char[4];
+          !loading ? null :
+           isStory ? _myCommentList.map((char, index) => {
+              const _postNO = char[1];
+              console.log(_postNO);
               const thispost = _postList.find((element) => {
                   if (element[1] === _postNO) {
                     return true;
@@ -68,8 +71,19 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount }) => {
               return (
                 <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
               )
-          }) : null
-        }
+          }) : render_commentList.map((char, index) => {
+            const _postNO = char[4];
+            const thispost = _postList.find((element) => {
+                if (element[1] === _postNO) {
+                  return true;
+                }
+            })
+            console.log(thispost);
+            return (
+              <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
+            )
+        })
+          }
       </CommonTable>
     </ListContainer>
   )

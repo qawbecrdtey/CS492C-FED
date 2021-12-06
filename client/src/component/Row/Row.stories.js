@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 import Row from './Row';
+import StoryRouter from 'storybook-react-router';
 
 const store = {
     getState: () => {
@@ -31,8 +32,7 @@ const withReduxMockStore = (story) => (
 export default {
     title : 'Row component',
     component: Row,
-    decorators: [withReduxMockStore],
-    // argTypes: { onClick: { action: 'clicked' } },
+    decorators: [withReduxMockStore, StoryRouter()],
 };
 
 const RowComponent = args => <Row {...args}/>;
@@ -55,6 +55,7 @@ Default.args = {
     add: add,
     del: del,
     isAllChecked: false,
+    onClickCheck: action('onClickCheck')
 }
 
 
