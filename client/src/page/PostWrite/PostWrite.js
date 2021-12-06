@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from '../../component/Header';
-import * as Showdown from "showdown";
+// import * as Showdown from "showdown";
 import { GroundContainer } from '../PostMain/styled';
 import { InputContainer } from './styled';
 import { request } from '../../utils/axios';
@@ -13,15 +13,7 @@ import { getAllPost } from '../../actions/actions';
 import MDEditor from '@uiw/react-md-editor';
 import axios from 'axios';
 import moment from 'moment';
-
 const POST_URL = '/api/post';
-
-const converter = new Showdown.Converter({
-    tables: true,
-    simplifiedAutoLink: true,
-    strikethrough: true,
-    tasklists: true
-});
 
 const PostWrite = () => {
     const [content, setContent] = useState('');
@@ -54,7 +46,6 @@ const PostWrite = () => {
                 }
                 request('post', POST_URL + '/register', body);
                 getAllPost();
-                console.log('1');
                 history.push('/postMain/1');
             })
     }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, getAllUser, modifyUser } from '../../actions/actions';
+import { registerUser, getAllUser } from '../../actions/actions';
 
 const Join = () => {
     const history = useHistory();
@@ -55,7 +55,6 @@ const Join = () => {
 
         _userList.forEach(user => {
           if (user[1] === ID) {
-            dispatch(modifyUser(body));
             alert("이미 존재하는 ID입니다");
             history.push('/join');
             isinlist = true;

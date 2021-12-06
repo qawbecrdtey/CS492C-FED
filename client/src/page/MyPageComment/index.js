@@ -1,1 +1,1 @@
-export { default } from './MyPageComments';
+export { default } from './MyPageComment';

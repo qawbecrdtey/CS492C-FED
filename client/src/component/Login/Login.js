@@ -46,7 +46,7 @@ const Login = () => {
         console.log(_userList);
     };
     const join = () => {
-        history.push('/join');
+        history.push('/Join');
     }
 
     return(

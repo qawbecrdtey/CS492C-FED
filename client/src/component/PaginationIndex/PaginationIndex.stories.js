@@ -6,7 +6,18 @@ export default {
     component: PaginationIndex,
 };
 
-export const PaginationIndexComponent = () => <PaginationIndex />;
+const PaginationIndexComponent = args => <PaginationIndex {...args}/>;
+
+const setCurrentPage = () => {
+};
+
+export const Default = PaginationIndexComponent.bind({});
+Default.args = {
+    currentPage: 1,
+    setCurrentPage: setCurrentPage,
+    pageNo : 1,
+    parentComponent: 'postMain',
+}
 
 PaginationIndexComponent.story = {
     name: 'PaginationIndex',

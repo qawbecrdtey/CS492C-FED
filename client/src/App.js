@@ -1,13 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { BrowserRouter, Route } from 'react-router-dom';
 import PostMain from './page/PostMain';
-import PostView from './component/PostView/PostView';
-import Landing from './page/Landing/Landing';
-import Join from './page/Join'
-import PostWrite from './page/PostWrite/PostWrite';
+import PostView from './component/PostView';
+import Join from './page/Join';
+import Landing from './page/Landing'
+import PostWrite from './page/PostWrite';
 import MyPagePost from './page/MyPagePost';
 import MyPageLike from './page/MyPageLike';
-import MyPageComment from './page/MyPageComment/MyPageComment';
+import MyPageComment from './page/MyPageComment';
  
 function App() {
   return (
