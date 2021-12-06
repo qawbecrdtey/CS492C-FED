@@ -11,6 +11,8 @@ import { registerUser, getAllUser } from '../../actions/actions';
      register버튼을 누르면 서버로 정보를 전송하여 등록되게 합니다.
  * - userID가 15글자를 초과하는 경우, 서버의 userList에 userID와 중복된 값이 있는
      경우, 정보 중 하나라도 비어 있는 경우 등록이 되지 않고 경고창이 노출됩니다.
+ * - Actions
+        - Register : 회원 정보를 기입 후 클릭 시 회원가입되면서 로그인 화면으로 이동합니다.
  */
 const Join = ({ isStory, onRegister }) => {
     const history = useHistory();

@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 /**
  * - 작성자의 이름에 마우스를 hover할 경우, 프로필 카드가 노출됩니다.   
  * - 삭제 버튼을 click하면 DB에서 해당 댓글을 삭제하고 페이지를 다시 렌더링합니다.
+ * - Actions
+ *      - 삭제 : 해당 댓글이 삭제됩니다.
  */
 function SingleComment({ comment, postNO, isStory, onDelete }) {
 

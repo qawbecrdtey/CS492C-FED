@@ -49,6 +49,16 @@ const socket = io.connect('http://localhost:4080/');
      loadPosts에서 받아온 게시물 정보의 likeUsers 리스트에서 확인합니다. 또한 좋아요 버튼은
      소켓통신으로 구현하여 버튼 클릭 시 해당 postNO와 userID를 서버에 전송하여 해당 postNO를
      가진 게시글의 likeUsers에 userID를 추가하거나 삭제하도록 합니다.
+ * - Actions
+ *      - Board : 현재 화면(메인 게시판)으로 새로고침하며 이동합니다.
+ *      - MyPage : 마이페이지로 이동합니다.
+ *      - Logout : 로그아웃되며 로그인 페이지로 이동합니다.
+ *      - 수정 : 게시글 본문이 마크다운 에디터로 변환됩니다.
+ *      - 취소 : 수정 버튼 클릭 후 노출되는 취소 버튼을 누르면 수정 내용이 삭제되고 다시 게시글 본문이 보여집니다.
+ *      - 등록 : 수정 버튼 클릭 후 노출되는 등록 버튼을 누르면 수정된 글이 저장됩니다.
+ *      - like : 좋아요 버튼이 클릭됩니다. 실제 앱에서는 toggle 형식으로 색이 변합니다.
+ *      - 목록으로(하단에 있는) : 메인 게시물 목록으로 이동합니다.
+ *      - onSubmit : 댓글이 등록됩니다.
  */
  
 const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, onClickPostList, onClickMyPage, onClickLogout }) => {
