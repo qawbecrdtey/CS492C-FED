@@ -11,6 +11,8 @@ import { GContainer } from './styled';
  * - 이동 가능한 페이지 번호를 한번에 (10k + 1)부터 최대 10(k + 1)까지 화면에 표시합니다.
  * - 화살표를 누르면 화살표가 뜻하는 곳으로 이동합니다.
  * - 번호를 누르게 되면 해당 번호가 나타내는 페이지로 이동합니다.
+ * - Actions
+ *      - 페이지 번호 : 해당 페이지로 이동하며 dispatch로 redux store의 현재 페이지를 업데이트 해 줍니다.
  */
 // eslint-disable-next-line react/prop-types
 const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
