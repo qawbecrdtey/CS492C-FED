@@ -1,0 +1,1 @@
+(bash run-client.sh) & (bash run-server.sh) && fg

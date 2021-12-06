@@ -1,24 +1,62 @@
 # CS492C-FED
 커뮤니케이션 도구 게시판/협업 도구 개발
 
-## server
-```
-git pull origin main-server
+## Quick instructions
 
-CS492C-FED $: cd server
-
-CS492C-FED/server $: npm install
-
-CS492C-FED/server $: npm start
+First, clone the repository.
+```bash
+git clone https://github.com/yuminyumin/CS492C-FED.git
+cd CS492C-FED
 ```
 
-## client
+The below command will do the job for you.
+```bash
+bash all.sh
 ```
-git pull origin main-client
 
-CS492C-FED $: cd client
+If you have already once run `all.sh`,
+then it should be sufficient to only run
+```bash
+bash run.sh
+```
 
-CS492C-FED/client $: npm install
+If there seems to be any error while running, try
+```bash
+bash fix.sh
+```
 
-CS492C-FED/client $: npm start
+If there is any need to run `npm install`, try
+```bash
+bash install.sh
+```
+
+## Step-by-step instructions
+
+To run the command separately, you should follow the instructions below.
+
+First, clone the repository.
+```bash
+git clone https://github.com/yuminyumin/CS492C-FED.git
+cd CS492C-FED
+```
+
+Then set up the server.
+```bash
+cd server
+npm install
+npm audit fix
+cd ..
+```
+
+Finally, set up the client.
+```bash
+cd client
+npm install
+npm audit fix
+cd ..
+```
+
+Now you should start both the server and the client.
+```bash
+bash (cd server; npm start) & (cd client; npm start) && fg
 ```
