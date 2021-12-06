@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { TableContainer, TableHeaderColumn, HeaderItem } from './styled';
 const Checkbox = props => <input type="checkbox" {...props} />;
+import PropTypes from 'prop-types';
+
+/**
+ * - postMain 및 MyPage에서 사용됩니다.
+ */
  
 const CommonTable = ({ headersName, getElement, getChecked, children, mypage, onClickCheckbox, isStory, onSortColumn }) => {
   const [sortFlag, setSortFlag] = useState([true, false, false, false, false, false]);
@@ -66,5 +71,28 @@ const CommonTable = ({ headersName, getElement, getChecked, children, mypage, on
     </TableContainer>
   )
 }
+
+CommonTable.propTypes = {
+  /**
+   * 목록 column의 이름 List입니다. 
+   */
+  headersName: PropTypes.array,
+  /**
+   * column을 클릭하면 해당 column의 이름을 element로써 상위 컴포넌트에 전달하여 정렬할때 사용할 수 있게 합니다. 
+   */
+  getElement: PropTypes.object,
+   /**
+   * 전체선택/해제할 수 있는 체크박스 클릭 시 클릭 여부를 getChecked를 통해 상위 컴포넌트에 전달합니다.
+   */
+  getChecked: PropTypes.bool,
+  /**
+   * 각 Row를 children으로 받아서 렌더링합니다.
+   */
+  children: PropTypes.object,
+   /**
+   * props로 상위 컴포넌트가 mypage인지 아닌지를 받아와서 체크박스를 선택적으로 보여줍니다.
+   */
+  mypage: PropTypes.bool,
+};
  
 export default CommonTable;

@@ -21,7 +21,19 @@ import {
 import MainPageFunc from '../MainpageFunc/MainPageFunc';
 import Triangle from '../Triangle';
 const POST_URL = '/api/post';
+import PropTypes from 'prop-types';
 
+/**   
+ * - 메인 페이지의 게시물 목록을 노출하는데 사용됩니다. 
+ *   
+ * 하위 컴포넌트는 다음과 같습니다.    
+ *  - DropDownMenu는 검색분류를 결정하는 드롭다운 메뉴입니다.
+ *  - Input은 검색어를 입력하는 데 사용됩니다.
+ *  - CommonTable과 Row는 검색, 정렬, 페이지 정보로 필터링된 게시물을 map
+ *    함수를 통해 해당 페이지에 게시물 테이블을 렌더링합니다.
+ *  - MainPageFunc은 체크박스를 통해 결정된 삭제 대상 postNO의 list인
+ *    removeList state를 인자로 넘겨주어 해당 컴포넌트 내의 삭제 버튼 클릭시 삭제할 수 있도록 합니다.
+ */
 // eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickCheck, isStory, onSearch, onWrite, onDelete, onSortColumn }) => {
   const thiscomponent = '/postMain';
@@ -217,5 +229,20 @@ const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickC
     </ListContainer>
   )
 }
+
+PostList.propTypes = {
+  /**
+   * 현재 페이지 번호를 나타내며 게시물 리스트를 인덱싱해서 띄워주기 위해 사용됩니다.
+   */
+  pageNO: PropTypes.number,
+  /**
+   * 현재 페이지 번호와 함께 한 페이지당 노출해야 하는 게시물의 개수로써 인덱싱할 개수를 정해주기 위해 사용됩니다.
+   */
+  postPerPage: PropTypes.number,
+  /**
+   * 검색을 할 경우 총 게시물의 수가 바뀌는데, 이때 게시물의 수를 상위 컴포넌트에 콜백함수로 전달해줘서 전체 페이지 개수를 결정합니다.
+   */
+  getPostCount: PropTypes.func,
+};
  
 export default PostList;

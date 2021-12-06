@@ -8,13 +8,14 @@ const store = {
         return {
             user : 
             {
-                userList : [
-                    [ 'something',
-                    'dain', 
-                    '1234', 
-                    'A', 
-                    '24', 
-                    '010' ]
+                userList: [
+                    ["_id",'Writer', 'Password', 'Email', 'Age', 'Phone number'],
+                    ["619bacaa929ca700ee96d13a",'dain', '1234', 'dain@naver.com', '24', '01012344321'],
+                    ["619bacaa929ca7011196d13a",'yumin', '1234', 'yumin@naver.com', '23', '01012311321'],
+                    ["619bacaa929ca7011196d13a",'asdf', '1234', 'asdf@naver.com', '24', '01011311321'],
+                    ["619bacaa929ca7011196d13a",'dain2', '1234', 'asdf@naver.com', '24', '01011311321'],
+                    ["619bacaa929ca7011196d13a",'haha', '1234', 'asdf@naver.com', '24', '01011311321'],
+                    ["619bacaa929ca7011196d13a",'유민', '1234', 'asdf@naver.com', '24', '01011311321'],
                 ]
             }
         };
@@ -27,7 +28,6 @@ const withReduxMockStore = (story) => (
     <Provider store={store}>{story()}</Provider>
 )
 
-
 export default {
     title : 'SingleComment component',
     component: SingleComment,
@@ -36,17 +36,45 @@ export default {
 
 const SingleCommentComponent = args => <SingleComment {...args}/>;
 
-const comment = {
-    content: '아이고',
-    created_date: '11/30',
-    postNO: 1,
-    writer: 'dain',
+const comment_form = {
+    content: "content",
+    created_date : "created_date",
+    postNO : 1,
+    writer : "Writer"
 }
 
-export const Default = SingleCommentComponent.bind({});
-Default.args = {
+export const CommentForm = SingleCommentComponent.bind({});
+CommentForm.args = {
     key: 1,
-    comment: comment,
+    comment: comment_form,
+    postNO: 1,
+}
+
+const comment_first = {
+    content: "First Comment",
+    created_date : "2021년 12월 06일 01시 04분",
+    postNO : 1,
+    writer : "dain"
+}
+
+export const First = SingleCommentComponent.bind({});
+First.args = {
+    key: 1,
+    comment: comment_first,
+    postNO: 1,
+}
+
+const comment_second = {
+    content: "Second Comment",
+    created_date : "2021년 12월 07일 01시 04분",
+    postNO : 1,
+    writer : "yumin"
+}
+
+export const Second = SingleCommentComponent.bind({});
+Second.args = {
+    key: 1,
+    comment: comment_second,
     postNO: 1,
     isStory: true,
     onDelete: action('onDelete')

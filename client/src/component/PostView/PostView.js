@@ -32,6 +32,24 @@ const POST_URL = '/api/post';
 
 import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4080/');
+
+/**
+ * - PostMain과 마찬가지로 서버에서 게시물을 불러오는 시간이 필요하기 때문에
+     redux store로 초기화를 해준 후 로딩 과정을 거쳐 가장 최신의 게시물 목록을
+     불러온 후 게시물 번호가 일치하는 데이터를 state에 저장하여 페이지를 렌더링합니다.      
+ * - 게시물 넘버는 match.params로 받습니다.
+ * - 목록 버튼을 누를 때 4가지 게시판 중 직전에 있었던 게시판으로 돌아가기 위해
+     게시물 상세보기 버튼을 누를 때 쿼리스트링으로 원래 게시판의 정보를 넘겨줍니다.
+     따라서 PostView에서 받아온 쿼리와 redux store에 저장된 페이지넘버를 조합하여
+     되돌아갈 목록의 url을 지정합니다.
+ * - 삭제의 경우 소켓 통신을 통해 해당 게시글 번호를 서버로 전송하여 서버에서 삭제되게 합니다.
+ * - 수정의 경우 수정 버튼을 누를 시 처음에 원래 글의 제목과 내용이 에디터에 담겨 있도록 합니다.
+     또한 등록과 마찬가지로 적절한 값이 아닌 경우 경고창이 뜨며 게시물이 등록되지 않습니다.
+ * - 좋아요의 경우 페이지가 렌더링 될 때 좋아요 토글 버튼의 활성화 여부는 비동기 함수인
+     loadPosts에서 받아온 게시물 정보의 likeUsers 리스트에서 확인합니다. 또한 좋아요 버튼은
+     소켓통신으로 구현하여 버튼 클릭 시 해당 postNO와 userID를 서버에 전송하여 해당 postNO를
+     가진 게시글의 likeUsers에 userID를 추가하거나 삭제하도록 합니다.
+ */
  
 const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, onClickPostList, onClickMyPage, onClickLogout }) => {
   const _loginUser = useSelector(state => state.user.loginUser);

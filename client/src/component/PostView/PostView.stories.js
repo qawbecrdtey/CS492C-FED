@@ -14,7 +14,7 @@ const store = {
                 ],
                 loginUser: {
                     userID: 'dain',
-                    password: '123444',
+                    password: '1234',
                 },
                 pastPageNumber: 1,
                 userList: [

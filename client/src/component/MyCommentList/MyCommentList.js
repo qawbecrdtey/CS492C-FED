@@ -7,6 +7,13 @@ import { request } from '../../utils/axios';
 import Row from '../Row';
 const POST_URL = '/api/post';
  
+/**
+ * - Row에 thiscomponent 변수를 전달하여 상세보기에서 목록 전환 시
+     url 생성에 사용할 수 있도록 합니다.
+ * - 내가 쓴 댓글 리스트와 전체 postlist를 서버에서 불러온 후 댓글 리스트의 
+     postNO에 대응되는 게시물을 필터링하여 렌더링 합니다.
+ * - 서버에서 데이터를 불러올 때 비동기함수를 사용하기 때문에 loading로직을 사용합니다.
+ */
 // eslint-disable-next-line react/prop-types
 const MyCommentList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const [_postList, setPL] = useState([]);

@@ -5,6 +5,14 @@ import { getMyLikedPosts } from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListContainer } from './styled';
  
+/**
+ * - Row에 thiscomponent 변수를 전달하여 상세보기에서 목록 전환 시
+     url 생성에 사용할 수 있도록 합니다.
+ * - MyPostList와 유사한 구조를 가지며, reducer를 이용해 서버에서 
+     내가 좋아요 한 글을 불러와 렌더링 합니다.
+ * - 정렬, 검색 기능이 없습니다.
+ */
+
 // eslint-disable-next-line react/prop-types
 const MyLikeList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const dispatch = useDispatch();
