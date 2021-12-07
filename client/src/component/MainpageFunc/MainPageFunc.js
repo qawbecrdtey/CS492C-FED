@@ -25,7 +25,6 @@ const MainPageFunc = ({ removelist, onWrite, onDelete, isStory }) => {
     const removeposts = () => {
       dispatch(updateCurrentPage(1));
       socket.emit('remove-snd', { removelist });
-      console.log('removelist : ' + removelist);
       window.location.replace(`/postMain/1`);
     }
     return (

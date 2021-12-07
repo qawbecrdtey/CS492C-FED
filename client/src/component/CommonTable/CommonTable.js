@@ -44,8 +44,6 @@ const CommonTable = ({ headersName, getElement, getChecked, children, mypage, on
     setChecked(false);
     getChecked(false);
   }, [window.location.href]);
-
-  console.log(mypage);
  
   return (
     <TableContainer>

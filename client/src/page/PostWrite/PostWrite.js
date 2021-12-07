@@ -59,7 +59,6 @@ const PostWrite = ({ isStory, onWrite, onCancel }) => {
                     content: content,
                 }
                 if (body['userID'] == '') {
-                    console.log("userID is none");
                     return false;
                 }
                 request('post', POST_URL + '/register', body);
@@ -70,7 +69,6 @@ const PostWrite = ({ isStory, onWrite, onCancel }) => {
 
     const saveContent = () => {
         if (content != '' && title != '') {
-            console.log(title.length);
             if (content.length >= 10000) {
                 alert('내용 길이는 10000byte 이하여야 합니다');
             } else if (title.length >= 50) {

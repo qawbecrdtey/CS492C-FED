@@ -70,13 +70,11 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
           !loading ? null :
            isStory ? _myCommentList.map((char, index) => {
               const _postNO = char[1];
-              console.log(_postNO);
               const thispost = _postList.find((element) => {
                   if (element[1] === _postNO) {
                     return true;
                   }
               })
-              console.log(thispost);
               return (
                 <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
               )
@@ -87,7 +85,6 @@ const MyCommentList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
                   return true;
                 }
             })
-            console.log(thispost);
             return (
               <Row key={index} postNO={thispost[1]} title={thispost[2]} no_comments={thispost[3]} likes={thispost[4]} userID={thispost[5]} created_date={thispost[6]} views={thispost[7]} mypage={true} parentcomponent={thiscomponent}/>
             )

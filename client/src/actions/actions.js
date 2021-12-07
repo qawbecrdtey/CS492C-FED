@@ -58,7 +58,6 @@ export async function getMyLikedPosts(dataToSubmit) {
 
 export function registerUser(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
-    console.log("userID is none");
     return {
       type: types.REGISTER_USER,
       payload: '',
@@ -87,7 +86,6 @@ export function modifyUser(dataToSubmit) {
 
 export async function registerPost(dataToSubmit) {
   if (dataToSubmit['userID'] == '') {
-    console.log("userID is none");
     return {
       type: types.REGISTER_POST,
       payload: '',
@@ -99,7 +97,6 @@ export async function registerPost(dataToSubmit) {
   for (i = 0; i < data.length; i++) {
     postlist.push(Object.values(data[i]));
   }
-  console.log('register and got postlist');
   return {
     type: types.REGISTER_POST,
     payload: postlist,
@@ -123,7 +120,6 @@ export function userLogined(userdata) {
 
 export function updatePostNum(dataToSubmit) {
   if (dataToSubmit['num_of_total_posts'] == '' || dataToSubmit['current_top_post_num'] == '') {
-    console.log('data is none');
     return {
       type: types.UPDATE_POST_NUM,
       payload: '',

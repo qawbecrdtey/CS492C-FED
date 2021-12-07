@@ -69,7 +69,6 @@ const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, on
   const [_reducerpostList , setRPL] = useState([..._postList]);
   const [loading, setLoading] = useState(true);
   const { no } = match.params;
-  console.log('no : ' + no);
   const parentcomponent = Object.values(QueryString.parse(location.search));
   const goBackURL = parentcomponent + '/' + pastPageNumber;
   const _history = useHistory();
@@ -118,7 +117,6 @@ const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, on
             likeUsers: data[9],
         }
         dispatch(editPost(body));
-        console.log(body);
         _history.push(goBackURL);
       }
     }
@@ -136,10 +134,8 @@ const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, on
       userID: _loginUser['userID'],
     }
     if (!active) {
-      console.log('dispatch like');
       socket.emit('like-snd', body);
     } else {
-      console.log('dispatch unlike');
       socket.emit('unlike-snd', body);
     }
   };
@@ -161,12 +157,8 @@ const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, on
       }
     })
     if (islike == _loginUser['userID']) {
-      console.log('islike : ' + islike);
-      console.log('_loginUser[userID] : ' + _loginUser['userID']);
       setActive(true);
     } else {
-      console.log('islike : ' + islike);
-      console.log('_loginUser[userID] : ' + _loginUser['userID']);
       setActive(false);
     }
     setLoading(false);
@@ -180,7 +172,6 @@ const PostView = ({ match, isStory, onDelete, onSubmit, onLike, onClickBoard, on
     socket.on('unlike-rcv', item => {
       setActive(false);
     });
-    console.log('query : ' + Object.values(QueryString.parse(location.search))); 
   }, [active]);
  
   return (
