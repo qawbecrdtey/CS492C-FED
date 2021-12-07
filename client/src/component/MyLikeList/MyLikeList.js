@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 import React, { useEffect } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
@@ -16,7 +17,6 @@ import { ListContainer } from './styled';
  *    - 제목: 게시물 제목을 클릭하면 해당 게시물의 상세보기 페이지로 이동합니다.
  */
 
-// eslint-disable-next-line react/prop-types
 const MyLikeList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const dispatch = useDispatch();
   const thiscomponent = '/myPage/myLikes';

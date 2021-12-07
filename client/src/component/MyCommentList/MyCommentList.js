@@ -1,4 +1,5 @@
 // /* eslint-disable no-unused-vars */
+// eslint-disable-next-line react/prop-types
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import { useSelector } from 'react-redux';
@@ -14,7 +15,6 @@ const POST_URL = '/api/post';
      postNO에 대응되는 게시물을 필터링하여 렌더링 합니다.
  * - 서버에서 데이터를 불러올 때 비동기함수를 사용하기 때문에 loading로직을 사용합니다.
  */
-// eslint-disable-next-line react/prop-types
 const MyCommentList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
   const [_postList, setPL] = useState([]);
   const thiscomponent = '/myPage/myComments';

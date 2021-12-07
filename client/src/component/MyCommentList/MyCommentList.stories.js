@@ -42,7 +42,6 @@ export default {
     decorators: [withReduxMockStore]
 };
 
-// export const MyCommentListComponent = () => <MyCommentList />;
 const MyCommentListComponent = args => <MyCommentList {...args} isStory={true}/>;
 
 const getPostCount = () => {

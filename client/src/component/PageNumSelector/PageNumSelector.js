@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 import React, { useCallback, useState } from 'react';
 import { 
   DropdownContainer, 
@@ -28,7 +29,6 @@ import PropTypes from 'prop-types';
  *      postPerPage값을 PostList와 Pagination 컴포넌트에 props로써 전달합니다.
  */
 
-// eslint-disable-next-line react/prop-types
 const PageNumSelector = ({ pageNO, parentComponent, isStory, onClickDropDownMenu }) => {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();

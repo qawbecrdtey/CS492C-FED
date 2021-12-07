@@ -24,6 +24,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const User = mongoose.model('User', userSchema); // 1st모델의이름,2nd데이터
+const User = mongoose.model('User', userSchema);
 
-module.exports = { User }; // 다른파일에서사용가능
+module.exports = { User };

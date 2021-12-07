@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+// eslint-disable-next-line react/prop-types
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,7 +16,6 @@ import PropTypes from 'prop-types';
  *      - 제목 : 클릭 시 해당 게시글 상세보기 페이지로 이동합니다.
  */
 
-// eslint-disable-next-line react/prop-types
 const Row = ({ postNO, title, no_comments, likes, userID, created_date, views, mypage, add, del, isAllChecked, parentcomponent, onClickCheck }) => {
   const [checked, setChecked] = useState(false);
   const test = useSelector(state => state.user.userList);

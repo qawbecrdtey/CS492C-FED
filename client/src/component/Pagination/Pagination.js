@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 import React, { useEffect } from 'react';
 import PaginationPageList from '../PaginationPageList';
 import PaginationArrow from '../PaginationArrow';
@@ -14,7 +15,6 @@ import { GContainer } from './styled';
  * - Actions
  *      - 페이지 번호 : 해당 페이지로 이동하며 dispatch로 redux store의 현재 페이지를 업데이트 해 줍니다.
  */
-// eslint-disable-next-line react/prop-types
 const Pagination = ({ articlePerPage, postCount, parentComponent }) => {
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.user.currentPage);

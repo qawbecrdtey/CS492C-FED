@@ -11,7 +11,7 @@ import Login from '../../component/Login'
  *                  로그인에 실패할 경우 경고창이 뜹니다.
  *      - Join : 가입 화면으로 이동합니다.
  */
-const Landing = ({ onSignin, onJoin, isStory }) => {//Functional Component 만들기
+const Landing = ({ onSignin, onJoin, isStory }) => {
     return(
          <Container>
           <Login

@@ -24,7 +24,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
     const [Comment, setComment] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
-    // const postNO = props.postNO
     const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
 
     const handleClick = (e) => {

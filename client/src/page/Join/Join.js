@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react'
 import { Container, JoinContainer, Text, Input } from './styled';
 import { useHistory } from 'react-router';
@@ -16,7 +17,6 @@ import { registerUser, getAllUser } from '../../actions/actions';
  */
 const Join = ({ isStory, onRegister }) => {
     const history = useHistory();
-    // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
     const _userList = useSelector(state => state.user.userList);
     const [ID, setID] = useState('')

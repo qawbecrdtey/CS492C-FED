@@ -6,7 +6,6 @@ export default {
     component: MypageMenuItem,
 };
 
-// export const MypageMenuItemComponent = () => <MypageMenuItem />;
 const MypageMenuItemComponent = args => <MypageMenuItem {...args} />;
 
 const menus = [

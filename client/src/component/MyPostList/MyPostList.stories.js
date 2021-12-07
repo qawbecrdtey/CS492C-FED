@@ -35,7 +35,6 @@ export default {
     decorators: [withReduxMockStore, StoryRouter()]
 };
 
-// export const MyPostListComponent = () => <MyPostList />;
 const MyPostListComponent = args => <MyPostList {...args} isStory={true} />;
 
 const getPostCount = () => {

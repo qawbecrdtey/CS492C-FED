@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 import React from 'react';
 import { Btn, FunctionContainer } from './styled';
 import { useDispatch } from 'react-redux';
@@ -14,7 +15,6 @@ import PropTypes from 'prop-types';
  *    - 삭제하기: 버튼 클릭 시 props로 받아온 removelist를 
         서버에 전달한 후 게시판 목록으로 이동합니다.
  */
-// eslint-disable-next-line react/prop-types
 const MainPageFunc = ({ removelist, onWrite, onDelete, isStory }) => {
     const history = useHistory();
     const movetowriter = () => {

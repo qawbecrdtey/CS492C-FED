@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Header from '../../component/Header';
-// import * as Showdown from "showdown";
 import { GroundContainer } from '../PostMain/styled';
 import { InputContainer } from './styled';
 import { request } from '../../utils/axios';

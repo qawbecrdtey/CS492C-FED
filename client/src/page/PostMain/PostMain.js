@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+// eslint-disable-next-line react/prop-types
 import React from 'react';
 import Header from '../../component/Header';
 import { GroundContainer } from './styled';
@@ -16,10 +17,8 @@ import PageNumSelector from '../../component/PageNumSelector';
  *      - 페이지 번호 : 해당 페이지로 이동합니다.
  *      - post/page 드롭다운 메뉴 : 페이지당 게시물 개수가 변경됩니다. 
  */
-// eslint-disable-next-line react/prop-types
 const PostMain = ({ match, isStory, onClickBoard, onClickPostList, onClickMyPage, onClickLogout, onClickDropDownMenu}) => {
   const thiscomponent = 'PostMain';
-  // eslint-disable-next-line react/prop-types
   const { pageNO } = match.params;
   return (
     <GroundContainer>
