@@ -25,7 +25,6 @@ const Login = ({ onSignin, onJoin, isStory }) => {
     const writeID = e => {
         setID(e.target.value);
     }
-    console.log(_userList);
     const [PW, setPW] = useState('')
     const writePW = e => {
         setPW(e.target.value);
@@ -55,7 +54,6 @@ const Login = ({ onSignin, onJoin, isStory }) => {
             setPW('');
             alert("wrong information");
         }
-        console.log(_userList);
     };
     const join = () => {
         history.push('/Join');

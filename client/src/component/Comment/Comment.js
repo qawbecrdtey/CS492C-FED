@@ -24,7 +24,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
     const [Comment, setComment] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const userID = user.userID
-    // const postNO = props.postNO
     const created_date = moment().format("YYYY년 MM월 DD일 HH시 mm분");
 
     const handleClick = (e) => {
@@ -35,7 +34,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
         if(isStory === true) return _onSubmit(e);
         else {
             e.preventDefault();
-            console.log('submit');
             if (Comment != '') {
                 if (Comment.length >= 1000) {
                     alert('댓글 길이는 1000byte 이하여야 합니다')
@@ -49,7 +47,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
                     axios.post('/api/comment/saveComment', variables)
                         .then(response => {
                             if (response.data.success) {
-                                console.log(response.data.result)
                                 setComment([])
                                 window.location.replace(window.location.href);
                             } else {
@@ -69,7 +66,6 @@ function Comments({ postNO, _onSubmit, isStory }) {
         if(isStory !== true) {
         axios.post('/api/comment/getComments', variables)
             .then(response => {
-                console.log(Object.values(response));
                 if (response.data.success) {
                     setCommentLists(response.data.comments)
                 } else {

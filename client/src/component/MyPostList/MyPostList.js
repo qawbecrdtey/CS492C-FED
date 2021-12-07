@@ -63,8 +63,6 @@ const MyPostList = ({ pageNO, postPerPage, getPostCount, isStory }) => {
     let body = {
         userID: _loginUser['userID']
     }
-    console.log(`body = ${body}`);
-    console.log(body);
     if(isStory !== true) {
       dispatch(getMyPost(body));
     }

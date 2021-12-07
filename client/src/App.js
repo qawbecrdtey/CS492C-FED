@@ -1,4 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
+// eslint-disable-next-line react/react-in-jsx-scope
 import { BrowserRouter, Route } from 'react-router-dom';
 import PostMain from './page/PostMain';
 import PostView from './component/PostView';
@@ -11,7 +12,6 @@ import MyPageComment from './page/MyPageComment';
  
 function App() {
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <div className="App">
       <BrowserRouter>
         <Route exact path='/' component={Landing} />

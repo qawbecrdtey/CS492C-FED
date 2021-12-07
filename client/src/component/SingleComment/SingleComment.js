@@ -26,9 +26,7 @@ function SingleComment({ comment, postNO, isStory, onDelete }) {
 
         axios.post('/api/comment/deleteComment', variables)
             .then(response => {
-                if (response.data.success) {
-                    console.log(response.data.result)
-                } else {
+                if (!response.data.success) {
                     alert('Failed to delete Comment')
                 }
         })

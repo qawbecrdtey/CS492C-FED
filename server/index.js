@@ -11,17 +11,17 @@
 /* eslint-disable import/order */
 /* eslint-disable import/newline-after-import */
 /* eslint-disable no-undef */
+// eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = 4000;
 const dbAddress = 'mongodb+srv://dain:1234@cluster0.hq96u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-// eslint-disable-next-line no-undef
 const { User } = require('./models/User');
 const { Post } = require('./models/Post');
 const { CurrentPosts } = require('./models/CurrentPosts');
 const { Comment } = require('./models/Comment');
-// eslint-disable-next-line no-undef
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -101,7 +101,7 @@ app.post('/api/user/register', async (req, res) => {
     if (err) {
       return res.json({ success: false, err });
     }
-    if (sameUser != null) { // 이미 같은 유저가 디비에 있을떄
+    if (sameUser != null) {
       console.log('same user');
       return res.json(
         {
@@ -156,7 +156,6 @@ app.post('/api/post/mylikes', async (req, res) => {
   const user = await User.findOne({ userID: req.body.userID });
   var postList = mongoose.model('Post');
   console.log('getmylikes');
-  // const likepostlist = await postList.find({ postNO: { $in: user.likeposts } });
   const likepostlist = await postList.find({ likeUsers: user.userID });
   res.json(likepostlist);
 });
@@ -251,7 +250,6 @@ io.on('connection', (socket) => {
         console.log('delete post no : ' + postNO);
         if (err) return res.json({ success: false, err });
       });
-      // commentList.findOneAndDelete({ postNO: postNO }, (err) => {
       commentList.deleteMany({ postNO: postNO }, (err) => {
         console.log('delete comment post no : ' + postNO);
         if (err) return res.json({ success: false, err });

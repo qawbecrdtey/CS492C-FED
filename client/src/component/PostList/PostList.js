@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+// eslint-disable-next-line react/prop-types
 import React, { useEffect, useState } from 'react';
 import CommonTable from '../CommonTable';
 import Row from '../Row';
@@ -41,7 +42,6 @@ import PropTypes from 'prop-types';
  *       - 개별 체크박스 : 게시글마다 체크가 가능하고, 체크된 게시글을 추후에 삭제할 수 있습니다.
  *       - 제목 클릭 : 해당 게시글 상세보기 페이지로 이동합니다.
  */
-// eslint-disable-next-line react/prop-types
 const PostList = ({ pageNO, postPerPage, getPostCount, onClickCheckbox, onClickCheck, isStory, onSearch, onWrite, onDelete, onSortColumn }) => {
   const thiscomponent = '/postMain';
   const dispatch = useDispatch();

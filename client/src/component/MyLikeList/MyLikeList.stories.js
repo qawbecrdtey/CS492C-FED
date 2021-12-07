@@ -42,7 +42,6 @@ export default {
     decorators: [withReduxMockStore, StoryRouter()]
 };
 
-// export const MyLikeListComponent = () => <MyLikeList />;
 const MyLikeListComponent = args => <MyLikeList {...args} isStory={true} />;
 
 const getPostCount = () => {
